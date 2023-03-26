@@ -1,0 +1,173 @@
+%! TeX program = lualatex
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[nil]{babel}
+\usepackage{unicode-math}
+\usepackage[svgnames]{xcolor}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{parskip}
+
+\babelprovide[import=el, main, onchar=ids fonts]{greek} % can also do import=el-polyton
+\babelprovide[import, onchar=ids fonts]{english}
+
+\babelfont{rm}
+          [Language=Default]{Liberation Sans}
+\babelfont[english]{rm}
+          [Language=Default]{Liberation Sans}
+\babelfont{sf}
+          [Language=Default]{Liberation Sans}
+\babelfont{tt}
+          [Language=Default]{Liberation Sans}
+
+%Enter Title Here
+ \title{Risk-assessment-v0.2\\ LibShare}
+\author{\textbf{Ονόματα / ΑΜ / Έτος:} \\ Γρηγόρης Καπαδούκας / 1072484 / 4\textdegree \\ Χρήστος Μπεστητζάνος / 1072615 / 4\textdegree \\ Νικόλαος Αυγέρης / 1067508 / 5\textdegree \\ Περικλής Κοροντζής / 1072563 / 4\textdegree}
+
+\begin{document}
+
+\makeatletter
+\begin{center}
+	\LARGE{\@title} \\
+	\pagebreak
+    \begin{LARGE}\@author\end{LARGE}
+    \pagebreak
+\end{center}
+
+%Insert Body Here
+\section{Ανάλυση Κινδύνων Έργου}
+
+\textbf{Σημείωση:} Για την ανάλυση ρίσκων χρησιμοποιήσαμε τα πεδία που θεωρήσαμε ότι εφαρμόζουν από τη φόρμα καταγραφής κινδύνων στις διαφάνειες του μαθήματος. Όταν η τεχνική αντιμετώπισης και μετριασμού συμπίπτουν τις έχουμε βάλει μαζί.
+
+Επίσης στο πεδίο της συνδεόμενης δραστηριότητας αναφερόμαστε στις δραστηριότητες του Σχήματος 4 στο Project-plan v0.2.pdf.
+
+Τέλος θεωρούμε, όπως αναφέραμε και στο Project-plan v0.2.pdf ότι έχουμε θεωρήσει ότι κάνουμε ίδρυση startup εταιρίας με σκοπό την διεκπεραίωση του έργου.
+
+\subsection{Κίνδυνος: Καθυστέρηση Συγγραφής Κώδικα}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Μεσαία
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} TY 2, TY 12 - TY 19
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Όλη η ομάδα
+	\item \textbf{Σοβαρότητα:} Υψηλό
+	\item \textbf{Σοβαρότητα Συνεπειών:} Μεσαίο
+	\item \textbf{Τύπος:} Σχέδιο
+	\item \textbf{Στρατηγική Μετριασμού Κινδύνου:} Προσαρμοστικότητα εργασίας
+	\item \textbf{Στρατηγική Αντιμετώπισης Κινδύνου:} Κατάλληλη προετοιμασία, ορισμός εφικτών στόχων σε συγκεκριμένα χρονικά διαστήματα
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Επιστροφή στα όρια του χρονοδιαγράμματος
+\end{itemize}
+
+\subsection{Κίνδυνος: Έλλειψη Χρηματοδότησης}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Υψηλή
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} TY 2
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Όλη η ομάδα
+	\item \textbf{Σοβαρότητα:} Υψηλή
+	\item \textbf{Σοβαρότητα Συνεπειών:} Υψηλή
+	\item \textbf{Τύπος:} Σχέδιο, Κόστος
+	\item \textbf{Στρατηγική Μετριασμού Κινδύνου:} Περιορισμός μη αναγκαίων εξόδων
+	\item \textbf{Στρατηγική Αντιμετώπισης Κινδύνου:} Σωστή παρουσίαση του \\σκεπτικού μας, επιλογή πρωτότυπου θέματος με διαθέσιμο χώρο στην αγορά
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Εύρεση χρηματοδότησης
+\end{itemize}
+
+\subsection{Κίνδυνος: Μη Επαρκής Νομική Κάλυψη}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Χαμηλή
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} TY 3
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Όλη η ομάδα
+	\item \textbf{Σοβαρότητα:} Υψηλή
+	\item \textbf{Σοβαρότητα Συνεπειών:} Υψηλή
+	\item \textbf{Τύπος:} Σχέδιο
+	\item \textbf{Στρατηγική Μετριασμού - Αντιμετώπισης Κινδύνου:} Σωστή νομική συμβουλή
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Διαβεβαίωση ειδικού
+\end{itemize}
+
+\subsection{Κίνδυνος: Αστοχία Σχεδιασμού}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Μικρή
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} ΤΥ 5 - TY 11
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Project manager
+	\item \textbf{Σοβαρότητα:} Υψηλή
+	\item \textbf{Σοβαρότητα Συνεπειών:} Μεσαία
+	\item \textbf{Τύπος:} Σχέδιο
+	\item \textbf{Στρατηγική Μετριασμού - Αντιμετώπισης Κινδύνου:} Συνεχείς φάσεις ελέγχου και επανασχεδιασμού ανάμεσα στη συγγραφή κώδικα 
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Επιστροφή στο χρονοδιάγραμμα
+\end{itemize}
+
+\subsection{Κίνδυνος: Ασυνεννοησία με τον πελάτη / χρηματοδότη}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Υψηλή
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} ΤΥ 1
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Project manager
+	\item \textbf{Σοβαρότητα:} Μεσαία
+	\item \textbf{Σοβαρότητα Συνεπειών:} Υψηλή
+	\item \textbf{Τύπος:} Σχέδιο, Κώδικας
+	\item \textbf{Στρατηγική Μετριασμού Κινδύνου:} Συνεχείς φάσεις ελέγχου και επανασχεδιασμού ανάμεσα στη συγγραφή κώδικα
+	\item \textbf{Στρατηγική Αντιμετώπισης Κινδύνου:} Ξεκάθαρη επικοινωνία και καθορισμός απαιτήσεων πριν την έναρξη συγγραφής
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Σύμπλευση απόψεων
+\end{itemize}
+
+\subsection{Κίνδυνος: Άστοχο Marketing}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Μεσαία
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} ΤΥ 1
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Project manager
+	\item \textbf{Σοβαρότητα:} Μεσαία
+	\item \textbf{Σοβαρότητα Συνεπειών:} Μεσαία
+	\item \textbf{Τύπος:} Σχέδιο
+	\item \textbf{Στρατηγική Μετριασμού - Αντιμετώπισης Κινδύνου:} Επικοινωνία με ειδικό
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Διαβεβαίωση ειδικού
+\end{itemize}
+
+\subsection{Κίνδυνος: Προβλήματα Ασφάλειας}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Χαμηλή
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} ΤΥ 21
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Υπεύθυνοι ασφαλείας (Σχήμα 2 στο Project-plan v0.2.pdf)
+	\item \textbf{Σοβαρότητα:} Υψηλή
+	\item \textbf{Σοβαρότητα Συνεπειών:} Υψηλή
+	\item \textbf{Τύπος:} Ποιότητα
+	\item \textbf{Στρατηγική Μετριασμού - Αντιμετώπισης Κινδύνου:} Συνεχόμενα τεστ και δοκιμές ως προς την ασφάλεια του προϊόντος.
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Επιτυχής επιδιόρθωση \\προβλημάτων ασφάλειας που τυχόν προκύψουν κάθε φορά (ποτέ δεν εξαλείφεται τελείως ο κίνδυνος)
+\end{itemize}
+
+\subsection{Κίνδυνος: Δυσλειτουργίες Κώδικα}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Μεσαία
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} TY 12 - TY 21
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Όλη η ομάδα
+	\item \textbf{Σοβαρότητα:} Υψηλή
+	\item \textbf{Σοβαρότητα Συνεπειών:} Υψηλή
+	\item \textbf{Τύπος:} Ποιότητα
+	\item \textbf{Στρατηγική Μετριασμού - Αντιμετώπισης Κινδύνου:} Χρήση σωστών πρότυπων συγγραφής κώδικα
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Επιτυχής / σωστή λειτουργία κώδικα
+\end{itemize}
+
+\subsection{Κίνδυνος: Λάθος Χρησιμοποίηση Κεφαλαίου}
+\begin{itemize}
+	\item \textbf{Πιθανότητα Κινδύνου:} Χαμηλή
+	\item \textbf{Συνδεόμενη Δραστηριότητα:} Σύνολο έργου
+	\item \textbf{Υπεύθυνος Αντιμετώπισης:} Project manager
+	\item \textbf{Σοβαρότητα:} Υψηλή
+	\item \textbf{Σοβαρότητα Συνεπειών:} Υψηλή
+	\item \textbf{Τύπος:} Κόστος, οργάνωση
+	\item \textbf{Στρατηγική Μετριασμού - Αντιμετώπισης Κινδύνου:} Σωστή ανάλυση κόστους και προγραμματισμού εξόδων 
+	\item \textbf{Κριτήρια Απενεργοποίησης Κινδύνου:} Επιστροφή στα όρια του προϋπολογισμού
+\end{itemize}
+
+\section{Συμμετοχή και Ρόλοι στη Συγγραφή του Κειμένου}
+\begin{enumerate}
+	\item \textbf{Χρήστος Μπεστητζάνος:} Author
+	\item \textbf{Γρηγόρης Καπαδούκας:} Peer Reviewer
+\end{enumerate}
+
+\section{Αλλαγές από έκδοση σε έκδοση}
+
+\subsection{Από έκδοση v0.1 σε έκδοση v0.2}
+\begin{itemize}
+    \item Διόρθωση των συνδεόμενων δραστηριοτήτων ώστε να συμπίπτουν με τα ΤΥ του Project-plan v0.2 αντί για το v0.1.
+\end{itemize}
+
+
+\end{document}
