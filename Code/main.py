@@ -1,3 +1,4 @@
+from re import search
 from typing import Optional, Tuple, Union
 import customtkinter as ctk
 
@@ -74,8 +75,34 @@ class GUI(ctk.CTk):
 class SearchPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="Search Page")
-        label.pack(padx=10, pady=10)
+        self.pageName = ctk.CTkLabel(self, text="Please Enter Your Search Term", font=("Arial", 25), text_color="#3A7ABF")
+        self.pageName.pack(padx=20, pady=20)
+
+        self.searchframe = ctk.CTkFrame(self)
+        self.searchframe .columnconfigure(0, weight=1)
+
+        self.searchEntry = ctk.CTkEntry(self.searchframe, placeholder_text="Enter Search Term")
+        self.searchEntry.grid(row=0, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.searchButton = ctk.CTkButton(self.searchframe, text="Search", command=self.get_search_term)
+        self.searchButton.grid(row=0, column=1, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.radiobutton_variable = ctk.StringVar()
+
+        self.chooseBooks = ctk.CTkRadioButton(self.searchframe, text="Books", variable=self.radiobutton_variable)
+        self.chooseBooks.grid(row=1, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.chooseUser = ctk.CTkRadioButton(self.searchframe, text="Books", variable=self.radiobutton_variable)
+        self.chooseUser .grid(row=2, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.chooseRequest = ctk.CTkRadioButton(self.searchframe, text="Books", variable=self.radiobutton_variable)
+        self.chooseRequest.grid(row=3, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.searchframe.pack()
+
+    def get_search_term(self):
+        print(self.searchEntry.get())
+
 
 class Dashboard(ctk.CTkFrame):
     def __init__(self, parent, controller):
