@@ -46,18 +46,18 @@
 	\label{Robustness Diagram: Αναζήτηση βιβλίων / χρήστη / αιτήσεων}
 \end{figure}
 
-\subsection{Ενοικίαση βιβλίου από άλλο χρήστη}
+\subsection{Αποδοχή Προσφοράς Βιβλίου και Ενοικίαση}
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Rent from User Robustness.png}
-	\caption{Robustness Diagram: Ενοικίαση βιβλίου από άλλο χρήστη}
-	\label{Robustness Diagram: Ενοικίαση βιβλίου από άλλο χρήστη}
+	\includegraphics[width=\textwidth]{Accept Book Offer and Rent Robustness.png}
+	\caption{Robustness Diagram: Αποδοχή Προσφοράς Βιβλίου και Ενοικίαση}
+	\label{Robustness Diagram: Αποδοχή Προσφοράς Βιβλίου και Ενοικίαση}
 \end{figure}
 
-\subsection{Ενοικίαση βιβλίου σε άλλο χρήστη (μεριά ιδιοκτήτη)}
+\subsection{Αποδοχή Αίτησης Βιβλίου και Ενοικίαση}
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{Rent to User Robustness.png}
-	\caption{Robustness Diagram: Ενοικίαση βιβλίου σε άλλο χρήστη (μεριά ιδιοκτήτη)}
-	\label{Robustness Diagram: Ενοικίαση βιβλίου σε άλλο χρήστη μεριά ιδιοκτήτη}
+	\includegraphics[width=\textwidth]{Accept Request Offer and Rent Robustness.png}
+	\caption{Robustness Diagram: Αποδοχή Αίτησης Βιβλίου και Ενοικίαση}
+	\label{Robustness Diagram: Αποδοχή Αίτησης Βιβλίου και Ενοικίαση}
 \end{figure}
 
 \subsection{Διαχείριση των βιβλίων που προσφέρει ο χρήστης προς ενοικίαση από άλλους}
@@ -83,6 +83,7 @@
 
 
 \subsection{Προβολή και Επεξεργασία στοιχείων λογαριασμού χρήστη}
+\textbf{Σημείωση:} Στο διάγραμμα αυτό τα δύο boundary objects "Οθόνη Προφίλ με Δυνατότητα Επεξεργασίας" και "Οθόνη προφίλ με ανανεωμένα στοιχεία" αναφέρονται στην ίδια οθόνη, πριν και μετά την αλλαγή αντίστοιχα. Ο λόγος που τα βάλαμε ξεχωριστά είναι για να φαίνεται η αλληλουχία των πράξεων.
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{View and Edit User Account Details Robustness.png}
 	\caption{Robustness Diagram: Προβολή και Επεξεργασία στοιχείων λογαριασμού χρήστη}
@@ -117,5 +118,16 @@
    	\item \textbf{Νικόλαος Αυγέρης:} Author (Κεφαλαίων 1.7, 1.8, 1.9)
 	\item \textbf{Περικλής Κοροντζής:} Author (Κεφαλαίων 1.4, 1.10)
 \end{enumerate}
+
+\section{Αλλαγές από έκδοση σε έκδοση}
+
+\subsection{Από έκδοση v0.1 σε έκδοση v0.2}
+\begin{itemize}
+    \item Αλλαγή στο Robustness Diagram για "Αναζήτηση βιβλίων / χρήστη / αιτήσεων".
+    \item Διαγραφή των Robustness Diagrams για "Αναζήτηση βιβλίων / χρήστη / αιτήσεων" και "Ενοικίαση βιβλίου από άλλο χρήστη" και αντικατάστασή τους με τα αντίστοιχα για "Αποδοχή Προσφοράς Βιβλίου και Ενοικίαση" και "Αποδοχή Αίτησης Βιβλίου και Ενοικίαση".
+    \item Ανανέωση του Robustness Diagram για "Επεξεργασία χρηματικού υπολοίπου χρήστη"
+    \item Ανανέωση του Robustness Diagram για "Επεξεργασία λίστας αγαπημένων και χρήση συστήματος ειδοποιήσεων"
+    \item Ανανέωση του Robustness Diagram για "Προβολή και Επεξεργασία στοιχείων λογαριασμού χρήστη"
+\end{itemize}
 
 \end{document}

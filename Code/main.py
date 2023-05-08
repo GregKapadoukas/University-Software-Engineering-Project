@@ -92,10 +92,10 @@ class SearchPage(ctk.CTkFrame):
         self.chooseBooks = ctk.CTkRadioButton(self.searchframe, text="Books", variable=self.radiobutton_variable)
         self.chooseBooks.grid(row=1, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
 
-        self.chooseUser = ctk.CTkRadioButton(self.searchframe, text="Books", variable=self.radiobutton_variable)
+        self.chooseUser = ctk.CTkRadioButton(self.searchframe, text="Users", variable=self.radiobutton_variable)
         self.chooseUser .grid(row=2, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
 
-        self.chooseRequest = ctk.CTkRadioButton(self.searchframe, text="Books", variable=self.radiobutton_variable)
+        self.chooseRequest = ctk.CTkRadioButton(self.searchframe, text="Requests", variable=self.radiobutton_variable)
         self.chooseRequest.grid(row=3, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
 
         self.searchframe.pack()
