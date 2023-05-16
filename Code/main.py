@@ -6,6 +6,7 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
 class GUI(ctk.CTk):
+    
     def __init__(self, *args, **kwargs):
         ctk.CTk.__init__(self, *args, **kwargs)
 
@@ -17,6 +18,10 @@ class GUI(ctk.CTk):
         # Navigation Buttons
         buttonframe = ctk.CTkFrame(self)
         buttonframe.columnconfigure(0, weight=1)
+
+        editButton = ctk.CTkButton(buttonframe, text="edit", 
+                                        command=lambda : self.show_frame(SearchPage))
+        editButton.grid(row=0, column=0, sticky=ctk.W)
 
         navSearchButton = ctk.CTkButton(buttonframe, text="Search", 
                                         command=lambda : self.show_frame(SearchPage))
@@ -58,6 +63,7 @@ class GUI(ctk.CTk):
         container.grid_rowconfigure(0, weight = 1)
         container.grid_columnconfigure(0, weight = 1)
 
+
         # Initializing frames to an empty array
         self.frames = {}
 
@@ -76,6 +82,8 @@ class GUI(ctk.CTk):
         frame = self.frames[cont]
         frame.tkraise()
 
+    
+ 
 class SearchPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
@@ -145,11 +153,162 @@ class TransactionHistory(ctk.CTkFrame):
         label.pack(padx=10, pady=10)
 
 class MyProfilePage(ctk.CTkFrame):
+
+      
+      
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="My Profile")
-        label.pack(padx=10, pady=10)
+        def username1():
+          text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
+          text11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =2)
 
+        def email1():
+          text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
+          text11.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =2)
+
+
+        def location1():
+          text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
+          text11.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =2)
+
+
+        def balance1():
+          text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
+          text11.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =2)
+          
+        def popup():
+          popupwindow=ctk.CTkToplevel()
+          popupwindow.title("Balacne edit")
+          popupwindow.geometry("400x400")
+          
+        
+          
+          
+          label9=ctk.CTkLabel(popupwindow,text="Enter amount")
+          
+          buttonP=ctk.CTkButton(popupwindow,text="add",command=popupwindow.destroy)
+          
+          label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =2)
+          
+          text7= ctk.CTkTextbox(popupwindow,width=150,height=4,corner_radius=10) 
+          
+          text7.grid(row=1, column=0, sticky=ctk.W)
+          
+          buttonP.grid(row=2, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 1, pady =2)
+
+          
+          
+          label92=ctk.CTkLabel(popupwindow,text="Enter amount")
+          
+          buttonP2=ctk.CTkButton(popupwindow,text="reduce/remove",command=popupwindow.destroy)
+          
+          label92.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =2)
+          
+          text72= ctk.CTkTextbox(popupwindow,width=150,height=4,corner_radius=10) 
+          
+          text72.grid(row=1, column=1, sticky=ctk.W)
+          
+          buttonP2.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 1, pady =2)
+          
+          popupwindow.mainloop() 
+        
+        buttf = ctk.CTkFrame(self)
+        
+        buttf.columnconfigure(0,weight=1)
+        buttf.columnconfigure(1,weight=1)
+        buttf.columnconfigure(2,weight=1)
+        buttf.columnconfigure(3,weight=1)
+        buttf.columnconfigure(4,weight=1)
+        buttf.columnconfigure(5,weight=1)
+        buttf.columnconfigure(6,weight=1)
+        buttf.columnconfigure(7,weight=1)
+        buttf.columnconfigure(8,weight=1)
+        buttf.columnconfigure(9,weight=1)
+        Button1= ctk.CTkButton(buttf,text="edit",command=username1) 
+        Button1.grid(row=0, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =2)
+        
+        Label1= ctk.CTkLabel(buttf,text="username") 
+        Label1.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =2)
+
+        Label11= ctk.CTkLabel(buttf,text="Christos") 
+        Label11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+
+        Button2= ctk.CTkButton(buttf,text="edit",command=email1) 
+        Button2.grid(row=1, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11)
+        
+        Label2= ctk.CTkLabel(buttf,text="email") 
+        Label2.grid(row=1, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11 )
+        Label22= ctk.CTkLabel(buttf,text="books2011@gmail.com") 
+        Label22.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2) 
+  
+        
+        Button3= ctk.CTkButton(buttf,text="edit",command=location1) 
+        Button3.grid(row=2, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+
+
+    
+        Label3= ctk.CTkLabel(buttf,text="location") 
+        Label3.grid(row=2, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+        Label33= ctk.CTkLabel(buttf,text="Athens") 
+        Label33.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2) 
+
+        Button4= ctk.CTkButton(buttf,text="edit",command=balance1) 
+        Button4.grid(row=3, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+        
+        Label4= ctk.CTkLabel(buttf,text="Balance") 
+        Label4.grid(row=3, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+        Label44= ctk.CTkLabel(buttf,text="10.00€") 
+        Label44.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+
+
+        Button5= ctk.CTkButton(buttf,text="edit") 
+        Button5.grid(row=6, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+        
+        Label5= ctk.CTkLabel(buttf,text="new pass") 
+        Label5.grid(row=4, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+
+        text5= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+        text5.grid(row=4, column=1, sticky=ctk.W)
+
+        Label6= ctk.CTkLabel(buttf,text="old pass") 
+        Label6.grid(row=5, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+
+        text6= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+        text6.grid(row=5, column=1, sticky=ctk.W)
+
+        Label7= ctk.CTkLabel(buttf,text="new pass") 
+        Label7.grid(row=6, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+
+        text7= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+        text7.grid(row=6, column=1, sticky=ctk.W)  
+      
+        buttf.pack(side="left")
+
+        buttf1 = ctk.CTkFrame(self)
+        
+        buttf1.columnconfigure(0,weight=1)
+        buttf1.columnconfigure(1,weight=1)
+        buttf1.columnconfigure(2,weight=1)
+        buttf1.columnconfigure(3,weight=1)
+        buttf1.columnconfigure(4,weight=1)
+        buttf1.columnconfigure(5,weight=1)
+        buttf1.columnconfigure(6,weight=1)
+        buttf1.columnconfigure(7,weight=1)
+
+        button1= ctk.CTkButton(buttf1,text="edit Picture") 
+        button1.grid(row=2, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
+        
+        label1= ctk.CTkLabel(buttf1,text="holder  for profile  pic") 
+        label1.grid(row=0, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
+
+        button2= ctk.CTkButton(buttf1,text="edit Balance",command=popup) 
+        button2.grid(row=3, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
+
+        buttf1.pack(side='top')
+
+
+      
+    
 app = GUI()
 app.mainloop()
 
