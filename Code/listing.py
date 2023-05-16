@@ -2,7 +2,7 @@ import datetime
 from book import Book
 
 class Listing:
-    all = []
+    #all = []
     id_incrementer = 0;
     def __init__(self, book:Book, price_per_day:float, listing_date:datetime.datetime):
         assert price_per_day >= 0.0, f"Age {price_per_day} is not greater or equal to zero!"
@@ -13,7 +13,7 @@ class Listing:
         self.__price_per_day = price_per_day
         self.__listing_date = listing_date
 
-        Listing.all.append(self)
+        #Listing.all.append(self)
 
     def __repr__(self):
         return f"ID: {self.__id}, Book: {self.__book}, Price Per Day: {self.__price_per_day}, Listing Date: {self.__listing_date}"

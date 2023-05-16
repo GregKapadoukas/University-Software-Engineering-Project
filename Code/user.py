@@ -3,6 +3,8 @@ from listing import Listing
 from address import Address
 from city import City
 from book import Book
+from notification import Notification
+from favorite import Favorite
 
 class User:
     all = []
@@ -26,12 +28,9 @@ class User:
     def __repr__(self):
         return f"ID: {self.__id}, First Name: {self.__first_name}, Last Name: {self.__last_name}, Email: {self.__email}, Age: {self.__age}, Address: {self.__address}, Balance: {self.__balance}, Listings: {self.__listings}"
 
-    def addListing(self, listing:Listing):
-        self.__listings.append(listing)
+    def addListing(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, listing_date:datetime.datetime):
+        self.__listings.append(Listing(Book(book_name, book_author, book_genre, book_edition, book_publisher), price_per_day, listing_date))
 
-#book1 = Book("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1, "George Allen and Unwin (UK) Houghton Mifflin (US)")
-#listing1 = Listing(book1, 15.0, datetime.datetime(2023,5,6))
-#address1 = Address("Test Street", "5A", City("Patra", "Greece"))
-#user1 = User("Test", "Tetstson", "test@tester.com", 22, address1, 15.0)
-#user1.addListing(listing1)
+#user1 = User("Test", "Tetstson", "test@tester.com", 22, Address("Test Street", "5A", City("Patra", "Greece")), 15.0)
+#user1.addListing("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 15.0, datetime.datetime.now())
 #print(User.all)
