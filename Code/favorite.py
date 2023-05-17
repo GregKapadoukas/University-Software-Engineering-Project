@@ -1,4 +1,15 @@
 import datetime
+from enum import Enum
+
+class Score(Enum):
+    To_Be_Confirmed = 1
+    Waiting_To_Be_Delivered = 2
+    Marked_Delivered_By_One = 3
+    Marked_Delivered = 4
+    Marked_Returned_By_One = 5
+    Marked_Returned = 6
+    Finished = 7
+    Denied = 8
 
 class Favorite:
     #all = []

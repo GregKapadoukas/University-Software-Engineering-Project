@@ -12,5 +12,8 @@ class City:
     def __repr__(self):
         return f"ID: {self.__id}, Name: {self.__name}, Country: {self.__country}"
 
+    def getName(self):
+        return self.__name
+
 #city1 = City("Patra", "Greece")
 #print(City.all)

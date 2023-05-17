@@ -15,5 +15,8 @@ class Address:
     def __repr__(self):
         return f"ID: {self.__id}, Street: {self.__street}, Street Number: {self.__street_number}, City: {self.__city}"
 
+    def getCity(self):
+        return self.__city.getName()
+
 #address1 = Address("Test Street", "5A", City("Patra", "Greece"))
 #print(Address.all)
