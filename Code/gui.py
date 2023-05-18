@@ -66,10 +66,10 @@ class GUI(ctk.CTk):
         buttonframe.pack()
 
         # Creating a container
-        container = ctk.CTkFrame(self)
-        container.pack(side="top", fill="both", expand=True)
-        container.grid_rowconfigure(0, weight = 1)
-        container.grid_columnconfigure(0, weight = 1)
+        self.container = ctk.CTkFrame(self)
+        self.container.pack(side="top", fill="both", expand=True)
+        self.container.grid_rowconfigure(0, weight = 1)
+        self.container.grid_columnconfigure(0, weight = 1)
 
         # Initializing frames to an empty array
         self.frames = {}
@@ -77,7 +77,7 @@ class GUI(ctk.CTk):
         # Iterating through a tuple consisting of the different page layouts
         for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
                   MyFavoritesPage, NotificationsPage, TransactionHistory, MyProfilePage):
-            frame = F(container, self)
+            frame = F(self.container, self)
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky="nsew")
 
@@ -86,6 +86,12 @@ class GUI(ctk.CTk):
 
         # To display the current frame passed as parameter
     def show_frame(self, cont):
+        self.frames = {}
+        for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
+                  MyFavoritesPage, NotificationsPage, TransactionHistory, MyProfilePage):
+            frame = F(self.container, self)
+            self.frames[F] = frame
+            frame.grid(row = 0, column = 0, sticky="nsew")
         frame = self.frames[cont]
         frame.tkraise()
 

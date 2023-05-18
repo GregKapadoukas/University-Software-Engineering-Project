@@ -53,6 +53,9 @@ class User:
     def getCity(self):
         return self.__address.getCity()
 
+    def getBalance(self):
+        return self.__balance
+
     def getScore(self):
         return self.__score
 
@@ -84,6 +87,9 @@ class User:
         for bookRequest in self.__bookRequests:
             if bookRequest.getBook().getID() == book_id:
                 return bookRequest
+
+    def getSafetyDeposit(self):
+        self.__balance -= 30.0
 
     @staticmethod
     def searchUserProfile(searchTerm:str):

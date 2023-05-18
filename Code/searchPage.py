@@ -11,6 +11,7 @@ from notification import Notification
 from review import Review
 from transaction import Transaction
 from user import User
+from CTkMessagebox import CTkMessagebox
 
 class SearchPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -235,9 +236,9 @@ class SearchPage(ctk.CTkFrame):
             ctk.CTkLabel(self.bookOfferersFrame, text=result.getCity(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
             ctk.CTkLabel(self.bookOfferersFrame, text=result.getBookOffer(bookResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
             ctk.CTkLabel(self.bookOfferersFrame, text=result.getBookOffer(bookResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
-            buttons2.append(ctk.CTkButton(self.bookOfferersFrame, text="Accept Offer", font=("Arial", 15), command=
-                                          lambda owner_id=result.getID(),listing_id=result.getBookOffer(bookResultsSelection).getID(),date=datetime.datetime.now():
-                                          self.createTransaction(owner_id, listing_id, date)))
+            buttons2.append(ctk.CTkButton(self.bookOfferersFrame, text="Fill", font=("Arial", 15), command=
+                                          lambda renter_id = 0, owner_id=result.getID(),listing_id=result.getBookOffer(bookResultsSelection).getID():
+                                          self.createTransaction(renter_id, owner_id, listing_id)))
             buttons2[i-1].grid(row=i, column=6, padx=10, pady=10)
             i+=1
 
@@ -279,13 +280,21 @@ class SearchPage(ctk.CTkFrame):
             ctk.CTkLabel(self.bookRequestersFrame, text=result.getCity(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
             ctk.CTkLabel(self.bookRequestersFrame, text=result.getBookRequest(requestResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
             ctk.CTkLabel(self.bookRequestersFrame, text=result.getBookRequest(requestResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
-            buttons2.append(ctk.CTkButton(self.bookRequestersFrame, text="Accept Offer", font=("Arial", 15), command=
-                                          lambda owner_id=result.getID(),listing_id=result.getBookOffer(requestResultsSelection).getID(),date=datetime.datetime.now():
-                                          self.createTransaction(owner_id, listing_id, date)))
+            buttons2.append(ctk.CTkButton(self.bookRequestersFrame, text="Fill", font=("Arial", 15), command=
+                                          lambda renter_id=result.getID(), owner_id = 0, listing_id=result.getBookRequest(requestResultsSelection).getID():
+                                          self.createTransaction(renter_id, owner_id, listing_id)))
             buttons2[i-1].grid(row=i, column=6, padx=10, pady=10)
             i+=1
 
         self.bookRequestersFrame.pack(padx=10, pady=10)
 
-    def createTransaction(self, owner_id, listing_id, startingDate):
-        Transaction(User.searchUserProfile("Greg")[0].getID(), owner_id, listing_id, startingDate)
+    def createTransaction(self, renter_id, owner_id, listing_id):
+        if User.searchUserProfile("Greg")[0].getBalance() >= 30.0:
+            User.searchUserProfile("Greg")[0].getSafetyDeposit()
+            transaction = Transaction(renter_id, owner_id, listing_id)
+            if owner_id != 0:
+                transaction.acceptTransaction()
+        else:
+            msg = CTkMessagebox(title="Not Enough Monkey", message="The renter doesn't have enough money to cover the 30€ safety deposit", icon="cancel", option_1="Close")
+            if msg.get() == "Close":
+                msg.destroy()
