@@ -7,6 +7,7 @@ from notification import Notification
 from favorite import Favorite
 from bookOffer import BookOffer
 from bookRequest import BookRequest
+from transaction import Transaction
 
 class User:
     all = []
@@ -27,6 +28,7 @@ class User:
         self.__score = score
         self.__bookOffers = []
         self.__bookRequests = []
+        self.__favorites = []
 
         User.all.append(self)
 
@@ -50,6 +52,12 @@ class User:
 
     def getCity(self):
         return self.__address.getCity()
+
+    def getScore(self):
+        return self.__score
+
+    def getFavorites(self):
+        return self.__favorites
     
     def addBookOffer(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
@@ -60,6 +68,12 @@ class User:
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
         book_id = Book.getBookIDFromInstance(book)
         self.__bookRequests.append(BookRequest(book_id, price_per_day, delivery_type, listing_date))
+
+    def addFavorite(self,favoriteUserID):
+        for favorite in self.__favorites:
+            if favorite.getFavoriteUserID() == favoriteUserID:
+                return
+        self.__favorites.append(Favorite(favoriteUserID, datetime.datetime.now()))
 
     def getBookOffer(self, book_id:int):
         for bookOffer in self.__bookOffers:
@@ -72,11 +86,21 @@ class User:
                 return bookRequest
 
     @staticmethod
-    def searchUser(searchTerm:str):
+    def searchUserProfile(searchTerm:str):
         result = []
         for user in User.all:
-            if searchTerm in user.getFirstName() or searchTerm in user.getLastName():
+            if searchTerm == user.getFirstName() or searchTerm == user.getLastName():
                 result.append(user)
+                break
+        return result
+
+    @staticmethod
+    def searchUserProfileByID(user_id:int):
+        result = []
+        for user in User.all:
+            if user_id == user.getID():
+                result.append(user)
+                break
         return result
 
     @staticmethod
@@ -98,7 +122,6 @@ class User:
                     result.append(user)
         result = list(set(result))
         return result
-
 
 #user1 = User("Test", "Tetstson", "test@tester.com", 22, Address("Test Street", "5A", City("Patra", "Greece")), 15.0)
 #user1.addListing("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 15.0, datetime.datetime.now())

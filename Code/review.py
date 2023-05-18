@@ -14,7 +14,7 @@ class Score(Enum):
     FIVE = 5
 
 class Review:
-    #all = []
+    all = []
     id_incrementer = 0;
     def __init__(self, reviewer_id:int, reviewee_id:int, score:Score, review_text:str):
 
@@ -29,10 +29,27 @@ class Review:
         self.__score = score
         self.__review_text = review_text
 
-        #Review.all.append(self)
+        Review.all.append(self)
 
     def __repr__(self):
         return f"ID: {self.__id}, Reviewer User ID: {self.__reviewer_id}, Reviewee User ID: {self.__reviewee_id}, Score: {self.__score}, Review Text: {self.__review_text}"
+
+    def getReviewerID(self):
+        return self.__reviewer_id
+
+    def getScore(self):
+        return self.__score
+
+    def getReviewText(self):
+        return self.__review_text
+
+    @staticmethod
+    def getUserReviews(user_id:int):
+        result = []
+        for review in Review.all:
+            if review.__reviewee_id == user_id:
+                result.append(review)
+        return result
 
 #review1 = Review(1, 2, Score.FIVE, "Perfect book!")
 #print(review1)

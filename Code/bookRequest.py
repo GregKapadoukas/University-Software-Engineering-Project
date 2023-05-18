@@ -15,5 +15,4 @@ class BookRequest(Listing):
         for bookRequest in BookRequest.all:
             if searchTerm in bookRequest.getBook().getName() or searchTerm in bookRequest.getBook().getAuthor():
                 result.append(bookRequest)
-        result = list(set(result))
         return result

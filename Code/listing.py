@@ -24,6 +24,9 @@ class Listing:
 
     def __repr__(self):
         return f"ID: {self.__id}, Book ID: {self.__book_id}, Price Per Day: {self.__price_per_day}, Listing Type: {self.__delivery_type}, Listing Date: {self.__listing_date}"
+    
+    def getID(self):
+        return self.__id
 
     def getBook(self):
         return Book.getBookFromID(self.__book_id)

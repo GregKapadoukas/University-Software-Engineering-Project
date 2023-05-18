@@ -15,5 +15,4 @@ class BookOffer(Listing):
         for bookOffer in BookOffer.all:
             if searchTerm in bookOffer.getBook().getName() or searchTerm in bookOffer.getBook().getAuthor():
                 result.append(bookOffer)
-        result = list(set(result))
         return result
