@@ -158,28 +158,51 @@ class MyProfilePage(ctk.CTkFrame):
       
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
+        
         def username1():
+          def use1():
+            Buttonn1.destroy()
+            text11.destroy()
+          Buttonn1= ctk.CTkButton(buttf,text="Store Usname",command=use1) 
+          Buttonn1.grid(row=0, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =1)
           text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
-          text11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =2)
-
+          text11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
+          
+          
         def email1():
+          def use1():
+            Buttonn2.destroy()
+            text11.destroy()
+          Buttonn2= ctk.CTkButton(buttf,text="Store mail",command=use1) 
+          Buttonn2.grid(row=1, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11)
           text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
-          text11.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =2)
-
+          text11.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
+         
 
         def location1():
+          def use1():
+            Buttonn3.destroy()
+            text11.destroy()
           text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
-          text11.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =2)
-
-
+          text11.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
+          Buttonn3= ctk.CTkButton(buttf,text="Store Loc",command=use1) 
+          Buttonn3.grid(row=2, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+        
         def balance1():
           text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
-          text11.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =2)
-          
+          text11.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
+
+
+        def ps():
+          text5.delete("1.0","end")
+          text6.delete("1.0","end")
+          text7.delete("1.0","end")
+          text72.delete("1.0","end")
+          text11.delete("1.0","end")
         def popup():
           popupwindow=ctk.CTkToplevel()
           popupwindow.title("Balacne edit")
-          popupwindow.geometry("400x400")
+          popupwindow.geometry("800x800")
           
         
           
@@ -188,13 +211,13 @@ class MyProfilePage(ctk.CTkFrame):
           
           buttonP=ctk.CTkButton(popupwindow,text="add",command=popupwindow.destroy)
           
-          label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =2)
+          label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
           
           text7= ctk.CTkTextbox(popupwindow,width=150,height=4,corner_radius=10) 
           
           text7.grid(row=1, column=0, sticky=ctk.W)
           
-          buttonP.grid(row=2, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 1, pady =2)
+          buttonP.grid(row=2, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 1, pady =1)
 
           
           
@@ -202,13 +225,14 @@ class MyProfilePage(ctk.CTkFrame):
           
           buttonP2=ctk.CTkButton(popupwindow,text="reduce/remove",command=popupwindow.destroy)
           
-          label92.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =2)
+          label92.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
           
           text72= ctk.CTkTextbox(popupwindow,width=150,height=4,corner_radius=10) 
           
           text72.grid(row=1, column=1, sticky=ctk.W)
           
-          buttonP2.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 1, pady =2)
+          buttonP2.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 1, pady =1)
+          
           
           popupwindow.mainloop() 
         
@@ -225,13 +249,13 @@ class MyProfilePage(ctk.CTkFrame):
         buttf.columnconfigure(8,weight=1)
         buttf.columnconfigure(9,weight=1)
         Button1= ctk.CTkButton(buttf,text="edit",command=username1) 
-        Button1.grid(row=0, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =2)
+        Button1.grid(row=0, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =1)
         
         Label1= ctk.CTkLabel(buttf,text="username") 
-        Label1.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =2)
+        Label1.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
 
         Label11= ctk.CTkLabel(buttf,text="Christos") 
-        Label11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+        Label11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =1)
 
         Button2= ctk.CTkButton(buttf,text="edit",command=email1) 
         Button2.grid(row=1, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11)
@@ -252,8 +276,7 @@ class MyProfilePage(ctk.CTkFrame):
         Label33= ctk.CTkLabel(buttf,text="Athens") 
         Label33.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2) 
 
-        Button4= ctk.CTkButton(buttf,text="edit",command=balance1) 
-        Button4.grid(row=3, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+        
         
         Label4= ctk.CTkLabel(buttf,text="Balance") 
         Label4.grid(row=3, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
@@ -261,7 +284,7 @@ class MyProfilePage(ctk.CTkFrame):
         Label44.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
 
 
-        Button5= ctk.CTkButton(buttf,text="edit") 
+        Button5= ctk.CTkButton(buttf,text="edit",command=ps) 
         Button5.grid(row=6, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
         
         Label5= ctk.CTkLabel(buttf,text="new pass") 
@@ -281,34 +304,54 @@ class MyProfilePage(ctk.CTkFrame):
 
         text7= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
         text7.grid(row=6, column=1, sticky=ctk.W)  
-      
-        buttf.pack(side="left")
-
-        buttf1 = ctk.CTkFrame(self)
         
-        buttf1.columnconfigure(0,weight=1)
-        buttf1.columnconfigure(1,weight=1)
-        buttf1.columnconfigure(2,weight=1)
-        buttf1.columnconfigure(3,weight=1)
-        buttf1.columnconfigure(4,weight=1)
-        buttf1.columnconfigure(5,weight=1)
-        buttf1.columnconfigure(6,weight=1)
-        buttf1.columnconfigure(7,weight=1)
+        buttf.pack(side="top")
 
-        button1= ctk.CTkButton(buttf1,text="edit Picture") 
+        
+
+        button1= ctk.CTkButton(buttf,text="edit Picture") 
         button1.grid(row=2, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
         
-        label1= ctk.CTkLabel(buttf1,text="holder  for profile  pic") 
+        label1= ctk.CTkLabel(buttf,text="holder  for profile  pic") 
         label1.grid(row=0, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
 
-        button2= ctk.CTkButton(buttf1,text="edit Balance",command=popup) 
+        button2= ctk.CTkButton(buttf,text="edit Balance",command=popup) 
         button2.grid(row=3, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
 
-        buttf1.pack(side='top')
+
+
+
+
+
+
+
+
+
+
+        
+        
+        
+
+        
+        
+
+        def storePass():
+         Buttonn5= ctk.CTkButton(buttf,text="store pass") 
+         Buttonn5.grid(row=6, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+        pass
+       
+        def storePic():
+         buttonnn1= ctk.CTkButton(buttf,text="store Picture") 
+         buttonnn1.grid(row=2, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
+        pass
+       
+        def storeBal():
+         buttonnn1= ctk.CTkButton(buttf,text="store Balance") 
+         buttonnn2.grid(row=3, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
+        pass
 
 
       
     
 app = GUI()
 app.mainloop()
-
