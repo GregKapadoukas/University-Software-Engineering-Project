@@ -146,7 +146,17 @@ class NotificationsPage(ctk.CTkFrame):
         self.pageName = ctk.CTkLabel(self, text="Notifications", font=("Arial", 25), text_color="white",bg_color="#3A7ABF")
         self.pageName.pack(fill="x")
         
-        
+        def username1():
+          
+            
+            Label6.destroy()
+            Label7.destroy()
+            Label8.destroy()
+            Label9.destroy()
+            Label10.destroy()
+           
+          
+          
         
         buttf = ctk.CTkFrame(self)
         
@@ -160,7 +170,7 @@ class NotificationsPage(ctk.CTkFrame):
         buttf.columnconfigure(7,weight=1)
         buttf.columnconfigure(8,weight=1)
         buttf.columnconfigure(9,weight=1)
-        Button1= ctk.CTkButton(buttf,text="Remove User", text_color="red", bg_color="red" )
+        Button1= ctk.CTkButton(buttf,text="Remove User", text_color="red", bg_color="red",command=username1 )
         Button1.grid(row=1, column=5, sticky=ctk.E, columnspan = 1, rowspan = 1, padx=1, pady =1)
         
         Label1= ctk.CTkLabel(buttf,text="User") 
@@ -173,8 +183,8 @@ class NotificationsPage(ctk.CTkFrame):
         Label4.grid(row=0, column=3, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=80, pady =1)
         Label5= ctk.CTkLabel(buttf,text="Delivery Type") 
         Label5.grid(row=0, column=4, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 80, pady =1) 
-        Label6= ctk.CTkLabel(buttf,text="Remove us") 
-        Label6.grid(row=0, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=80, pady =1)
+        Label61= ctk.CTkLabel(buttf,text="Remove us") 
+        Label61.grid(row=0, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=80, pady =1)
         
         Label6= ctk.CTkLabel(buttf,text="Greg") 
         Label6.grid(row=1, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 80, pady =1)
@@ -191,6 +201,7 @@ class NotificationsPage(ctk.CTkFrame):
          
         
         buttf.pack(side="top")
+
 
 class TransactionHistory(ctk.CTkFrame):
     def __init__(self, parent, controller):
