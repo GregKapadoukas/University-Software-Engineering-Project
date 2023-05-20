@@ -143,8 +143,54 @@ class MyFavoritesPage(ctk.CTkFrame):
 class NotificationsPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="Notifications")
-        label.pack(padx=10, pady=10)
+        self.pageName = ctk.CTkLabel(self, text="Notifications", font=("Arial", 25), text_color="white",bg_color="#3A7ABF")
+        self.pageName.pack(fill="x")
+        
+        
+        
+        buttf = ctk.CTkFrame(self)
+        
+        buttf.columnconfigure(0,weight=1)
+        buttf.columnconfigure(1,weight=1)
+        buttf.columnconfigure(2,weight=1)
+        buttf.columnconfigure(3,weight=1)
+        buttf.columnconfigure(4,weight=1)
+        buttf.columnconfigure(5,weight=1)
+        buttf.columnconfigure(6,weight=1)
+        buttf.columnconfigure(7,weight=1)
+        buttf.columnconfigure(8,weight=1)
+        buttf.columnconfigure(9,weight=1)
+        Button1= ctk.CTkButton(buttf,text="Remove User", text_color="red", bg_color="red" )
+        Button1.grid(row=1, column=5, sticky=ctk.E, columnspan = 1, rowspan = 1, padx=1, pady =1)
+        
+        Label1= ctk.CTkLabel(buttf,text="User") 
+        Label1.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 80, pady =1)
+        Label2= ctk.CTkLabel(buttf,text="Book") 
+        Label2.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 80, pady =1)
+        Label3= ctk.CTkLabel(buttf,text="Author") 
+        Label3.grid(row=0, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=80, pady =1 )
+        Label4= ctk.CTkLabel(buttf,text="Price Per Day") 
+        Label4.grid(row=0, column=3, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=80, pady =1)
+        Label5= ctk.CTkLabel(buttf,text="Delivery Type") 
+        Label5.grid(row=0, column=4, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 80, pady =1) 
+        Label6= ctk.CTkLabel(buttf,text="Remove us") 
+        Label6.grid(row=0, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=80, pady =1)
+        
+        Label6= ctk.CTkLabel(buttf,text="Greg") 
+        Label6.grid(row=1, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 80, pady =1)
+        Label7= ctk.CTkLabel(buttf,text="David Cop") 
+        Label7.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 80, pady =1)
+        Label8= ctk.CTkLabel(buttf,text="Charles dic") 
+        Label8.grid(row=1, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=80, pady =1 )
+        Label9= ctk.CTkLabel(buttf,text="4 euros") 
+        Label9.grid(row=1, column=3, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=80, pady =1)
+        Label10= ctk.CTkLabel(buttf,text="Post") 
+        Label10.grid(row=1, column=4, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 80, pady =1) 
+       
+
+         
+        
+        buttf.pack(side="top")
 
 class TransactionHistory(ctk.CTkFrame):
     def __init__(self, parent, controller):
