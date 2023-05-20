@@ -48,7 +48,7 @@ class GUI(ctk.CTk):
         navNotificationsButton.grid(row=0, column=5, sticky=ctk.W+ctk.E)
 
         navTransactionHistory = ctk.CTkButton(buttonframe, text="Transaction History", 
-                                        command=lambda : self.show_frame(NotificationsPage))
+                                        command=lambda : self.show_frame(TransactionHistory))
         navTransactionHistory .grid(row=0, column=6, sticky=ctk.W+ctk.E)
 
         navMyProfileButton = ctk.CTkButton(buttonframe, text="My Profile", 
@@ -149,7 +149,7 @@ class NotificationsPage(ctk.CTkFrame):
 class TransactionHistory(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="Transaction History")
+        label = ctk.CTkLabel(self, text="Transaction")
         label.pack(padx=10, pady=10)
 
 class MyProfilePage(ctk.CTkFrame):
