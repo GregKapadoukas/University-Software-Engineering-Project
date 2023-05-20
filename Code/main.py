@@ -175,7 +175,7 @@ class MyProfilePage(ctk.CTkFrame):
             text11.destroy()
           Buttonn2= ctk.CTkButton(buttf,text="Store mail",command=use1) 
           Buttonn2.grid(row=1, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11)
-          text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
+          text11= ctk.CTkTextbox(buttf,width=185,height=4,corner_radius=5)  
           text11.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
          
 
