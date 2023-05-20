@@ -295,6 +295,6 @@ class SearchPage(ctk.CTkFrame):
             if owner_id != 0:
                 transaction.acceptTransaction()
         else:
-            msg = CTkMessagebox(title="Not Enough Monkey", message="The renter doesn't have enough money to cover the 30€ safety deposit", icon="cancel", option_1="Close")
+            msg = CTkMessagebox(title="Not Enough Money", message="The renter doesn't have enough money to cover the 30€ safety deposit", icon="cancel", option_1="Close")
             if msg.get() == "Close":
                 msg.destroy()
