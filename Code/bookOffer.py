@@ -17,3 +17,6 @@ class BookOffer(Listing):
                 result.append(bookOffer)
         result = list(set(result))
         return result
+
+
+    

@@ -276,10 +276,25 @@ class Dashboard(ctk.CTkFrame):
 
 
 class MyBookOffersPage(ctk.CTkFrame):
+
+    def getBookOfferData(self):
+        bookData = []
+        bookData.append(ctk.CTkEntry(self,placeholder_text="Book Name"))
+        bookData[0].pack()
+
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         label = ctk.CTkLabel(self, text="My Book Offers")
         label.pack(padx=10, pady=10)
+        BookOfferButtons = []
+        BookOfferButtons.append(ctk.CTkButton(self,text="Add Book Offer",command=self.getBookOfferData))
+        BookOfferButtons.append(ctk.CTkButton(self,text="Delete Book Offer"))
+        BookOfferButtons.append(ctk.CTkButton(self,text="Select Book Offer"))
+        for button in BookOfferButtons:
+            button.pack()
+
+
+
 
 class MyBookRequestsPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -304,6 +319,7 @@ class TransactionHistory(ctk.CTkFrame):
         ctk.CTkFrame.__init__(self, parent)
         label = ctk.CTkLabel(self, text="Transaction History")
         label.pack(padx=10, pady=10)
+        
 
 class MyProfilePage(ctk.CTkFrame):
     def __init__(self, parent, controller):
