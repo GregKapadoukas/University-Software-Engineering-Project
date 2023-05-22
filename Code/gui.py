@@ -11,6 +11,11 @@ from notification import Notification
 from review import Review
 from transaction import Transaction
 from user import User
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import globals
+from transactionHistoryPage import TransactionHistoryPage
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
@@ -19,6 +24,7 @@ class GUI(ctk.CTk):
     def __init__(self, *args, **kwargs):
 
         ctk.CTk.__init__(self, *args, **kwargs)
+        
 
         self.title("LibShare")
 
@@ -54,7 +60,7 @@ class GUI(ctk.CTk):
         navNotificationsButton.grid(row=0, column=5, sticky=ctk.W+ctk.E)
 
         navTransactionHistory = ctk.CTkButton(buttonframe, text="Transaction History", 
-                                        command=lambda : self.show_frame(NotificationsPage))
+                                        command=lambda : self.show_frame(TransactionHistoryPage))
         navTransactionHistory .grid(row=0, column=6, sticky=ctk.W+ctk.E)
 
         navMyProfileButton = ctk.CTkButton(buttonframe, text="My Profile", 
@@ -74,7 +80,7 @@ class GUI(ctk.CTk):
 
         # Iterating through a tuple consisting of the different page layouts
         for F in (SearchPage, Dashboard, MyBookOffersPage, MyBookRequestsPage,
-                  MyFavoritesPage, NotificationsPage, TransactionHistory, MyProfilePage):
+                  MyFavoritesPage, NotificationsPage, TransactionHistoryPage, MyProfilePage):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky="nsew")
@@ -280,7 +286,8 @@ class MyBookOffersPage(ctk.CTkFrame):
     def getBookOfferData(self):
         bookData = []
         bookData.append(ctk.CTkEntry(self,placeholder_text="Book Name"))
-        bookData[0].pack()
+        bookData[0].pack()  
+        return bookData
 
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
@@ -314,11 +321,10 @@ class NotificationsPage(ctk.CTkFrame):
         label = ctk.CTkLabel(self, text="Notifications")
         label.pack(padx=10, pady=10)
 
-class TransactionHistory(ctk.CTkFrame):
-    def __init__(self, parent, controller):
-        ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="Transaction History")
-        label.pack(padx=10, pady=10)
+
+
+        
+
         
 
 class MyProfilePage(ctk.CTkFrame):

@@ -39,6 +39,18 @@ class User:
     def addBookRequest(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, listing_type: ListingType, listing_date:datetime.datetime):
         self.__bookRequests.append(BookRequest(Book(book_name, book_author, book_genre, book_edition, book_publisher), price_per_day, listing_type, listing_date))
 
+    def getBookOffers(self):
+        return self.__bookOffers
+    def getBookRequest(self):
+        return self.__bookRequests
+    def getListings(self):
+        Listings = []
+        Listing = self.__bookRequests + self.__bookOffers
+        return Listings
+    def getAge(self):
+        return self.__age
+
+
     @staticmethod
     def searchUser(searchTerm:str):
         result = []
@@ -46,6 +58,7 @@ class User:
             if searchTerm in user.getFirstName() or searchTerm in user.getLastName():
                 result.append(user)
         return result
+
 
     @staticmethod
     def findUsersOfferingBook(book:Book):
