@@ -2,7 +2,7 @@ import datetime
 from listing import Listing
 from enum import Enum
 from user import User
-
+from listing import Listing
 
 
 class Status(Enum):
@@ -18,7 +18,9 @@ class Status(Enum):
 class Transaction:
     all = []
     id_incrementer = 0;
+
     def __init__(self, renter:User, owner:User, listing :Listing, starting_date:datetime.datetime):
+
 
         
 
@@ -27,10 +29,12 @@ class Transaction:
         self.__renter = renter
         self.__owner = owner
         self.__status = Status.To_Be_Confirmed
+
         self.__listing = listing
         self.__starting_date = starting_date
         self.__ratings = [{}]
         print(self.__id)
+
         Transaction.all.append(self)
 
     def getStatus(self):
@@ -114,6 +118,67 @@ class Transaction:
     def setBookOfferStatus(self,status:Status):
         self.__status=status
     
+
+    def getRenterID(self):
+        return self.__renter_id
+
+    def getOwnerID(self):
+        return self.__owner_id
+
+    def getStatus(self):
+        return self.__status
+
+    def getStartingDate(self):
+        return self.__starting_date.date()
+
+    def getBookName(self):
+        return Listing.getListingByID(self.__listing_id)[0].getBook().getName()
+
+    def getAmount(self):
+        a = datetime.date.today() 
+        b = self.__starting_date.date()
+        diff = a - b
+        amount = Listing.getListingByID(self.__listing_id)[0].getPricePerDay() + (diff.days * Listing.getListingByID(self.__listing_id)[0].getPricePerDay())
+        return amount
+
+    def acceptTransaction(self):
+        if self.__status == Status.To_Be_Confirmed:
+            self.__status = Status.Waiting_To_Be_Delivered
+            self.__starting_date = datetime.datetime.now()
+
+    def denyTransaction(self):
+        if self.__status == Status.To_Be_Confirmed:
+            self.__status = Status.Denied
+
+    def updateStatus(self):
+        if self.__status == Status.Waiting_To_Be_Delivered:
+            self.__status = Status.Marked_Delivered_By_One
+            self.updateStatus() #Automatically marked delivered by second user
+
+        elif self.__status == Status.Marked_Delivered_By_One:
+            self.__status = Status.Marked_Delivered
+
+        elif self.__status == Status.Marked_Delivered:
+            self.__status = Status.Marked_Returned_By_One
+            self.updateStatus() #Automatically marked returned by second user
+        elif self.__status == Status.Marked_Returned_By_One:
+            self.__status = Status.Finished
+
+    @staticmethod
+    def getByRenterID(renter_id:int):
+        result = []
+        for transaction in Transaction.all:
+            if transaction.getRenterID() == renter_id:
+                result.append(transaction)
+        return result
+
+    @staticmethod
+    def getByOwnerID(owner_id:int):
+        result = []
+        for transaction in Transaction.all:
+            if transaction.getOwnerID() == owner_id:
+                result.append(transaction)
+        return result
 
 #transaction1 = Transaction(1, 2, 3, datetime.datetime.now())
 #print(transaction1)

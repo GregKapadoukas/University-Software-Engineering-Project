@@ -25,6 +25,9 @@ class Favorite:
 
         #Notification.all.append(self)
 
+    def getFavoriteUserID(self):
+        return self.__favorite_user_id
+
     def __repr__(self):
         return f"ID: {self.__id}, Favorite User ID: {self.__favorite_user_id}, Last Notification Date: {self.__last_notification_date}"
 
