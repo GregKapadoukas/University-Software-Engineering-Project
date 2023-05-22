@@ -11,9 +11,6 @@ from notification import Notification
 from review import Review
 from transaction import Transaction
 from user import User
-import matplotlib.pyplot as plt
-import numpy as np
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import globals
 from transactionHistoryPage import TransactionHistoryPage
 

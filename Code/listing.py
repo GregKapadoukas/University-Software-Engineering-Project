@@ -27,6 +27,10 @@ class Listing:
     def getBook(self):
         return self.__book
 
+    def setPricePerDay(self,price):
+        self.__price_per_day=price
+    
+
 #book1 = Book("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1, "George Allen and Unwin (UK) Houghton Mifflin (US)")
 #listing1 = Listing(book1, 15.0, ListingType.Local_Meeting, datetime.datetime(2023,5,6))
 #listing2 = Listing(book1, 15.0, ListingType.By_Post, datetime.datetime(2023,5,7))
