@@ -177,6 +177,15 @@ class NotificationsPage(ctk.CTkFrame):
         buttf.pack(side="top")
 
 
+        
+        
+      
+        
+        
+
+
+
+
 class TransactionHistory(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
@@ -186,6 +195,77 @@ class TransactionHistory(ctk.CTkFrame):
 class MyProfilePage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
+
+
+
+
+
+        buttf = ctk.CTkFrame(self)
+        buttf.columnconfigure(0,weight=1)
+        buttf.columnconfigure(1,weight=1)
+        buttf.columnconfigure(2,weight=1)
+        buttf.columnconfigure(3,weight=1)
+        buttf.columnconfigure(4,weight=1)
+        buttf.columnconfigure(5,weight=1)
+        buttf.columnconfigure(6,weight=1)
+        buttf.columnconfigure(7,weight=1)
+        buttf.columnconfigure(8,weight=1)
+        buttf.columnconfigure(9,weight=1)
+
+
+
+
+
+
+
+        def Pass1 ():
+          def use1():
+            Buttonn3.destroy()
+            c1=text5.get("0.1","end")
+            c2=text6.get("0.1","end")
+            c3=text7.get("0.1","end")
+            f=globals.currentUser.getPass()
+            
+            
+            text5.destroy()
+            text6.destroy()
+            text7.destroy()
+            if (c2 == f) and (c1 == c3):
+              #print("4")
+              #y=len(c1)
+             # if (y<35 and y>0):
+              globals.currentUser.chPass(c1)
+              
+                #print("2")
+              text5.destroy()
+              text6.destroy()
+              text7.destroy()
+              #elif (y>35 or y<0):
+                #print("6")
+               # popupWrong5()
+               # text5.destroy()
+                #text6.destroy()
+                #text7.destroy()
+            else:  
+              popupWrong5()
+              #f=globals.currentUser.getPass()
+              #print("1")
+              text5.destroy()
+              text6.destroy()
+              text7.destroy()
+            f=globals.currentUser.getPass()
+            print(f)
+          
+          
+          
+          text5= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+          text5.grid(row=4, column=1, sticky=ctk.W)
+          text6= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+          text6.grid(row=5, column=1, sticky=ctk.W)
+          text7= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+          text7.grid(row=6, column=1, sticky=ctk.W)  
+          Buttonn3= ctk.CTkButton(buttf,text="Store Pass",command=use1) 
+          Buttonn3.grid(row=6, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
         
         def username1():
           def use1():
@@ -200,32 +280,13 @@ class MyProfilePage(ctk.CTkFrame):
             else :
               globals.currentUser.chFirstName(c)
               f=globals.currentUser.getFirstName()
-              #print(f)
+              print(f)
           Buttonn1= ctk.CTkButton(buttf,text="Store Usname",command=use1) 
           Buttonn1.grid(row=0, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =1)
           text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
           text11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
-          
-          
-        def email1():
-          def use1():
-            c1=text11.get("0.1","end")
-            Buttonn2.destroy()
-            text11.destroy()
-            f=globals.currentUser.getEmail()
-            y=len(c1)
-            if y>35 or y <=0 :
-              popupWrong2()
-            else :
-              globals.currentUser.chEmail(c1)
-              f=globals.currentUser.getEmail()
-              #print(f)
-          Buttonn2= ctk.CTkButton(buttf,text="Store mail",command=use1) 
-          Buttonn2.grid(row=1, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11)
-          text11= ctk.CTkTextbox(buttf,width=185,height=4,corner_radius=5)  
-          text11.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
          
-
+        
         def location1():
           def use1():
             Buttonn3.destroy()
@@ -245,6 +306,27 @@ class MyProfilePage(ctk.CTkFrame):
           text11.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
           Buttonn3= ctk.CTkButton(buttf,text="Store Loc",command=use1) 
           Buttonn3.grid(row=2, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
+          
+        def email1():
+          def use1():
+            c1=text11.get("0.1","end")
+            Buttonn2.destroy()
+            text11.destroy()
+            f=globals.currentUser.getEmail()
+            y=len(c1)
+            if y>35 or y <=0 :
+              popupWrong2()
+            else :
+              globals.currentUser.chEmail(c1)
+              f=globals.currentUser.getEmail()
+              print(f)
+          Buttonn2= ctk.CTkButton(buttf,text="Store mail",command=use1) 
+          Buttonn2.grid(row=1, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11)
+          text11= ctk.CTkTextbox(buttf,width=185,height=4,corner_radius=5)  
+          text11.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
+         
+
+        
         
         def balance1():
           text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
@@ -262,12 +344,59 @@ class MyProfilePage(ctk.CTkFrame):
           popupwindow.title("Balacne edit")
           popupwindow.geometry("800x800")
           
+          def add():
+            
+            c1= text7.get("0.1","end")
+            c=int(c1)
+            
+            
+            
+            f=globals.currentUser.getBalance()
+            
+            if  c<0 :
+              
+              popupWrong3()
+              
+            else :
+              h=c+f
+              globals.currentUser.chBalance(h)
+              
+            f=globals.currentUser.getBalance()
+            print(f)
+            Label443= ctk.CTkLabel(buttf,text=f )
+            popupwindow.destroy()
+            Label443.grid(row=3, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+            Label44.destroy()
+            
         
-          
-          
+          def reduce():
+            
+            c1= text72.get("0.1","end")
+            c=int(c1)
+            
+            
+            
+            f=globals.currentUser.getBalance()
+            
+            if  f-c<0 :
+              
+              popupWrong3()
+              
+            else :
+              g=f-c
+              globals.currentUser.chBalance(g)
+              
+            f=globals.currentUser.getBalance()
+            print(f)
+            Label443= ctk.CTkLabel(buttf,text=f )
+            popupwindow.destroy()
+            Label443.grid(row=3, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+            Label44.destroy()
+            
+            
           label9=ctk.CTkLabel(popupwindow,text="Enter amount")
           
-          buttonP=ctk.CTkButton(popupwindow,text="add",command=popupwindow.destroy)
+          buttonP=ctk.CTkButton(popupwindow,text="add",command=add)
           
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
           
@@ -281,7 +410,7 @@ class MyProfilePage(ctk.CTkFrame):
           
           label92=ctk.CTkLabel(popupwindow,text="Enter amount")
           
-          buttonP2=ctk.CTkButton(popupwindow,text="reduce/remove",command=popupwindow.destroy)
+          buttonP2=ctk.CTkButton(popupwindow,text="reduce/remove",command=reduce)
           
           label92.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
           
@@ -292,10 +421,13 @@ class MyProfilePage(ctk.CTkFrame):
           buttonP2.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 1, pady =1)
           
           
+          
+          
+            
+          
           popupwindow.mainloop() 
         
         buttf = ctk.CTkFrame(self)
-        
         buttf.columnconfigure(0,weight=1)
         buttf.columnconfigure(1,weight=1)
         buttf.columnconfigure(2,weight=1)
@@ -338,46 +470,33 @@ class MyProfilePage(ctk.CTkFrame):
         
         Label4= ctk.CTkLabel(buttf,text="Balance") 
         Label4.grid(row=3, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
-        Label44= ctk.CTkLabel(buttf,text="10.00€") 
-        Label44.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+        
 
 
-        Button5= ctk.CTkButton(buttf,text="edit",command=ps) 
+        Button5= ctk.CTkButton(buttf,text="edit pass",command=Pass1) 
         Button5.grid(row=6, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
         
         Label5= ctk.CTkLabel(buttf,text="new pass") 
         Label5.grid(row=4, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
 
-        text5= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
-        text5.grid(row=4, column=1, sticky=ctk.W)
+        
 
         Label6= ctk.CTkLabel(buttf,text="old pass") 
         Label6.grid(row=5, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
 
-        text6= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
-        text6.grid(row=5, column=1, sticky=ctk.W)
+        
 
         Label7= ctk.CTkLabel(buttf,text="new pass") 
         Label7.grid(row=6, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
 
-        text7= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
-        text7.grid(row=6, column=1, sticky=ctk.W)  
+        Label44= ctk.CTkLabel(buttf,text=globals.currentUser.getBalance()) 
+        Label44.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+        
         
         buttf.pack(side="top")
 
         
 
-        button1= ctk.CTkButton(buttf,text="edit Picture") 
-        button1.grid(row=2, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
-        
-        label1= ctk.CTkLabel(buttf,text="holder  for profile  pic") 
-        label1.grid(row=0, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
-
-        button2= ctk.CTkButton(buttf,text="edit Balance",command=popup) 
-        button2.grid(row=3, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
-
-        
-      
 
         def phone1():
           
@@ -421,6 +540,95 @@ class MyProfilePage(ctk.CTkFrame):
 
 
         
+
+          
+
+
+
+
+
+        
+
+        
+
+        button1= ctk.CTkButton(buttf,text="edit Picture") 
+        button1.grid(row=2, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
+        
+        label1= ctk.CTkLabel(buttf,text="holder  for profile  pic") 
+        label1.grid(row=0, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
+
+        button2= ctk.CTkButton(buttf,text="edit Balance",command=popup) 
+        button2.grid(row=3, column=5, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =11)
+
+        
+      
+
+        
+
+
+
+
+
+        def Descr1():
+          
+          def use1():
+            
+            c= text11.get("0.1","end")
+            
+            
+            f=globals.currentUser.getDescr()
+            
+            y=len(c)
+            if y>150 or y <=0 :
+              popupWrong4()
+            
+            else :
+              globals.currentUser.chDescr(c)
+              f=globals.currentUser.getDescr()
+            text11.destroy()
+            print(f)
+            Buttonn3.destroy()
+          text11= ctk.CTkTextbox(buttf,width=300,height=20,corner_radius=20)  
+          text11.grid(row=6, column=6, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 1, pady =1)
+          Buttonn3= ctk.CTkButton(buttf,text="Store Descr",command=use1) 
+          Buttonn3.grid(row=5, column=6, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =1)
+
+ 
+
+
+
+
+
+
+        
+
+        button3= ctk.CTkButton(buttf,text="edit Descr",command=Descr1) 
+        button3.grid(row=5, column=6, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=1, pady =1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         
         
 
@@ -444,7 +652,20 @@ class MyProfilePage(ctk.CTkFrame):
 
 
       
-    
+       
+
+        #text5= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+        #text5.grid(row=4, column=1, sticky=ctk.W)
+
+        
+
+        #text6= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+        #text6.grid(row=5, column=1, sticky=ctk.W)
+
+        
+
+        #text7= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
+        #text7.grid(row=6, column=1, sticky=ctk.W)  
 
    
         def popupWrong():
@@ -484,5 +705,21 @@ class MyProfilePage(ctk.CTkFrame):
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
           label9=ctk.CTkLabel(popupwindow1,text="invalid number.")
+          label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          popupwindow1.mainloop() 
+
+        def popupWrong4():
+          popupwindow1=ctk.CTkToplevel()
+          popupwindow1.title("Eror")
+          popupwindow1.geometry("800x800")
+          label9=ctk.CTkLabel(popupwindow1,text="invalid Characters or big text")
+          label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          popupwindow1.mainloop() 
+
+        def popupWrong5():
+          popupwindow1=ctk.CTkToplevel()
+          popupwindow1.title("Eror")
+          popupwindow1.geometry("800x800")
+          label9=ctk.CTkLabel(popupwindow1,text="invalid Characters or wrong oldpass")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
           popupwindow1.mainloop() 
