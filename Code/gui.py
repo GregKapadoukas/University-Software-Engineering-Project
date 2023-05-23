@@ -224,38 +224,41 @@ class MyProfilePage(ctk.CTkFrame):
             c1=text5.get("0.1","end")
             c2=text6.get("0.1","end")
             c3=text7.get("0.1","end")
-            f=globals.currentUser.getPass()
+
             
-            
-            text5.destroy()
-            text6.destroy()
-            text7.destroy()
-            if (c2 == f) and (c1 == c3):
-              #print("4")
-              #y=len(c1)
-             # if (y<35 and y>0):
-              globals.currentUser.chPass(c1)
+            f = globals.currentUser.getPass() :
               
-                #print("2")
-              text5.destroy()
-              text6.destroy()
-              text7.destroy()
-              #elif (y>35 or y<0):
-                #print("6")
-               # popupWrong5()
+            
+             
+            
+            if (c1 == c3):
+              y=len(c1)
+              if (y<35 and y>0):
+                globals.currentUser.chPass(c1)
+              
+                
+              #text5.destroy()
+              #text6.destroy()
+              #text7.destroy()
+              else:
+               
+                popupWrong5()
                # text5.destroy()
                 #text6.destroy()
                 #text7.destroy()
             else:  
+             
+             # globals.currentUser.chPass(c1)
+             # f=globals.currentUser.getPass()
+             # print("1")
+              
               popupWrong5()
-              #f=globals.currentUser.getPass()
-              #print("1")
-              text5.destroy()
-              text6.destroy()
-              text7.destroy()
+              
             f=globals.currentUser.getPass()
-            print(f)
-          
+           # print(f)
+            text5.destroy()
+            text6.destroy()
+            text7.destroy()
           
           
           text5= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10) 
@@ -720,6 +723,7 @@ class MyProfilePage(ctk.CTkFrame):
           popupwindow1=ctk.CTkToplevel()
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
-          label9=ctk.CTkLabel(popupwindow1,text="invalid Characters or wrong oldpass")
+          label9=ctk.CTkLabel(popupwindow1,text="invalid Characters or wrong old pass")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          
           popupwindow1.mainloop() 
