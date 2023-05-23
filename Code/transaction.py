@@ -50,7 +50,8 @@ class Transaction:
         return self.__renter
     def getOwner(self):
         return self.__owner
-
+    def getDate(self):
+        return self.__starting_date
 
     @staticmethod
     def getClosedTransactions(bookOwner : User):
@@ -120,10 +121,10 @@ class Transaction:
     
 
     def getRenterID(self):
-        return self.__renter_id
+        return self.__renter
 
     def getOwnerID(self):
-        return self.__owner_id
+        return self.__owner
 
     def getStatus(self):
         return self.__status
@@ -132,13 +133,13 @@ class Transaction:
         return self.__starting_date.date()
 
     def getBookName(self):
-        return Listing.getListingByID(self.__listing_id)[0].getBook().getName()
+        return self.__listing.getBook().getName()
 
     def getAmount(self):
         a = datetime.date.today() 
         b = self.__starting_date.date()
         diff = a - b
-        amount = Listing.getListingByID(self.__listing_id)[0].getPricePerDay() + (diff.days * Listing.getListingByID(self.__listing_id)[0].getPricePerDay())
+        amount = self.__listing.getPricePerDay() + (diff.days * self.__listing.getPricePerDay())
         return amount
 
     def acceptTransaction(self):

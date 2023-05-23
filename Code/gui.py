@@ -15,6 +15,7 @@ import globals
 from transactionHistoryPage import TransactionHistoryPage
 from searchPage import SearchPage
 from dashboardPage import DashboardPage
+from myBookOffersPage import MyBookOffersPage
 
 
 ctk.set_appearance_mode("dark")
@@ -80,9 +81,9 @@ class GUI(ctk.CTk):
 
         # Iterating through a tuple consisting of the different page layouts
 
-        for F in (SearchPage, Dashboard, MyBookOffersPage, MyBookRequestsPage,
+        for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
                   MyFavoritesPage, NotificationsPage, TransactionHistoryPage, MyProfilePage):
-            frame = F(container, self)
+            frame = F(self.container, self)
 
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky="nsew")
@@ -94,31 +95,12 @@ class GUI(ctk.CTk):
     def show_frame(self, cont):
         self.frames = {}
         for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
-                  MyFavoritesPage, NotificationsPage, TransactionHistory, MyProfilePage):
+                  MyFavoritesPage, NotificationsPage, TransactionHistoryPage, MyProfilePage):
             frame = F(self.container, self)
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky="nsew")
         frame = self.frames[cont]
         frame.tkraise()
-
-class MyBookOffersPage(ctk.CTkFrame):
-
-    def getBookOfferData(self):
-        bookData = []
-        bookData.append(ctk.CTkEntry(self,placeholder_text="Book Name"))
-        bookData[0].pack()  
-        return bookData
-
-    def __init__(self, parent, controller):
-        ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="My Book Offers")
-        label.pack(padx=10, pady=10)
-        BookOfferButtons = []
-        BookOfferButtons.append(ctk.CTkButton(self,text="Add Book Offer",command=self.getBookOfferData))
-        BookOfferButtons.append(ctk.CTkButton(self,text="Delete Book Offer"))
-        BookOfferButtons.append(ctk.CTkButton(self,text="Select Book Offer"))
-        for button in BookOfferButtons:
-            button.pack()
 
 
 
@@ -141,11 +123,6 @@ class NotificationsPage(ctk.CTkFrame):
         label = ctk.CTkLabel(self, text="Notifications")
         label.pack(padx=10, pady=10)
 
-
-
-        
-
-        
 
 class MyProfilePage(ctk.CTkFrame):
     def __init__(self, parent, controller):

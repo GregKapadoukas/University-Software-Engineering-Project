@@ -7,7 +7,7 @@ from notification import Notification
 from favorite import Favorite
 from bookOffer import BookOffer
 from bookRequest import BookRequest
-from transaction import Transaction
+
 
 class User:
     all = []
@@ -65,7 +65,7 @@ class User:
     def addBookOffer(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
         book_id = Book.getBookIDFromInstance(book)
-        self.__bookOffers.append(BookOffer(book_id, price_per_day, delivery_type, listing_date))
+        self.__bookOffers.append(BookOffer(book, price_per_day, delivery_type, listing_date))
 
     def addBookRequest(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
