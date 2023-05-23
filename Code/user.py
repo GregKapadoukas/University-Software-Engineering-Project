@@ -12,7 +12,7 @@ from transaction import Transaction
 class User:
     all = []
     id_incrementer = 0;
-    def __init__(self, first_name:str, last_name:str, email:str, age:int, address:str, balance:float, score:float, Descr:str, Phone_num:int):
+    def __init__(self, first_name:str, last_name:str, email:str, age:int, address:str, balance:float, score:float, Descr:str, Phone_num:int, Pass:str ):
         assert age >= 0, f"Age {age} is not greater or equal to zero!"
         assert balance >= 0.0, f"Age {age} is not greater or equal to zero!"
         assert score >= 0.0 and score <= 5, f"Score {score} is not greater or equal to zero and less than or equal to five!"
@@ -21,8 +21,8 @@ class User:
         self.__id = User.id_incrementer
         User.id_incrementer+=1
         self.__first_name = first_name
-      
         self.__Descr = Descr
+        self.__Pass=Pass
         self.__Phone_num = Phone_num
         self.__last_name = last_name
         self.__email = email
@@ -37,19 +37,26 @@ class User:
         User.all.append(self)
 
     def __repr__(self):
-        return f"ID: {self.__id}, First Name: {self.__first_name}, Last Name: {self.__last_name}, Email: {self.__email}, Age: {self.__age}, Address: {self.__address}, Balance: {self.__balance}, Score: {self.__score}, Book Offers: {self.__bookOffers}, Book Requests: {self.__bookRequests}, Descr: {self.__Descr},Phone number: {self.__Phone_num}"
+        return f"ID: {self.__id}, First Name: {self.__first_name}, Last Name: {self.__last_name}, Email: {self.__email}, Age: {self.__age}, Address: {self.__address}, Balance: {self.__balance}, Score: {self.__score}, Book Offers: {self.__bookOffers}, Book Requests: {self.__bookRequests}, Descr: {self.__Descr},Phone number: {self.__Phone_num}, Pass: {self.__Pass}"
 
     def getID(self):
         return self.__id
 
+    def getPass(self):
+        return self.__Pass
+
+    def chaddress(self,str):
+        self.__Pass=str
+   
     def getPhone_num(self):
         return self.__Phone_num
 
     def getaddress(self):
         return self.__address
 
-    def chaddress(self,str):
-        self.__address=str
+    def chPass(self,str):
+        self.__Pass=str
+      
     def chPhone_num(self,int):
         self.__Phone_num=int
 
@@ -71,7 +78,8 @@ class User:
     def getAge(self):
         return self.__age
 
-    
+    def chBalance(self,int):
+        self.__balance=int
 
     def getBalance(self):
         return self.__balance
@@ -84,6 +92,8 @@ class User:
       
     def getDescr(self):
         return self.__Descr
+    def chDescr(self,str):
+        self.__Descr=str
     
     def addBookOffer(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
