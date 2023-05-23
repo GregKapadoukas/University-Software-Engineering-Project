@@ -226,7 +226,7 @@ class MyProfilePage(ctk.CTkFrame):
             c3=text7.get("0.1","end")
 
             
-            f = globals.currentUser.getPass() :
+            f = globals.currentUser.getPass() 
               
             
              
@@ -255,7 +255,7 @@ class MyProfilePage(ctk.CTkFrame):
               popupWrong5()
               
             f=globals.currentUser.getPass()
-           # print(f)
+            print(f)
             text5.destroy()
             text6.destroy()
             text7.destroy()
@@ -672,58 +672,92 @@ class MyProfilePage(ctk.CTkFrame):
 
    
         def popupWrong():
+          def po():
+            popupwindow1.destroy()
           popupwindow1=ctk.CTkToplevel()
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
           label9=ctk.CTkLabel(popupwindow1,text="invalid username.")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          Button=ctk.CTkButton(popupwindow1,text="OK",command=po)
+          Button.grid(row=1, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          
           popupwindow1.mainloop() 
 
         def popupWrong1():
+          def po():
+            popupwindow1.destroy()
           popupwindow1=ctk.CTkToplevel()
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
           label9=ctk.CTkLabel(popupwindow1,text="invalid location.")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          Button=ctk.CTkButton(popupwindow1,text="OK",command=po)
+          Button.grid(row=1, column=0, sticky=ctk.W, columnspan = 10, rowspan = 10, padx = 14, pady =1)
+          
           popupwindow1.mainloop() 
        
         def popupWrong2():
+          def po():
+            popupwindow1.destroy()
           popupwindow1=ctk.CTkToplevel()
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
           label9=ctk.CTkLabel(popupwindow1,text="invalid email.")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          Button=ctk.CTkButton(popupwindow1,text="OK",command=po)
+          Button.grid(row=1, column=0, sticky=ctk.W, columnspan = 10, rowspan = 10, padx = 14, pady =1)
+          
           popupwindow1.mainloop() 
 
         def popupWrong3():
+          def po():
+            popupwindow1.destroy()
           popupwindow1=ctk.CTkToplevel()
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
           label9=ctk.CTkLabel(popupwindow1,text="invalid number.")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          Button=ctk.CTkButton(popupwindow1,text="OK",command=po)
+          Button.grid(row=1, column=0, sticky=ctk.W, columnspan = 10, rowspan = 10, padx = 14, pady =1)
+          
           popupwindow1.mainloop() 
 
         def popupWrong0():
+          def po():
+            popupwindow1.destroy()
           popupwindow1=ctk.CTkToplevel()
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
           label9=ctk.CTkLabel(popupwindow1,text="invalid number.")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          Button=ctk.CTkButton(popupwindow1,text="OK",command=po)
+          Button.grid(row=1, column=0, sticky=ctk.W, columnspan = 10, rowspan = 10, padx = 14, pady =1)
+         
           popupwindow1.mainloop() 
 
         def popupWrong4():
+          def po():
+            popupwindow1.destroy()
           popupwindow1=ctk.CTkToplevel()
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
           label9=ctk.CTkLabel(popupwindow1,text="invalid Characters or big text")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          Button=ctk.CTkButton(popupwindow1,text="OK",command=po)
+          Button.grid(row=1, column=0, sticky=ctk.W, columnspan = 10, rowspan = 10, padx = 14, pady =1)
+          
           popupwindow1.mainloop() 
 
         def popupWrong5():
+          def po():
+            popupwindow1.destroy()
           popupwindow1=ctk.CTkToplevel()
           popupwindow1.title("Eror")
           popupwindow1.geometry("800x800")
           label9=ctk.CTkLabel(popupwindow1,text="invalid Characters or wrong old pass")
           label9.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
+          Button=ctk.CTkButton(popupwindow1,text="OK",command=po)
+          Button.grid(row=1, column=1, sticky=ctk.W, columnspan = 10, rowspan = 10, padx = 14, pady =1)
           
           popupwindow1.mainloop() 
