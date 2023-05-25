@@ -32,6 +32,10 @@ class Listing:
 
     def getPricePerDay(self):
         return self.__price_per_day
+    def setPricePerDay(self,price):
+        self.__price_per_day=price
+    def setDeliveryType(self,delivery):
+        self.__delivery_type=delivery
 
     def getDeliveryType(self):
         return self.__delivery_type
