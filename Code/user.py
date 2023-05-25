@@ -46,7 +46,7 @@ class User:
         return self.__Pass
 
     def chaddress(self,str):
-        self.__Pass=str
+        self.__address=str
    
     def getPhone_num(self):
         return self.__Phone_num
