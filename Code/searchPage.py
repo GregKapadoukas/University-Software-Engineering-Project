@@ -12,10 +12,12 @@ from review import Review
 from transaction import Transaction
 from user import User
 from CTkMessagebox import CTkMessagebox
+import globals
 
 class SearchPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
+
         self.pageText = ctk.CTkLabel(self, text="Please Enter Your Search Term", font=("Arial", 25), text_color="#3A7ABF")
         self.pageText.pack(padx=20, pady=20)
 
@@ -246,7 +248,7 @@ class SearchPage(ctk.CTkFrame):
 
     def selectUser(self, selection):
         userResultsSelection = self.searchResults[selection].getID()
-        User.searchUserProfile("Greg")[0].addFavorite(userResultsSelection)
+        globals.currentUser.addFavorite(userResultsSelection)
 
     def selectRequest(self, selection):
         requestResultsSelection = self.searchResults[selection].getBook().getID()
@@ -289,11 +291,10 @@ class SearchPage(ctk.CTkFrame):
         self.bookRequestersFrame.pack(padx=10, pady=10)
 
     def createTransaction(self, renter_id, owner_id, listing_id):
-        if User.searchUserProfile("Greg")[0].getBalance() >= 30.0:
-            User.searchUserProfile("Greg")[0].getSafetyDeposit()
+        if globals.currentUser.getBalance() >= 30.0:
+            globals.currentUser.getSafetyDeposit()
             transaction = Transaction(renter_id, owner_id, listing_id)
-            if owner_id != 0:
-                transaction.acceptTransaction()
+            transaction.acceptTransaction()
         else:
             msg = CTkMessagebox(title="Not Enough Monkey", message="The renter doesn't have enough money to cover the 30€ safety deposit", icon="cancel", option_1="Close")
             if msg.get() == "Close":
