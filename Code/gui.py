@@ -231,7 +231,7 @@ class MyProfilePage(ctk.CTkFrame):
             
              
             
-            if (c1 == c3):
+            if (c1 == c3): #and (c2==f):
               y=len(c1)
               if (y<35 and y>0):
                 globals.currentUser.chPass(c1)
@@ -274,21 +274,27 @@ class MyProfilePage(ctk.CTkFrame):
           def use1():
             
             c=text11.get("0.1","end")
-            Buttonn1.destroy()
-            text11.destroy()
+            
             f=globals.currentUser.getFirstName()
             y=len(c)+1
             if y>21 or y <=1 :
+              Buttonn1.destroy()
+              text11.destroy()
               popupWrong()
             else :
               globals.currentUser.chFirstName(c)
               f=globals.currentUser.getFirstName()
               print(f)
+              Label11= ctk.CTkLabel(buttf,text= globals.currentUser.getFirstName()) 
+              Label11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =1)
+              Buttonn1.destroy()
+              text11.destroy()
+          Label11.destroy()    
           Buttonn1= ctk.CTkButton(buttf,text="Store Usname",command=use1) 
           Buttonn1.grid(row=0, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =1)
           text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
           text11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
-         
+          
         
         def location1():
           def use1():
@@ -304,7 +310,9 @@ class MyProfilePage(ctk.CTkFrame):
               f=globals.currentUser.getaddress()
               print(f)
             text11.destroy()
-          
+            Label33= ctk.CTkLabel(buttf,text=globals.currentUser.getaddress()) 
+            Label33.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+          Label33.destroy()
           text11= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=5)  
           text11.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 50, pady =1)
           Buttonn3= ctk.CTkButton(buttf,text="Store Loc",command=use1) 
@@ -323,6 +331,9 @@ class MyProfilePage(ctk.CTkFrame):
               globals.currentUser.chEmail(c1)
               f=globals.currentUser.getEmail()
               print(f)
+              Label22= ctk.CTkLabel(buttf,text=globals.currentUser.getEmail()) 
+              Label22.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+          Label22.destroy()    
           Buttonn2= ctk.CTkButton(buttf,text="Store mail",command=use1) 
           Buttonn2.grid(row=1, column=2, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11)
           text11= ctk.CTkTextbox(buttf,width=185,height=4,corner_radius=5)  
@@ -368,7 +379,7 @@ class MyProfilePage(ctk.CTkFrame):
             print(f)
             Label443= ctk.CTkLabel(buttf,text=f )
             popupwindow.destroy()
-            Label443.grid(row=3, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+            Label443.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
             Label44.destroy()
             
         
@@ -393,7 +404,7 @@ class MyProfilePage(ctk.CTkFrame):
             print(f)
             Label443= ctk.CTkLabel(buttf,text=f )
             popupwindow.destroy()
-            Label443.grid(row=3, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
+            Label443.grid(row=3, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2)
             Label44.destroy()
             
             
@@ -447,7 +458,7 @@ class MyProfilePage(ctk.CTkFrame):
         Label1= ctk.CTkLabel(buttf,text="username") 
         Label1.grid(row=0, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 14, pady =1)
 
-        Label11= ctk.CTkLabel(buttf,text="Christos") 
+        Label11= ctk.CTkLabel(buttf,text= globals.currentUser.getFirstName()) 
         Label11.grid(row=0, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =1)
 
         Button2= ctk.CTkButton(buttf,text="edit",command=email1) 
@@ -455,7 +466,7 @@ class MyProfilePage(ctk.CTkFrame):
         
         Label2= ctk.CTkLabel(buttf,text="email") 
         Label2.grid(row=1, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=15, pady =11 )
-        Label22= ctk.CTkLabel(buttf,text="books2011@gmail.com") 
+        Label22= ctk.CTkLabel(buttf,text=globals.currentUser.getEmail()) 
         Label22.grid(row=1, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2) 
   
         
@@ -466,7 +477,7 @@ class MyProfilePage(ctk.CTkFrame):
     
         Label3= ctk.CTkLabel(buttf,text="location") 
         Label3.grid(row=2, column=0, sticky=ctk.W, columnspan = 1, rowspan = 1, padx=14, pady =11)
-        Label33= ctk.CTkLabel(buttf,text="Athens") 
+        Label33= ctk.CTkLabel(buttf,text=globals.currentUser.getaddress()) 
         Label33.grid(row=2, column=1, sticky=ctk.W, columnspan = 1, rowspan = 1, padx = 100, pady =2) 
 
         
