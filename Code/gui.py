@@ -16,6 +16,7 @@ from transactionHistoryPage import TransactionHistoryPage
 from searchPage import SearchPage
 from dashboardPage import DashboardPage
 from myBookOffersPage import MyBookOffersPage
+from notificationsPage import NotificationsPage
 
 
 ctk.set_appearance_mode("dark")
@@ -115,12 +116,6 @@ class MyFavoritesPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         label = ctk.CTkLabel(self, text="My Favorites")
-        label.pack(padx=10, pady=10)
-
-class NotificationsPage(ctk.CTkFrame):
-    def __init__(self, parent, controller):
-        ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="Notifications")
         label.pack(padx=10, pady=10)
 
 class MyProfilePage(ctk.CTkFrame):

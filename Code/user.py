@@ -28,6 +28,7 @@ class User:
         self.__bookOffers = []
         self.__bookRequests = []
         self.__favorites = []
+        self.__notifications = []
 
         User.all.append(self)
 
@@ -63,13 +64,21 @@ class User:
     
     def addBookOffer(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
-        book_id = Book.getBookIDFromInstance(book)
-        self.__bookOffers.append(BookOffer(book, price_per_day, delivery_type, listing_date))
+        bookOffer = BookOffer(book, price_per_day, delivery_type, listing_date)
+        self.__bookOffers.append(bookOffer)
+        for user in User.all:
+            for favorite in user.getFavorites():
+                if self.getID() == favorite.getFavoriteUserID():
+                    user.addNotification(Notification(self.getID(), bookOffer))
+                    favorite.setLastNotificationDate()
 
     def addBookRequest(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
-        book_id = Book.getBookIDFromInstance(book)
-        self.__bookRequests.append(BookRequest(book, price_per_day, delivery_type, listing_date))
+        bookRequest = BookRequest(book, price_per_day, delivery_type, listing_date)
+        self.__bookRequests.append(bookRequest)
+        for user in User.all:
+            if self in user.getFavorites():
+                user.addNotification(Notification(self.getID(), bookRequest))
 
     def addFavorite(self,favoriteUserID):
         for favorite in self.__favorites:
@@ -103,10 +112,24 @@ class User:
     def getBookRequests(self):
         return self.__bookRequests
 
+    def getNotifications(self):
+        results = []
+        for favorite in self.__favorites:
+            for notification in self.__notifications:
+                if notification.getFavoriteUserID() == favorite.getFavoriteUserID() and favorite.getLastNotificationDate() < datetime.datetime.now():
+                    results.append(notification)
+        return results
+
     def getListings(self):
         Listings = []
         Listing = self.__bookRequests + self.__bookOffers
         return Listings
+
+    def addNotification(self, notification):
+        self.__notifications.append(notification)
+
+    def clearNotification(self, toclear):
+        self.__notifications.remove(toclear)
 
     @staticmethod
     def searchUserProfile(searchTerm:str):

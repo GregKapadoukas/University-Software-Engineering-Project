@@ -13,8 +13,8 @@ class TransactionHistoryPage(ctk.CTkFrame):
         self.__graphsFrame.columnconfigure(1,weight=1)
         self.__transactionListFrame = ctk.CTkFrame(self)
         self.__transactionListFrame.columnconfigure(1, weight=1)
-        label = ctk.CTkLabel(self, text="Transaction History")
-        label.pack(padx=10, pady=10)
+        label = ctk.CTkLabel(self, text="Transaction History", font=("Arial", 25), text_color="#3A7ABF")
+        label.pack(padx=20, pady=20)
         
         self.fig , ax = plt.subplots()
         self.fig.set_size_inches(5,5)

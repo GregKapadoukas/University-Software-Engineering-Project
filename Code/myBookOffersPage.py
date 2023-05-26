@@ -15,7 +15,7 @@ class MyBookOffersPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         self.currentUser = globals.currentUser
         ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="My Book Offers")
+        label = ctk.CTkLabel(self, text="My Book Offers", font=("Arial", 25), text_color="#3A7ABF")
         label.pack(padx=10, pady=10)
         self.BookOfferButtons = []
         self.AddButton=(ctk.CTkButton(self,text="Add Book Offer", command= lambda : self.addFunc()))
