@@ -64,7 +64,7 @@ class User:
     def addBookOffer(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
         book_id = Book.getBookIDFromInstance(book)
-        self.__bookOffers.append(BookOffer(book_id, price_per_day, delivery_type, listing_date))
+        self.__bookOffers.append(BookOffer(book, price_per_day, delivery_type, listing_date))
 
     def addBookRequest(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
@@ -97,6 +97,18 @@ class User:
     def addBalance(self, amount):
         self.__balance += amount
 
+    def getBookOffers(self):
+        return self.__bookOffers
+    def getBookRequest(self):
+        return self.__bookRequests
+    def getListings(self):
+        Listings = []
+        Listing = self.__bookRequests + self.__bookOffers
+        return Listings
+    def getAge(self):
+        return self.__age
+
+
     @staticmethod
     def searchUserProfile(searchTerm:str):
         result = []
@@ -105,6 +117,7 @@ class User:
                 result.append(user)
                 break
         return result
+
 
     @staticmethod
     def searchUserProfileByID(user_id:int):

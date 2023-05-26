@@ -11,8 +11,12 @@ from notification import Notification
 from review import Review
 from transaction import Transaction
 from user import User
+import globals
+from transactionHistoryPage import TransactionHistoryPage
 from searchPage import SearchPage
 from dashboardPage import DashboardPage
+from myBookOffersPage import MyBookOffersPage
+
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
@@ -21,6 +25,7 @@ class GUI(ctk.CTk):
     def __init__(self, *args, **kwargs):
 
         ctk.CTk.__init__(self, *args, **kwargs)
+        
 
         self.title("LibShare")
 
@@ -75,9 +80,11 @@ class GUI(ctk.CTk):
         self.frames = {}
 
         # Iterating through a tuple consisting of the different page layouts
+
         for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
                   MyFavoritesPage, NotificationsPage, TransactionHistoryPage, MyProfilePage):
             frame = F(self.container, self)
+
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky="nsew")
 
@@ -95,11 +102,8 @@ class GUI(ctk.CTk):
         frame = self.frames[cont]
         frame.tkraise()
 
-class MyBookOffersPage(ctk.CTkFrame):
-    def __init__(self, parent, controller):
-        ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="My Book Offers")
-        label.pack(padx=10, pady=10)
+
+
 
 class MyBookRequestsPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -117,12 +121,6 @@ class NotificationsPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         label = ctk.CTkLabel(self, text="Notifications")
-        label.pack(padx=10, pady=10)
-
-class TransactionHistoryPage(ctk.CTkFrame):
-    def __init__(self, parent, controller):
-        ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="Transaction History")
         label.pack(padx=10, pady=10)
 
 class MyProfilePage(ctk.CTkFrame):

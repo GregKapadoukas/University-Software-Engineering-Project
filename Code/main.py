@@ -8,8 +8,8 @@ from city import City
 from favorite import Favorite
 from listing import Listing, DeliveryType
 from notification import Notification
+from transaction import Transaction, Status
 from review import Review, Score
-from transaction import Transaction
 from gui import GUI
 from user import User
 import globals
@@ -20,6 +20,16 @@ user1.addBookOffer("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Alle
 user1.addBookRequest("The Lord of the Rings", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
 review1 = Review(0,1,Score.FIVE,"Very Good")
 review2 = Review(0,1,Score.FOUR,"Not as good")
+globals.currentUser.addBookOffer("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
+globals.currentUser.addBookOffer("The Lord of the Rings", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
+transaction1 = Transaction(user1,globals.currentUser,user1.getBookOffers()[0],datetime.datetime.now())
+transaction2 = Transaction(globals.currentUser,user1,user1.getBookOffers()[0],datetime.datetime.now())
+transaction3 = Transaction(user1,globals.currentUser,user1.getBookOffers()[0],datetime.datetime.now())
+transaction3 = Transaction(globals.currentUser,user1,user1.getBookOffers()[0],datetime.datetime.now())
+
+for transaction in Transaction.all:
+	transaction.setStatus(Status.Finished)
+
 
 #result = User.findUsersOfferingBook(Book("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)"))
 #print(result)
