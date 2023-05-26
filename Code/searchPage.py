@@ -152,7 +152,7 @@ class SearchPage(ctk.CTkFrame):
                 self.userResultsFrame.pack(padx=10, pady=10)
 
                 userReviews = Review.getUserReviews(self.searchResults[0].getID())
-                print(userReviews)
+                #print(userReviews)
 
                 self.reviewsFrame.columnconfigure(3, weight=1)
 
@@ -207,7 +207,7 @@ class SearchPage(ctk.CTkFrame):
                 self.searchResults = []
 
     def selectOffer(self, selection):
-        bookResultsSelection = self.searchResults[selection].getBook().getID()
+        bookResultsSelection = self.searchResults[selection].getBook().getBookIDFromInstance(self.searchResults[selection].getBook())
         bookOfferers = User.findUsersOfferingBook(bookResultsSelection)
 
         self.bookOfferersFrame.columnconfigure(7, weight=1)
@@ -236,11 +236,11 @@ class SearchPage(ctk.CTkFrame):
             ctk.CTkLabel(self.bookOfferersFrame, text=result.getLastName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
             ctk.CTkLabel(self.bookOfferersFrame, text=result.getEmail(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
             ctk.CTkLabel(self.bookOfferersFrame, text=result.getCity(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-            ctk.CTkLabel(self.bookOfferersFrame, text=result.getBookOffer(bookResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
-            ctk.CTkLabel(self.bookOfferersFrame, text=result.getBookOffer(bookResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
+            ctk.CTkLabel(self.bookOfferersFrame, text=result.searchBookOfferByBook(bookResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+            ctk.CTkLabel(self.bookOfferersFrame, text=result.searchBookOfferByBook(bookResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
             rentButtons.append(ctk.CTkButton(self.bookOfferersFrame, text="Fill", font=("Arial", 15), command=
-                                          lambda renter_id = 0, owner_id=result.getID(),listing_id=result.getBookOffer(bookResultsSelection).getID():
-                                          self.createTransaction(renter_id, owner_id, listing_id)))
+                                          lambda renter = globals.currentUser, owner=result,listing=result.searchBookOfferByBook(bookResultsSelection):
+                                          self.createTransaction(renter, owner, listing)))
             rentButtons[i-1].grid(row=i, column=6, padx=10, pady=10)
             i+=1
 
@@ -251,7 +251,7 @@ class SearchPage(ctk.CTkFrame):
         globals.currentUser.addFavorite(userResultsSelection)
 
     def selectRequest(self, selection):
-        requestResultsSelection = self.searchResults[selection].getBook().getID()
+        requestResultsSelection = self.searchResults[selection].getBook().getBookIDFromInstance(self.searchResults[selection].getBook())
         bookOfferers = User.findUsersRequestingBook(requestResultsSelection)
 
         self.bookRequestersFrame.columnconfigure(7, weight=1)
@@ -280,19 +280,19 @@ class SearchPage(ctk.CTkFrame):
             ctk.CTkLabel(self.bookRequestersFrame, text=result.getLastName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
             ctk.CTkLabel(self.bookRequestersFrame, text=result.getEmail(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
             ctk.CTkLabel(self.bookRequestersFrame, text=result.getCity(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-            ctk.CTkLabel(self.bookRequestersFrame, text=result.getBookRequest(requestResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
-            ctk.CTkLabel(self.bookRequestersFrame, text=result.getBookRequest(requestResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
+            ctk.CTkLabel(self.bookRequestersFrame, text=result.searchBookRequestByBook(requestResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+            ctk.CTkLabel(self.bookRequestersFrame, text=result.searchBookRequestByBook(requestResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
             rentButtons.append(ctk.CTkButton(self.bookRequestersFrame, text="Fill", font=("Arial", 15), command=
-                                          lambda renter_id=result.getID(), owner_id = 0, listing_id=result.getBookRequest(requestResultsSelection).getID():
-                                          self.createTransaction(renter_id, owner_id, listing_id)))
+                                          lambda renter=result, owner = globals.currentUser, listing=result.searchBookRequestByBook(requestResultsSelection):
+                                          self.createTransaction(renter, owner, listing)))
             rentButtons[i-1].grid(row=i, column=6, padx=10, pady=10)
             i+=1
 
         self.bookRequestersFrame.pack(padx=10, pady=10)
 
-    def createTransaction(self, renter_id, owner_id, listing_id):
+    def createTransaction(self, renter, owner, listing):
         if globals.currentUser.getBalance() > 30.0:
-            transaction = Transaction(renter_id, owner_id, listing_id)
+            transaction = Transaction(renter, owner, listing, datetime.datetime.now())
             transaction.acceptTransaction()
         else:
             msg = CTkMessagebox(title="Not Enough Money", message="The renter doesn't have enough money to cover the 30€ safety deposit", icon="cancel", option_1="Close")

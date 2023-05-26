@@ -34,7 +34,6 @@ class Transaction:
         self.__listing = listing
         self.__starting_date = starting_date
         self.__ratings = [{}]
-        print(self.__id)
 
         Transaction.all.append(self)
 
@@ -43,25 +42,38 @@ class Transaction:
 
     def __repr__(self):
         return f"ID: {self.__id}, Renter User : {self.__renter}, Owner User : {self.__owner}, Status: {self.__status}, Listing : {self.__listing}, Starting Date: {self.__starting_date}"
+
     def setStatus(self, status:Status):
         self.__status=status
+
     def getListing(self):
         return self.__listing
+
     def getRenter(self):
         return self.__renter
+    
     def getOwner(self):
         return self.__owner
+
     def getDate(self):
         return self.__starting_date
 
     @staticmethod
-    def getClosedTransactions(bookOwner : User):
+    def getOwnerClosedTransactions(bookOwner : User):
         closedTransactions = []
         for transaction in Transaction.all:
             if (transaction.getStatus()==Status.Finished) and (transaction.getOwner() == bookOwner):
                 closedTransactions.append(transaction)
-        
         return closedTransactions
+
+    @staticmethod
+    def getClosedTransactions(user : User):
+        closedTransactions = []
+        for transaction in Transaction.all:
+            if (transaction.getStatus()==Status.Finished) and (transaction.getOwner() == user or transaction.getRenter() == user):
+                closedTransactions.append(transaction)
+        return closedTransactions
+        
 
     @staticmethod
     def getClosedTransactionsDataGenre(closedTransactionsList):
@@ -83,7 +95,6 @@ class Transaction:
         for transaction in closedTransactionsList:
             renterAge=transaction.getRenter().getAge()
 
-            print (renterAge)
             if (renterAge < 21):
                 if "0-20" in ages:
                     ages["0-20"] += 1
@@ -112,23 +123,11 @@ class Transaction:
                     ages["50+"] +=1
                 else:
                     ages.update({"50+":1})
-
-            print (ages)
-
         return ages
 
     def setBookOfferStatus(self,status:Status):
         self.__status=status
     
-
-    def getRenterID(self):
-        return self.__renter
-
-    def getOwnerID(self):
-        return self.__owner
-
-    def getStatus(self):
-        return self.__status
 
     def getStartingDate(self):
         return self.__starting_date.date()
@@ -141,16 +140,16 @@ class Transaction:
         b = self.__starting_date.date()
         diff = a - b
         amount = self.__listing.getPricePerDay() + (diff.days * self.__listing.getPricePerDay())
-        if amount > User.searchUserProfileByID(self.__renter_id)[0].getBalance():
+        if amount > self.__renter.getBalance():
             self.__status = Status.Finished
-            User.searchUserProfileByID(self.__owner_id)[0].addBalance(30.0)
+            self.__owner.addBalance(30.0)
         return amount
 
     def acceptTransaction(self):
         if self.__status == Status.To_Be_Confirmed:
             self.__status = Status.Waiting_To_Be_Delivered
             self.__starting_date = datetime.datetime.now()
-            if User.searchUserProfileByID(self.__renter_id)[0].getSafetyDeposit() == True:
+            if self.__renter.getSafetyDeposit() == True:
                 pass
             else:
                 self.__status = Status.Denied
@@ -158,7 +157,7 @@ class Transaction:
     def denyTransaction(self):
         if self.__status == Status.To_Be_Confirmed:
             self.__status = Status.Denied
-            User.searchUserProfileByID(self.__renter_id)[0].addBalance(30.0)
+            self.__renter.addBalance(30.0)
 
     def updateStatus(self):
         if self.__status == Status.Waiting_To_Be_Delivered:
@@ -173,22 +172,22 @@ class Transaction:
             self.updateStatus() #Automatically marked returned by second user
         elif self.__status == Status.Marked_Returned_By_One:
             self.__status = Status.Finished
-            User.searchUserProfileByID(self.__renter_id)[0].addBalance(30.0) 
-            User.searchUserProfileByID(self.__owner_id)[0].addBalance(self.getAmountAndCheckEnough())
+            self.__renter.addBalance(30.0) 
+            self.__owner.addBalance(self.getAmountAndCheckEnough())
 
     @staticmethod
-    def getByRenterID(renter_id:int):
+    def getByRenter(renter:User):
         result = []
         for transaction in Transaction.all:
-            if transaction.getRenterID() == renter_id:
+            if transaction.getRenter() == renter:
                 result.append(transaction)
         return result
 
     @staticmethod
-    def getByOwnerID(owner_id:int):
+    def getByOwner(owner:User):
         result = []
         for transaction in Transaction.all:
-            if transaction.getOwnerID() == owner_id:
+            if transaction.getOwner() == owner:
                 result.append(transaction)
         return result
 

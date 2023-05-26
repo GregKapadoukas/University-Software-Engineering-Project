@@ -69,7 +69,7 @@ class User:
     def addBookRequest(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
         book_id = Book.getBookIDFromInstance(book)
-        self.__bookRequests.append(BookRequest(book_id, price_per_day, delivery_type, listing_date))
+        self.__bookRequests.append(BookRequest(book, price_per_day, delivery_type, listing_date))
 
     def addFavorite(self,favoriteUserID):
         for favorite in self.__favorites:
@@ -77,14 +77,14 @@ class User:
                 return
         self.__favorites.append(Favorite(favoriteUserID, datetime.datetime.now()))
 
-    def getBookOffer(self, book_id:int):
+    def searchBookOfferByBook(self, book_id:int):
         for bookOffer in self.__bookOffers:
-            if bookOffer.getBook().getID() == book_id:
+            if bookOffer.getBook().getBookIDFromInstance(bookOffer.getBook()) == book_id:
                 return bookOffer
 
-    def getBookRequest(self, book_id:int):
+    def searchBookRequestByBook(self, book_id:int):
         for bookRequest in self.__bookRequests:
-            if bookRequest.getBook().getID() == book_id:
+            if bookRequest.getBook().getBookIDFromInstance(bookRequest.getBook()) == book_id:
                 return bookRequest
 
     def getSafetyDeposit(self):
@@ -99,15 +99,14 @@ class User:
 
     def getBookOffers(self):
         return self.__bookOffers
-    def getBookRequest(self):
+
+    def getBookRequests(self):
         return self.__bookRequests
+
     def getListings(self):
         Listings = []
         Listing = self.__bookRequests + self.__bookOffers
         return Listings
-    def getAge(self):
-        return self.__age
-
 
     @staticmethod
     def searchUserProfile(searchTerm:str):
@@ -133,7 +132,7 @@ class User:
         result = []
         for user in User.all:
             for bookOffer in user.__bookOffers:
-                if bookOffer.getBook().getID() == book_id:
+                if bookOffer.getBook().getBookIDFromInstance(bookOffer.getBook()) == book_id:
                     result.append(user)
         result = list(set(result))
         return result
@@ -143,7 +142,7 @@ class User:
         result = []
         for user in User.all:
             for bookRequest in user.__bookRequests:
-                if bookRequest.getBook().getID() == book_id:
+                if bookRequest.getBook().getBookIDFromInstance(bookRequest.getBook()) == book_id:
                     result.append(user)
         result = list(set(result))
         return result

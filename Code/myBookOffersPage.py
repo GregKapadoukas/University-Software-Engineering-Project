@@ -53,10 +53,10 @@ class MyBookOffersPage(ctk.CTkFrame):
         self.__BookOffersListFrame.pack()
     def deleteFunc (self,offer):
         #print(globals.currentUser.getBookOffers())
-        print(BookOffer.all)
+        #print(BookOffer.all)
         del globals.currentUser.getBookOffers()[offer]
-        print("-----------------------------------------")
-        print(BookOffer.all)
+        #print("-----------------------------------------")
+        #print(BookOffer.all)
         #print(globals.currentUser.getBookOffers())
 
     def editFunc(self,offer):
@@ -86,11 +86,9 @@ class MyBookOffersPage(ctk.CTkFrame):
         if delivery == 1:
             globals.currentUser.getBookOffers()[offer].setDeliveryType(DeliveryType.Local_Meeting)
         elif delivery == 2:
-            print("!!!!!!!!!!!1")
             globals.currentUser.getBookOffers()[offer].setDeliveryType(DeliveryType.By_Post)
 
     def addFunc(self):
-        print("peri")
         self.__AddOfferFrame=ctk.CTkFrame(self)
 
         self.bookName = ctk.CTkEntry(self.__AddOfferFrame, placeholder_text="Book Name")

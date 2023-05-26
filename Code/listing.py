@@ -32,8 +32,10 @@ class Listing:
 
     def getPricePerDay(self):
         return self.__price_per_day
+
     def setPricePerDay(self,price):
         self.__price_per_day=price
+
     def setDeliveryType(self,delivery):
         self.__delivery_type=delivery
 
@@ -47,10 +49,6 @@ class Listing:
             if listing.getID() == listing_id:
                 result.append(listing)
         return result
-
-    def setPricePerDay(self,price):
-        self.__price_per_day=price
-    
 
 #book1 = Book("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1, "George Allen and Unwin (UK) Houghton Mifflin (US)")
 #listing1 = Listing(book1, 15.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,6))

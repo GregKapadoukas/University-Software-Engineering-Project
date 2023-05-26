@@ -10,7 +10,6 @@ class BookOffer(Listing):
         BookOffer.all.append(self)
 
     def __del__(self):
-        print("deleteddddddddddddddddddddddddddddddd")
         BookOffer.all.remove(self)
 
 
