@@ -8,7 +8,6 @@ from favorite import Favorite
 from bookOffer import BookOffer
 from bookRequest import BookRequest
 
-
 class User:
     all = []
     id_incrementer = 0;
@@ -89,7 +88,14 @@ class User:
                 return bookRequest
 
     def getSafetyDeposit(self):
-        self.__balance -= 30.0
+        if self.__balance > 30.0:
+            self.__balance -= 30.0
+            return True
+        else:
+            return False
+
+    def addBalance(self, amount):
+        self.__balance += amount
 
     def getBookOffers(self):
         return self.__bookOffers

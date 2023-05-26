@@ -3,6 +3,7 @@ from listing import Listing
 from enum import Enum
 from user import User
 from listing import Listing
+from user import User
 
 
 class Status(Enum):
@@ -135,21 +136,29 @@ class Transaction:
     def getBookName(self):
         return self.__listing.getBook().getName()
 
-    def getAmount(self):
+    def getAmountAndCheckEnough(self):
         a = datetime.date.today() 
         b = self.__starting_date.date()
         diff = a - b
         amount = self.__listing.getPricePerDay() + (diff.days * self.__listing.getPricePerDay())
+        if amount > User.searchUserProfileByID(self.__renter_id)[0].getBalance():
+            self.__status = Status.Finished
+            User.searchUserProfileByID(self.__owner_id)[0].addBalance(30.0)
         return amount
 
     def acceptTransaction(self):
         if self.__status == Status.To_Be_Confirmed:
             self.__status = Status.Waiting_To_Be_Delivered
             self.__starting_date = datetime.datetime.now()
+            if User.searchUserProfileByID(self.__renter_id)[0].getSafetyDeposit() == True:
+                pass
+            else:
+                self.__status = Status.Denied
 
     def denyTransaction(self):
         if self.__status == Status.To_Be_Confirmed:
             self.__status = Status.Denied
+            User.searchUserProfileByID(self.__renter_id)[0].addBalance(30.0)
 
     def updateStatus(self):
         if self.__status == Status.Waiting_To_Be_Delivered:
@@ -164,6 +173,8 @@ class Transaction:
             self.updateStatus() #Automatically marked returned by second user
         elif self.__status == Status.Marked_Returned_By_One:
             self.__status = Status.Finished
+            User.searchUserProfileByID(self.__renter_id)[0].addBalance(30.0) 
+            User.searchUserProfileByID(self.__owner_id)[0].addBalance(self.getAmountAndCheckEnough())
 
     @staticmethod
     def getByRenterID(renter_id:int):

@@ -123,7 +123,6 @@ class NotificationsPage(ctk.CTkFrame):
         label = ctk.CTkLabel(self, text="Notifications")
         label.pack(padx=10, pady=10)
 
-
 class MyProfilePage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
