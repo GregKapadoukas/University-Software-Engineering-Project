@@ -291,11 +291,10 @@ class SearchPage(ctk.CTkFrame):
         self.bookRequestersFrame.pack(padx=10, pady=10)
 
     def createTransaction(self, renter_id, owner_id, listing_id):
-        if globals.currentUser.getBalance() >= 30.0:
-            globals.currentUser.getSafetyDeposit()
+        if globals.currentUser.getBalance() > 30.0:
             transaction = Transaction(renter_id, owner_id, listing_id)
             transaction.acceptTransaction()
         else:
-            msg = CTkMessagebox(title="Not Enough Monkey", message="The renter doesn't have enough money to cover the 30€ safety deposit", icon="cancel", option_1="Close")
+            msg = CTkMessagebox(title="Not Enough Money", message="The renter doesn't have enough money to cover the 30€ safety deposit", icon="cancel", option_1="Close")
             if msg.get() == "Close":
                 msg.destroy()

@@ -46,7 +46,7 @@ class DashboardPage(ctk.CTkFrame):
                 ctk.CTkLabel(self.rentFromGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.rentFromGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.rentFromGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-                ctk.CTkLabel(self.rentFromGrid, text=transaction.getAmount(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+                ctk.CTkLabel(self.rentFromGrid, text=transaction.getAmountAndCheckEnough(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
                 self.rentFromButtons.append(ctk.CTkButton(self.rentFromGrid, text="Mark Delivered", font=("Arial", 15), command=
                                             lambda transaction = transaction:transaction.updateStatus()))
                 self.rentFromButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
@@ -55,7 +55,7 @@ class DashboardPage(ctk.CTkFrame):
                 ctk.CTkLabel(self.rentFromGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.rentFromGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.rentFromGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-                ctk.CTkLabel(self.rentFromGrid, text=transaction.getAmount(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+                ctk.CTkLabel(self.rentFromGrid, text=transaction.getAmountAndCheckEnough(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
                 self.rentFromButtons.append(ctk.CTkButton(self.rentFromGrid, text="Mark Returned", font=("Arial", 15), command=
                                             lambda transaction = transaction:transaction.updateStatus()))
                 self.rentFromButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
@@ -96,7 +96,7 @@ class DashboardPage(ctk.CTkFrame):
                 ctk.CTkLabel(self.rentToGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.rentToGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.rentToGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-                ctk.CTkLabel(self.rentToGrid, text=transaction.getAmount(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+                ctk.CTkLabel(self.rentToGrid, text=transaction.getAmountAndCheckEnough(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
                 self.rentToButtons.append(ctk.CTkButton(self.rentToGrid, text="Mark Delivered", font=("Arial", 15), command=
                                         lambda transaction = transaction:transaction.updateStatus()))
                 self.rentToButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
@@ -105,7 +105,7 @@ class DashboardPage(ctk.CTkFrame):
                 ctk.CTkLabel(self.rentToGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.rentToGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.rentToGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-                ctk.CTkLabel(self.rentToGrid, text=transaction.getAmount(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+                ctk.CTkLabel(self.rentToGrid, text=transaction.getAmountAndCheckEnough(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
                 self.rentToButtons.append(ctk.CTkButton(self.rentToGrid, text="Mark Returned", font=("Arial", 15), command=
                                          lambda transaction = transaction:transaction.updateStatus()))
                 self.rentToButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
