@@ -2,7 +2,7 @@ import customtkinter as ctk
 import globals
 from bookOffer import BookOffer
 from listing import DeliveryType
-
+import datetime
 
 class MyBookOffersPage(ctk.CTkFrame):
 
@@ -18,7 +18,7 @@ class MyBookOffersPage(ctk.CTkFrame):
         label = ctk.CTkLabel(self, text="My Book Offers")
         label.pack(padx=10, pady=10)
         self.BookOfferButtons = []
-        self.AddButton=(ctk.CTkButton(self,text="Add Book Offer"))
+        self.AddButton=(ctk.CTkButton(self,text="Add Book Offer", command= lambda : self.addFunc()))
         self.AddButton.pack(padx=10, pady=10)
 
 
@@ -89,4 +89,54 @@ class MyBookOffersPage(ctk.CTkFrame):
             print("!!!!!!!!!!!1")
             globals.currentUser.getBookOffers()[offer].setDeliveryType(DeliveryType.By_Post)
 
+    def addFunc(self):
+        print("peri")
+        self.__AddOfferFrame=ctk.CTkFrame(self)
 
+        self.bookName = ctk.CTkEntry(self.__AddOfferFrame, placeholder_text="Book Name")
+        self.bookName.pack()
+        self.bookAuthor = ctk.CTkEntry(self.__AddOfferFrame, placeholder_text="Book Author")
+        self.bookAuthor.pack()
+        self.bookGenre = ctk.CTkEntry(self.__AddOfferFrame, placeholder_text="Genre")
+        self.bookGenre.pack()
+        self.bookEdition = ctk.CTkEntry(self.__AddOfferFrame, placeholder_text="Edition")
+        self.bookEdition.pack()
+        self.bookPublisher = ctk.CTkEntry(self.__AddOfferFrame, placeholder_text="Publisher")
+        self.bookPublisher.pack()
+
+        self.pricePerDay = ctk.CTkEntry(self.__AddOfferFrame, placeholder_text="Price per Day")
+        self.pricePerDay.pack()
+
+        self.radiobutton = ctk.IntVar()
+        self.deliveryTypeText = ctk.CTkLabel(self.__AddOfferFrame, text="Select delivery type", font=("Arial", 25),text_color="#3A7ABF")
+        self.deliveryTypeLocalMeet = ctk.CTkRadioButton(self.__AddOfferFrame, text="Local Meet",variable=self.radiobutton, value=1)
+        self.deliveryTypePost = ctk.CTkRadioButton(self.__AddOfferFrame, text="Postal delivery",variable=self.radiobutton, value=2)
+        self.deliveryTypeText.pack()
+        self.deliveryTypeLocalMeet.pack()
+        self.deliveryTypePost.pack()
+
+        self.applyButton = ctk.CTkButton(self.__AddOfferFrame,text="Apply",command=lambda : self.addOffer())
+        self.applyButton.pack()
+        self.__AddOfferFrame.pack()
+
+
+    def addOffer(self):
+        if self.bookName.get() == "" or self.bookAuthor.get() == "" or self.bookGenre.get() == "" or self.pricePerDay.get() == "" or self.radiobutton.get()== "":
+            self.__incompletFormFrame = ctk.CTkFrame(self)
+            incompletFormText= ctk.CTkLabel(self.__incompletFormFrame,text="There are mandatory fields in the form you have not field")
+            incompletFormText.pack()
+            self.__incompletFormFrame.pack()
+            return
+        delivery:DeliveryType
+        if self.radiobutton.get() == 1:
+            delivery=DeliveryType.Local_Meeting
+        else:
+            delivery=DeliveryType.By_Post
+        globals.currentUser.addBookOffer(self.bookName.get(),
+                                        self.bookAuthor.get(),
+                                        self.bookGenre.get(),
+                                        int(self.bookEdition.get()),
+                                        self.bookPublisher.get(),
+                                        float(self.pricePerDay.get()),
+                                        delivery,
+                                        datetime.datetime.now())
