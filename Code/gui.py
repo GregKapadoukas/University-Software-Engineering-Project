@@ -56,7 +56,7 @@ class GUI(ctk.CTk):
         navNotificationsButton.grid(row=0, column=5, sticky=ctk.W+ctk.E)
 
         navTransactionHistory = ctk.CTkButton(buttonframe, text="Transaction History", 
-                                        command=lambda : self.show_frame(NotificationsPage))
+                                        command=lambda : self.show_frame(TransactionHistoryPage))
         navTransactionHistory .grid(row=0, column=6, sticky=ctk.W+ctk.E)
 
         navMyProfileButton = ctk.CTkButton(buttonframe, text="My Profile", 
@@ -76,7 +76,7 @@ class GUI(ctk.CTk):
 
         # Iterating through a tuple consisting of the different page layouts
         for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
-                  MyFavoritesPage, NotificationsPage, TransactionHistory, MyProfilePage):
+                  MyFavoritesPage, NotificationsPage, TransactionHistoryPage, MyProfilePage):
             frame = F(self.container, self)
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky="nsew")
@@ -88,7 +88,7 @@ class GUI(ctk.CTk):
     def show_frame(self, cont):
         self.frames = {}
         for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
-                  MyFavoritesPage, NotificationsPage, TransactionHistory, MyProfilePage):
+                  MyFavoritesPage, NotificationsPage, TransactionHistoryPage, MyProfilePage):
             frame = F(self.container, self)
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky="nsew")
@@ -119,7 +119,7 @@ class NotificationsPage(ctk.CTkFrame):
         label = ctk.CTkLabel(self, text="Notifications")
         label.pack(padx=10, pady=10)
 
-class TransactionHistory(ctk.CTkFrame):
+class TransactionHistoryPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         label = ctk.CTkLabel(self, text="Transaction History")
