@@ -1,16 +1,6 @@
 import datetime
 from enum import Enum
 
-class Score(Enum):
-    To_Be_Confirmed = 1
-    Waiting_To_Be_Delivered = 2
-    Marked_Delivered_By_One = 3
-    Marked_Delivered = 4
-    Marked_Returned_By_One = 5
-    Marked_Returned = 6
-    Finished = 7
-    Denied = 8
-
 class Favorite:
     #all = []
     id_incrementer = 0;
@@ -27,6 +17,12 @@ class Favorite:
 
     def getFavoriteUserID(self):
         return self.__favorite_user_id
+
+    def getLastNotificationDate(self):
+        return self.__last_notification_date
+
+    def setLastNotificationDate(self):
+        self.__last_notification_date = datetime.datetime.now()
 
     def __repr__(self):
         return f"ID: {self.__id}, Favorite User ID: {self.__favorite_user_id}, Last Notification Date: {self.__last_notification_date}"

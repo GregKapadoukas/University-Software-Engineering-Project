@@ -7,7 +7,6 @@ from notification import Notification
 from favorite import Favorite
 from bookOffer import BookOffer
 from bookRequest import BookRequest
-from transaction import Transaction
 
 class User:
     all = []
@@ -33,6 +32,7 @@ class User:
         self.__bookOffers = []
         self.__bookRequests = []
         self.__favorites = []
+        self.__notifications = []
 
         User.all.append(self)
 
@@ -98,13 +98,21 @@ class User:
     
     def addBookOffer(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
-        book_id = Book.getBookIDFromInstance(book)
-        self.__bookOffers.append(BookOffer(book_id, price_per_day, delivery_type, listing_date))
+        bookOffer = BookOffer(book, price_per_day, delivery_type, listing_date)
+        self.__bookOffers.append(bookOffer)
+        for user in User.all:
+            for favorite in user.getFavorites():
+                if self.getID() == favorite.getFavoriteUserID():
+                    user.addNotification(Notification(self.getID(), bookOffer))
+                    favorite.setLastNotificationDate()
 
     def addBookRequest(self, book_name:str, book_author:str, book_genre:str, book_edition:int, book_publisher:str, price_per_day:float, delivery_type: DeliveryType, listing_date:datetime.datetime):
         book = Book(book_name, book_author, book_genre, book_edition, book_publisher)
-        book_id = Book.getBookIDFromInstance(book)
-        self.__bookRequests.append(BookRequest(book_id, price_per_day, delivery_type, listing_date))
+        bookRequest = BookRequest(book, price_per_day, delivery_type, listing_date)
+        self.__bookRequests.append(bookRequest)
+        for user in User.all:
+            if self in user.getFavorites():
+                user.addNotification(Notification(self.getID(), bookRequest))
 
     def addFavorite(self,favoriteUserID):
         for favorite in self.__favorites:
@@ -112,18 +120,50 @@ class User:
                 return
         self.__favorites.append(Favorite(favoriteUserID, datetime.datetime.now()))
 
-    def getBookOffer(self, book_id:int):
+    def searchBookOfferByBook(self, book_id:int):
         for bookOffer in self.__bookOffers:
-            if bookOffer.getBook().getID() == book_id:
+            if bookOffer.getBook().getBookIDFromInstance(bookOffer.getBook()) == book_id:
                 return bookOffer
 
-    def getBookRequest(self, book_id:int):
+    def searchBookRequestByBook(self, book_id:int):
         for bookRequest in self.__bookRequests:
-            if bookRequest.getBook().getID() == book_id:
+            if bookRequest.getBook().getBookIDFromInstance(bookRequest.getBook()) == book_id:
                 return bookRequest
 
     def getSafetyDeposit(self):
-        self.__balance -= 30.0
+        if self.__balance > 30.0:
+            self.__balance -= 30.0
+            return True
+        else:
+            return False
+
+    def addBalance(self, amount):
+        self.__balance += amount
+
+    def getBookOffers(self):
+        return self.__bookOffers
+
+    def getBookRequests(self):
+        return self.__bookRequests
+
+    def getNotifications(self):
+        results = []
+        for favorite in self.__favorites:
+            for notification in self.__notifications:
+                if notification.getFavoriteUserID() == favorite.getFavoriteUserID() and favorite.getLastNotificationDate() < datetime.datetime.now():
+                    results.append(notification)
+        return results
+
+    def getListings(self):
+        Listings = []
+        Listing = self.__bookRequests + self.__bookOffers
+        return Listings
+
+    def addNotification(self, notification):
+        self.__notifications.append(notification)
+
+    def clearNotification(self, toclear):
+        self.__notifications.remove(toclear)
 
     @staticmethod
     def searchUserProfile(searchTerm:str):
@@ -133,6 +173,7 @@ class User:
                 result.append(user)
                 break
         return result
+
 
     @staticmethod
     def searchUserProfileByID(user_id:int):
@@ -148,7 +189,7 @@ class User:
         result = []
         for user in User.all:
             for bookOffer in user.__bookOffers:
-                if bookOffer.getBook().getID() == book_id:
+                if bookOffer.getBook().getBookIDFromInstance(bookOffer.getBook()) == book_id:
                     result.append(user)
         result = list(set(result))
         return result
@@ -158,7 +199,7 @@ class User:
         result = []
         for user in User.all:
             for bookRequest in user.__bookRequests:
-                if bookRequest.getBook().getID() == book_id:
+                if bookRequest.getBook().getBookIDFromInstance(bookRequest.getBook()) == book_id:
                     result.append(user)
         result = list(set(result))
         return result
