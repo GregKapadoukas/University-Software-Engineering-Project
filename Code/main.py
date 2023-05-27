@@ -14,8 +14,8 @@ from gui import GUI
 from user import User
 import globals
 
-globals.currentUser = User("Greg", "Kapadoukas", "up1072484@upnet.gr", 22, Address("MyStreet", "15", City("Patra", "Greece")), 150.0, 5.0)
-user1 = User("Xristos", "Mpestitzanos", "xmpestis@gmail.com", 21, Address("Street2", "15", City("Patra", "Greece")), 150.0, 5.0)
+globals.currentUser = User("Greg", "Kapadoukas", "up1072484@upnet.gr", 22, Address("MyStreet", "15", City("Patra", "Greece")), 150.0, 5.0, "Mostly like non fiction", 698435686, "12345678")
+user1 = User("Xristos", "Mpestitzanos", "xmpestis@gmail.com", 21, Address("Street2", "15", City("Patra", "Greece")), 150.0, 5.0, "Big Harry Potter fan", 698435686,"23456789")
 user1.addBookOffer("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
 user1.addBookRequest("The Lord of the Rings", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
 globals.currentUser.addFavorite(user1.getID())
