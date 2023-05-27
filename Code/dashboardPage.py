@@ -1,10 +1,8 @@
 import customtkinter as ctk
 import datetime
-from address import Address
 from book import Book
 from bookOffer import BookOffer
 from bookRequest import BookRequest
-from city import City
 from favorite import Favorite
 from listing import Listing, DeliveryType
 from notification import Notification

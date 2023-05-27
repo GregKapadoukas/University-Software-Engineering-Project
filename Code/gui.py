@@ -1,10 +1,8 @@
 import customtkinter as ctk
 import datetime
-from address import Address
 from book import Book
 from bookOffer import BookOffer
 from bookRequest import BookRequest
-from city import City
 from favorite import Favorite
 from listing import Listing, DeliveryType
 from notification import Notification
@@ -18,6 +16,7 @@ from dashboardPage import DashboardPage
 from myBookOffersPage import MyBookOffersPage
 from notificationsPage import NotificationsPage
 from myProfilePage import MyProfilePage
+from myFavoritesPage import MyFavoritesPage
 
 
 ctk.set_appearance_mode("dark")
@@ -104,17 +103,8 @@ class GUI(ctk.CTk):
         frame = self.frames[cont]
         frame.tkraise()
 
-
-
-
 class MyBookRequestsPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         label = ctk.CTkLabel(self, text="My Book Requests")
-        label.pack(padx=10, pady=10)
-
-class MyFavoritesPage(ctk.CTkFrame):
-    def __init__(self, parent, controller):
-        ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="My Favorites")
         label.pack(padx=10, pady=10)

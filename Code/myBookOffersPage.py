@@ -21,34 +21,48 @@ class MyBookOffersPage(ctk.CTkFrame):
         self.AddButton=(ctk.CTkButton(self,text="Add Book Offer", command= lambda : self.addFunc()))
         self.AddButton.pack(padx=10, pady=10)
 
-
-
         self.__BookOffersListFrame = ctk.CTkFrame(self)
         userBookOffers = self.currentUser.getBookOffers()
 
         self.__EditFrame= ctk.CTkFrame(self)
 
-        bookText = ctk.CTkLabel(self.__BookOffersListFrame, text="Book", font=("Arial", 25))
-        PriceText = ctk.CTkLabel(self.__BookOffersListFrame, text="Price", font=("Arial", 25))
+        titleText = ctk.CTkLabel(self.__BookOffersListFrame, text="Title", font=("Arial", 25))
+        authorText = ctk.CTkLabel(self.__BookOffersListFrame, text="Author", font=("Arial", 25))
+        genreText = ctk.CTkLabel(self.__BookOffersListFrame, text="Genre", font=("Arial", 25))
+        editionText = ctk.CTkLabel(self.__BookOffersListFrame, text="Edition", font=("Arial", 25))
+        publisherText = ctk.CTkLabel(self.__BookOffersListFrame, text="Publisher", font=("Arial", 25))
+        priceText = ctk.CTkLabel(self.__BookOffersListFrame, text="Price", font=("Arial", 25))
         deliveryText = ctk.CTkLabel(self.__BookOffersListFrame, text="Delivery type", font=("Arial", 25))
+        editText = ctk.CTkLabel(self.__BookOffersListFrame, text="Edit", font=("Arial", 25))
+        deleteText = ctk.CTkLabel(self.__BookOffersListFrame, text="Delete", font=("Arial", 25))
 
 
-        bookText.grid(row=0, column=0, padx=10, pady=10)
-        PriceText.grid(row=0, column=1, padx=10, pady=10)
-        deliveryText.grid(row=0, column=2, padx=10, pady=10)
+        titleText.grid(row=0, column=0, padx=10, pady=10)
+        authorText.grid(row=0, column=1, padx=10, pady=10)
+        genreText.grid(row=0, column=2, padx=10, pady=10)
+        editionText.grid(row=0, column=3, padx=10, pady=10)
+        publisherText.grid(row=0, column=4, padx=10, pady=10)
+        priceText.grid(row=0, column=5, padx=10, pady=10)
+        deliveryText.grid(row=0, column=6, padx=10, pady=10)
+        editText.grid(row=0, column=7, padx=10, pady=10)
+        deleteText.grid(row=0, column=8, padx=10, pady=10)
 
 
         i=1
         for offer in userBookOffers:
             ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getBook().getName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
-            ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getPricePerDay(), font=("Arial", 15)).grid(row=i,column=1,padx=10,pady=10)
-            ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getDeliveryType(), font=("Arial", 15)).grid(row=i,column=2,padx=10,pady=10)
+            ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getBook().getAuthor(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
+            ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getBook().getGenre(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
+            ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getBook().getEdition(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
+            ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getBook().getPublisher(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+            ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getPricePerDay(), font=("Arial", 15)).grid(row=i,column=5,padx=10,pady=10)
+            ctk.CTkLabel(self.__BookOffersListFrame, text=offer.getDeliveryType(), font=("Arial", 15)).grid(row=i,column=6,padx=10,pady=10)
             self.BookOfferButtons.append(ctk.CTkButton(self.__BookOffersListFrame, text="Edit Book Offer",command=
                                                        lambda offer=i-1:self.editFunc(offer)))
             self.BookOfferButtons.append(ctk.CTkButton(self.__BookOffersListFrame, text="Delete Book Offer",command=
                                     lambda offer=i-1:self.deleteFunc(offer)))
-            self.BookOfferButtons[(i-1)*2].grid(row=i, column=3, padx=10, pady=10)
-            self.BookOfferButtons[(i - 1) * 2+1].grid(row=i, column=4, padx=10, pady=10)
+            self.BookOfferButtons[(i-1)*2].grid(row=i, column=7, padx=10, pady=10)
+            self.BookOfferButtons[(i - 1) * 2+1].grid(row=i, column=8, padx=10, pady=10)
             i+=1
         self.__BookOffersListFrame.pack()
     def deleteFunc (self,offer):

@@ -84,9 +84,9 @@ class MyProfilePage(ctk.CTkFrame):
             pady=2,
             )
 
-        changeAddressButton = ctk.CTkButton(self.buttf, text='Edit',
-                command=self.changeAddress)
-        changeAddressButton.grid(
+        changeCityButton = ctk.CTkButton(self.buttf, text='Edit',
+                command=self.changeCity)
+        changeCityButton.grid(
             row=2,
             column=2,
             sticky=ctk.W,
@@ -96,8 +96,8 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        addressLabel = ctk.CTkLabel(self.buttf, text='Address')
-        addressLabel.grid(
+        cityLabel = ctk.CTkLabel(self.buttf, text='City')
+        cityLabel.grid(
             row=2,
             column=0,
             sticky=ctk.W,
@@ -107,9 +107,9 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.addressText = ctk.CTkLabel(self.buttf,
+        self.cityText = ctk.CTkLabel(self.buttf,
                                    text=globals.currentUser.getCity())
-        self.addressText.grid(
+        self.cityText.grid(
             row=2,
             column=1,
             sticky=ctk.W,
@@ -417,24 +417,24 @@ class MyProfilePage(ctk.CTkFrame):
             pady=1,
             )
 
-    def changeAddress(self):
+    def changeCity(self):
 
         def change():
             storeButton.destroy()
             c1 = storeTextbox.get('0.1', 'end')
 
-            f = globals.currentUser.getAddress()
+            f = globals.currentUser.getCity()
             y = len(c1)
             if y > 35 or y <= 0:
                 self.invalidLocationPopup()
             else:
-                globals.currentUser.setAddress(c1)
-                f = globals.currentUser.getAddress()
+                globals.currentUser.setCity(c1)
+                f = globals.currentUser.getCity()
                 #print(f)
             storeTextbox.destroy()
-            self.addressText = ctk.CTkLabel(self.buttf,
-                    text=globals.currentUser.getAddress())
-            self.addressText.grid(
+            self.cityText = ctk.CTkLabel(self.buttf,
+                    text=globals.currentUser.getCity())
+            self.cityText.grid(
                 row=2,
                 column=1,
                 sticky=ctk.W,
@@ -444,7 +444,7 @@ class MyProfilePage(ctk.CTkFrame):
                 pady=2,
                 )
 
-        self.addressText.destroy()
+        self.cityText.destroy()
         storeTextbox = ctk.CTkTextbox(self.buttf, width=150, height=4,
                                 corner_radius=5)
         storeTextbox.grid(

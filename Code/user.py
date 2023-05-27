@@ -1,7 +1,5 @@
 import datetime
 from listing import Listing, DeliveryType
-from address import Address
-from city import City
 from book import Book
 from notification import Notification
 from favorite import Favorite
@@ -11,7 +9,7 @@ from bookRequest import BookRequest
 class User:
     all = []
     id_incrementer = 0;
-    def __init__(self, first_name:str, last_name:str, email:str, age:int, address:Address, balance:float, score:float, description:str, phone_number:int, password:str):
+    def __init__(self, first_name:str, last_name:str, email:str, age:int, city:str, balance:float, score:float, description:str, phone_number:int, password:str):
         assert age >= 0, f"Age {age} is not greater or equal to zero!"
         assert balance >= 0.0, f"Age {age} is not greater or equal to zero!"
         assert score >= 0.0 and score <= 5, f"Score {score} is not greater or equal to zero and less than or equal to five!"
@@ -22,7 +20,7 @@ class User:
         self.__last_name = last_name
         self.__email = email
         self.__age = age
-        self.__address = address
+        self.__city = city
         self.__balance = balance
         self.__score = score
         self.__bookOffers = []
@@ -36,7 +34,7 @@ class User:
         User.all.append(self)
 
     def __repr__(self):
-        return f"ID: {self.__id}, First Name: {self.__first_name}, Last Name: {self.__last_name}, Email: {self.__email}, Age: {self.__age}, Address: {self.__address}, Balance: {self.__balance}, Score: {self.__score}, Book Offers: {self.__bookOffers}, Book Requests: {self.__bookRequests}"
+        return f"ID: {self.__id}, First Name: {self.__first_name}, Last Name: {self.__last_name}, Email: {self.__email}, Age: {self.__age}, City: {self.__city}, Balance: {self.__balance}, Score: {self.__score}, Book Offers: {self.__bookOffers}, Book Requests: {self.__bookRequests}"
 
     def getID(self):
         return self.__id
@@ -54,7 +52,7 @@ class User:
         return self.__age
 
     def getCity(self):
-        return self.__address.getCity()
+        return self.__city
 
     def getBalance(self):
         return self.__balance
@@ -74,8 +72,8 @@ class User:
     def getDescription(self):
         return self.__description
     
-    def setAddress(self,str):
-        self.__address=str
+    def setCity(self,str):
+        self.__city=str
 
     def setPassword(self,str):
         self.__password=str
@@ -164,6 +162,9 @@ class User:
     def clearNotification(self, toclear):
         self.__notifications.remove(toclear)
 
+    def removeFavorite(self, toclear):
+        self.__favorites.remove(toclear)
+
     @staticmethod
     def searchUserProfile(searchTerm:str):
         result = []
@@ -202,7 +203,3 @@ class User:
                     result.append(user)
         result = list(set(result))
         return result
-
-#user1 = User("Test", "Tetstson", "test@tester.com", 22, Address("Test Street", "5A", City("Patra", "Greece")), 15.0)
-#user1.addListing("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 15.0, datetime.datetime.now())
-#print(User.all)

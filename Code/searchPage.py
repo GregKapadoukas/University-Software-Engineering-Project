@@ -1,10 +1,8 @@
 import customtkinter as ctk
 import datetime
-from address import Address
 from book import Book
 from bookOffer import BookOffer
 from bookRequest import BookRequest
-from city import City
 from favorite import Favorite
 from listing import Listing, DeliveryType
 from notification import Notification
@@ -122,13 +120,15 @@ class SearchPage(ctk.CTkFrame):
             case 2:
                 self.searchResults = User.searchUserProfile(self.searchEntry.get())
 
-                self.userResultsFrame.columnconfigure(7, weight=1)
+                self.userResultsFrame.columnconfigure(9, weight=1)
 
                 firstNameText = ctk.CTkLabel(self.userResultsFrame, text="First Name", font=("Arial", 25))
                 lastNameText = ctk.CTkLabel(self.userResultsFrame, text="Last Name", font=("Arial", 25))
                 emailText = ctk.CTkLabel(self.userResultsFrame, text="Email", font=("Arial", 25))
                 ageText = ctk.CTkLabel(self.userResultsFrame, text="Age", font=("Arial", 25))
                 cityText = ctk.CTkLabel(self.userResultsFrame, text="City", font=("Arial", 25))
+                phoneNumberText = ctk.CTkLabel(self.userResultsFrame, text="Phone Number", font=("Arial", 25))
+                descriptionText = ctk.CTkLabel(self.userResultsFrame, text="Description", font=("Arial", 25))
                 scoreText = ctk.CTkLabel(self.userResultsFrame, text="Score", font=("Arial", 25))
                 listActionText = ctk.CTkLabel(self.userResultsFrame, text="Action", font=("Arial", 25))
 
@@ -137,17 +137,21 @@ class SearchPage(ctk.CTkFrame):
                 emailText.grid(row=0, column=2, padx=10, pady=10)
                 ageText.grid(row=0, column=3, padx=10, pady=10)
                 cityText.grid(row=0, column=4, padx=10, pady=10)
-                scoreText.grid(row=0, column=5, padx=10, pady=10)
-                listActionText.grid(row=0, column=6, padx=10, pady=10)
+                phoneNumberText.grid(row=0, column=5, padx=10, pady=10)
+                descriptionText.grid(row=0, column=6, padx=10, pady=10)
+                scoreText.grid(row=0, column=7, padx=10, pady=10)
+                listActionText.grid(row=0, column=8, padx=10, pady=10)
 
                 ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getFirstName(), font=("Arial", 15)).grid(row=1, column=0, padx=10, pady=10)
                 ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getLastName(), font=("Arial", 15)).grid(row=1, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getEmail(), font=("Arial", 15)).grid(row=1, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getAge(), font=("Arial", 15)).grid(row=1, column=3, padx=10, pady=10)
                 ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getCity(), font=("Arial", 15)).grid(row=1, column=4, padx=10, pady=10)
-                ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getScore(), font=("Arial", 15)).grid(row=1, column=5, padx=10, pady=10)
+                ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getPhoneNumber(), font=("Arial", 15)).grid(row=1, column=5, padx=10, pady=10)
+                ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getDescription(), font=("Arial", 15)).grid(row=1, column=6, padx=10, pady=10)
+                ctk.CTkLabel(self.userResultsFrame, text=self.searchResults[0].getScore(), font=("Arial", 15)).grid(row=1, column=7, padx=10, pady=10)
                 self.listSelectionButtons.append(ctk.CTkButton(self.userResultsFrame, text="Add Favorite", font=("Arial", 15), command=lambda:self.selectUser(0)))
-                self.listSelectionButtons[0].grid(row=1, column=6, padx=10, pady=10)
+                self.listSelectionButtons[0].grid(row=1, column=8, padx=10, pady=10)
 
                 self.userResultsFrame.pack(padx=10, pady=10)
 
