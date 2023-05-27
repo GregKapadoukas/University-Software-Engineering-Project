@@ -12,7 +12,7 @@ from transaction import Transaction
 class User:
     all = []
     id_incrementer = 0;
-    def __init__(self, first_name:str, last_name:str, email:str, age:int, address:str, balance:float, score:float, Descr:str, Phone_num:int, Pass:str ):
+    def __init__(self, user_name:str, last_name:str, email:str, age:int, address:str, balance:float, score:float, Descr:str, Phone_num:int, Pass:str ):
         assert age >= 0, f"Age {age} is not greater or equal to zero!"
         assert balance >= 0.0, f"Age {age} is not greater or equal to zero!"
         assert score >= 0.0 and score <= 5, f"Score {score} is not greater or equal to zero and less than or equal to five!"
@@ -20,7 +20,7 @@ class User:
       
         self.__id = User.id_incrementer
         User.id_incrementer+=1
-        self.__first_name = first_name
+        self.__user_name = user_name
         self.__Descr = Descr
         self.__Pass=Pass
         self.__Phone_num = Phone_num
@@ -37,7 +37,7 @@ class User:
         User.all.append(self)
 
     def __repr__(self):
-        return f"ID: {self.__id}, First Name: {self.__first_name}, Last Name: {self.__last_name}, Email: {self.__email}, Age: {self.__age}, Address: {self.__address}, Balance: {self.__balance}, Score: {self.__score}, Book Offers: {self.__bookOffers}, Book Requests: {self.__bookRequests}, Descr: {self.__Descr},Phone number: {self.__Phone_num}, Pass: {self.__Pass}"
+        return f"ID: {self.__id}, User Name: {self.__user_name}, Last Name: {self.__last_name}, Email: {self.__email}, Age: {self.__age}, Address: {self.__address}, Balance: {self.__balance}, Score: {self.__score}, Book Offers: {self.__bookOffers}, Book Requests: {self.__bookRequests}, Descr: {self.__Descr},Phone number: {self.__Phone_num}, Pass: {self.__Pass}"
 
     def getID(self):
         return self.__id
@@ -60,11 +60,11 @@ class User:
     def chPhone_num(self,int):
         self.__Phone_num=int
 
-    def chFirstName(self,str):
-        self.__first_name=str
+    def chUserName(self,str):
+        self.__user_name=str
       
-    def getFirstName(self):
-        return self.__first_name
+    def getUserName(self):
+        return self.__user_name
 
     def getLastName(self):
         return self.__last_name
