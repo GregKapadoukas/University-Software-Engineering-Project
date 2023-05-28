@@ -13,48 +13,48 @@ class TransactionHistoryPage(ctk.CTkFrame):
         self.__graphsFrame.columnconfigure(1,weight=1)
         self.__transactionListFrame = ctk.CTkFrame(self)
         self.__transactionListFrame.columnconfigure(1, weight=1)
-        label = ctk.CTkLabel(self, text="Transaction History", font=("Arial", 25), text_color="#3A7ABF")
-        label.pack(padx=20, pady=20)
+        self.__pageText = ctk.CTkLabel(self, text="Transaction History", font=("Arial", 25), text_color="#3A7ABF")
+        self.__pageText.pack(padx=20, pady=20)
         
-        self.fig , ax = plt.subplots()
-        self.fig.set_size_inches(5,5)
-        transactionsList = Transaction.getClosedTransactions(globals.currentUser)
-        ownerTransactionsList = Transaction.getOwnerClosedTransactions(globals.currentUser)
-        transactionsGenreStats = Transaction.getClosedTransactionsDataGenre(ownerTransactionsList)
-        transactionRenterAgeStats = Transaction. getClosedTransactionsDataRenterAge(ownerTransactionsList)
-        genreStats=plt.pie(list(transactionsGenreStats.values()), labels=list(transactionsGenreStats.keys()))
-        genreStats = FigureCanvasTkAgg(self.fig, master=self.__graphsFrame)
-        #fig.set_facecolor("gray")
-        genreStats.draw()
-        genreStats.get_tk_widget().grid(row=0, column=0, padx=20, pady=20)
+        self.__genreStatsFigure , ax = plt.subplots()
+        self.__genreStatsFigure.set_size_inches(5,5)
+        self.__transactionsList = Transaction.getClosedTransactions(globals.currentUser)
+        self.__ownerTransactionsList = Transaction.getOwnerClosedTransactions(globals.currentUser)
+        self.__transactionsGenreStats = Transaction.getClosedTransactionsDataGenre(self.__ownerTransactionsList)
+        self.__transactionRenterAgeStats = Transaction. getClosedTransactionsDataRenterAge(self.__ownerTransactionsList)
+        self.__genreStats=plt.pie(list(self.__transactionsGenreStats.values()), labels=list(self.__transactionsGenreStats.keys()))
+        self.__genreStats = FigureCanvasTkAgg(self.__genreStatsFigure, master=self.__graphsFrame)
+        #genreStatsFigure.set_facecolor("gray")
+        self.__genreStats.draw()
+        self.__genreStats.get_tk_widget().grid(row=0, column=0, padx=20, pady=20)
 
-        self.fig2 , ax = plt.subplots()
-        self.fig2.set_size_inches(5,5)
-        ageStats=plt.pie(list(transactionRenterAgeStats.values()), labels=list(transactionRenterAgeStats.keys()))
-        ageStats = FigureCanvasTkAgg(self.fig2, master=self.__graphsFrame)
-        #fig.set_facecolor("gray")
-        ageStats.draw()
-        ageStats.get_tk_widget().grid(row=0, column=1, padx=20, pady=20)
+        self.__ageStatsFigure , ax = plt.subplots()
+        self.__ageStatsFigure.set_size_inches(5,5)
+        self.__ageStats=plt.pie(list(self.__transactionRenterAgeStats.values()), labels=list(self.__transactionRenterAgeStats.keys()))
+        self.__ageStats = FigureCanvasTkAgg(self.__ageStatsFigure, master=self.__graphsFrame)
+        #genreStatsFigure.set_facecolor("gray")
+        self.__ageStats.draw()
+        self.__ageStats.get_tk_widget().grid(row=0, column=1, padx=20, pady=20)
         self.__graphsFrame.pack(padx=20, pady=20)
         
-        plt.close(self.fig)
-        plt.close(self.fig2)
+        plt.close(self.__genreStatsFigure)
+        plt.close(self.__ageStatsFigure)
 
-        statusText = ctk.CTkLabel(self.__transactionListFrame, text="status", font=("Arial", 25))
-        renterText = ctk.CTkLabel(self.__transactionListFrame, text="renter name", font=("Arial", 25))
-        ownerText = ctk.CTkLabel(self.__transactionListFrame, text="owner name", font=("Arial", 25))
-        bookText = ctk.CTkLabel(self.__transactionListFrame, text="Book", font=("Arial", 25))
-        dateText = ctk.CTkLabel(self.__transactionListFrame, text="Date", font=("Arial", 25))
+        self.__statusText = ctk.CTkLabel(self.__transactionListFrame, text="status", font=("Arial", 25))
+        self.__renterText = ctk.CTkLabel(self.__transactionListFrame, text="renter name", font=("Arial", 25))
+        self.__ownerText = ctk.CTkLabel(self.__transactionListFrame, text="owner name", font=("Arial", 25))
+        self.__bookText = ctk.CTkLabel(self.__transactionListFrame, text="Book", font=("Arial", 25))
+        self.__dateText = ctk.CTkLabel(self.__transactionListFrame, text="Date", font=("Arial", 25))
 
-        statusText.grid(row=0, column=0, padx=10, pady=10)
-        renterText.grid(row=0, column=1, padx=10, pady=10)
-        ownerText.grid(row=0, column=2, padx=10, pady=10)
-        bookText.grid(row=0, column=3, padx=10, pady=10)
-        dateText.grid(row=0, column=4, padx=10, pady=10)
+        self.__statusText.grid(row=0, column=0, padx=10, pady=10)
+        self.__renterText.grid(row=0, column=1, padx=10, pady=10)
+        self.__ownerText.grid(row=0, column=2, padx=10, pady=10)
+        self.__bookText.grid(row=0, column=3, padx=10, pady=10)
+        self.__dateText.grid(row=0, column=4, padx=10, pady=10)
 
         i=1
 
-        for transaction in transactionsList:
+        for transaction in self.__transactionsList:
 
             ctk.CTkLabel(self.__transactionListFrame, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
             ctk.CTkLabel(self.__transactionListFrame, text=transaction.getRenter().getFirstName() + transaction.getRenter().getLastName(),font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
@@ -64,5 +64,3 @@ class TransactionHistoryPage(ctk.CTkFrame):
             i += 1
 
         self.__transactionListFrame.pack()
-
-
