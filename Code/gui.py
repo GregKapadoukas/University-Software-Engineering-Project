@@ -30,63 +30,63 @@ class GUI(ctk.CTk):
 
         self.title("LibShare")
 
-        label=ctk.CTkLabel(self, text="LibShare", font=("Arial", 35), text_color="#3A7ABF")
-        label.pack(padx=10, pady=10)
+        self.__label=ctk.CTkLabel(self, text="LibShare", font=("Arial", 35), text_color="#3A7ABF")
+        self.__label.pack(padx=10, pady=10)
 
         # Navigation Buttons
-        buttonframe = ctk.CTkFrame(self)
-        buttonframe.columnconfigure(0, weight=1)
+        self.__buttonframe = ctk.CTkFrame(self)
+        self.__buttonframe.columnconfigure(0, weight=1)
 
-        navSearchButton = ctk.CTkButton(buttonframe, text="Search", 
+        self.__navSearchButton = ctk.CTkButton(self.__buttonframe, text="Search", 
                                         command=lambda : self.show_frame(SearchPage))
-        navSearchButton.grid(row=0, column=0, sticky=ctk.W+ctk.E)
+        self.__navSearchButton.grid(row=0, column=0, sticky=ctk.W+ctk.E)
 
-        navDashboardButton = ctk.CTkButton(buttonframe, text="Dashboard", 
+        self.__navDashboardButton = ctk.CTkButton(self.__buttonframe, text="Dashboard", 
                                         command=lambda : self.show_frame(DashboardPage))
-        navDashboardButton.grid(row=0, column=1, sticky=ctk.W+ctk.E)
+        self.__navDashboardButton.grid(row=0, column=1, sticky=ctk.W+ctk.E)
 
-        navMyBookOffersButton = ctk.CTkButton(buttonframe, text="My Book Offers", 
+        self.__navMyBookOffersButton = ctk.CTkButton(self.__buttonframe, text="My Book Offers", 
                                         command=lambda : self.show_frame(MyBookOffersPage))
-        navMyBookOffersButton.grid(row=0, column=2, sticky=ctk.W+ctk.E)
+        self.__navMyBookOffersButton.grid(row=0, column=2, sticky=ctk.W+ctk.E)
 
-        navMyBookRequestsButton = ctk.CTkButton(buttonframe, text="My Book Requests", 
+        self.__navMyBookRequestsButton = ctk.CTkButton(self.__buttonframe, text="My Book Requests", 
                                         command=lambda : self.show_frame(MyBookRequestsPage))
-        navMyBookRequestsButton.grid(row=0, column=3, sticky=ctk.W+ctk.E)
+        self.__navMyBookRequestsButton.grid(row=0, column=3, sticky=ctk.W+ctk.E)
 
-        navMyFavoritesButton = ctk.CTkButton(buttonframe, text="My Favorites", 
+        self.__navMyFavoritesButton = ctk.CTkButton(self.__buttonframe, text="My Favorites", 
                                         command=lambda : self.show_frame(MyFavoritesPage))
-        navMyFavoritesButton.grid(row=0, column=4, sticky=ctk.W+ctk.E)
+        self.__navMyFavoritesButton.grid(row=0, column=4, sticky=ctk.W+ctk.E)
 
-        navNotificationsButton = ctk.CTkButton(buttonframe, text="Notifications", 
+        self.__navNotificationsButton = ctk.CTkButton(self.__buttonframe, text="Notifications", 
                                         command=lambda : self.show_frame(NotificationsPage))
-        navNotificationsButton.grid(row=0, column=5, sticky=ctk.W+ctk.E)
+        self.__navNotificationsButton.grid(row=0, column=5, sticky=ctk.W+ctk.E)
 
-        navTransactionHistory = ctk.CTkButton(buttonframe, text="Transaction History", 
+        self.__navTransactionHistory = ctk.CTkButton(self.__buttonframe, text="Transaction History", 
                                         command=lambda : self.show_frame(TransactionHistoryPage))
-        navTransactionHistory .grid(row=0, column=6, sticky=ctk.W+ctk.E)
+        self.__navTransactionHistory .grid(row=0, column=6, sticky=ctk.W+ctk.E)
 
-        navMyProfileButton = ctk.CTkButton(buttonframe, text="My Profile", 
+        self.__navMyProfileButton = ctk.CTkButton(self.__buttonframe, text="My Profile", 
                                         command=lambda : self.show_frame(MyProfilePage))
-        navMyProfileButton.grid(row=0, column=7, sticky=ctk.W+ctk.E)
+        self.__navMyProfileButton.grid(row=0, column=7, sticky=ctk.W+ctk.E)
 
-        buttonframe.pack()
+        self.__buttonframe.pack()
 
-        # Creating a container
-        self.container = ctk.CTkFrame(self)
-        self.container.pack(side="top", fill="both", expand=True)
-        self.container.grid_rowconfigure(0, weight = 1)
-        self.container.grid_columnconfigure(0, weight = 1)
+        # Creating a __container
+        self.__container = ctk.CTkFrame(self)
+        self.__container.pack(side="top", fill="both", expand=True)
+        self.__container.grid_rowconfigure(0, weight = 1)
+        self.__container.grid_columnconfigure(0, weight = 1)
 
         # Initializing frames to an empty array
-        self.frames = {}
+        self.__frames = {}
 
         # Iterating through a tuple consisting of the different page layouts
 
         for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
                   MyFavoritesPage, NotificationsPage, TransactionHistoryPage, MyProfilePage):
-            frame = F(self.container, self)
+            frame = F(self.__container, self)
 
-            self.frames[F] = frame
+            self.__frames[F] = frame
             frame.grid(row = 0, column = 0, sticky="nsew")
 
         self.show_frame(SearchPage)
@@ -94,17 +94,14 @@ class GUI(ctk.CTk):
 
         # To display the current frame passed as parameter
     def show_frame(self, cont):
-        self.frames = {}
-        for F in (SearchPage, DashboardPage, MyBookOffersPage, MyBookRequestsPage,
-                  MyFavoritesPage, NotificationsPage, TransactionHistoryPage, MyProfilePage):
-            frame = F(self.container, self)
-            self.frames[F] = frame
-            frame.grid(row = 0, column = 0, sticky="nsew")
-        frame = self.frames[cont]
+        self.__frames = {}
+        self.__frames[cont] = cont(self.__container, self)
+        frame = self.__frames[cont]
+        frame.grid(row = 0, column = 0, sticky="nsew")
         frame.tkraise()
 
 class MyBookRequestsPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
-        label = ctk.CTkLabel(self, text="My Book Requests")
-        label.pack(padx=10, pady=10)
+        self.__label = ctk.CTkLabel(self, text="My Book Requests")
+        self.__label.pack(padx=10, pady=10)
