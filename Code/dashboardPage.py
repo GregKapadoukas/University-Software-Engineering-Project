@@ -87,7 +87,6 @@ class DashboardPage(ctk.CTkFrame):
         self.__rentingToTransactions = Transaction.getByOwner(globals.currentUser)
 
         self.__rentToButtons = []
-        self.__extraButtons = []
 
         i = 1
         for transaction in self.__rentingToTransactions:

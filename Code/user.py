@@ -71,7 +71,13 @@ class User:
 
     def getDescription(self):
         return self.__description
-    
+
+    def getBookOffers(self):
+        return self.__bookOffers
+
+    def getBookRequests(self):
+        return self.__bookRequests
+
     def setCity(self,str):
         self.__city=str
 
@@ -137,13 +143,7 @@ class User:
     def addBalance(self, amount):
         self.__balance += amount
 
-    def getBookOffers(self):
-        return self.__bookOffers
-
-    def getBookRequests(self):
-        return self.__bookRequests
-
-    def getNotifications(self):
+    def loadNotifications(self):
         results = []
         for favorite in self.__favorites:
             for notification in self.__notifications:

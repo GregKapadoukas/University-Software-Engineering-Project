@@ -8,7 +8,7 @@ class NotificationsPage(ctk.CTkFrame):
         self.__pageText = ctk.CTkLabel(self, text="Notifications", font=("Arial", 25), text_color="#3A7ABF")
         self.__pageText.pack(padx=10, pady=10)
 
-        self.__notifications = globals.currentUser.getNotifications()
+        self.__notifications = globals.currentUser.loadNotifications()
 
         self.__notificationsGrid = ctk.CTkFrame(self)
         self.__notificationsGrid.columnconfigure(10, weight=1)

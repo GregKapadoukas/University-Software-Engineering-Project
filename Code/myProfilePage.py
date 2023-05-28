@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import customtkinter as ctk
 import globals
 
@@ -12,12 +10,12 @@ class MyProfilePage(ctk.CTkFrame):
         self.__pageText = ctk.CTkLabel(self, text="My Profile", font=("Arial", 25), text_color="#3A7ABF")
         self.__pageText.pack(padx=20, pady=20)
 
-        self.__buttf = ctk.CTkFrame(self)
-        self.__buttf.columnconfigure(9, weight=1)
+        self.__userDetails = ctk.CTkFrame(self)
+        self.__userDetails.columnconfigure(9, weight=1)
 
-        self.__buttf = ctk.CTkFrame(self)
-        self.__buttf.columnconfigure(9, weight=1)
-        self.__changeUsernameButton = ctk.CTkButton(self.__buttf, text='Edit',
+        self.__userDetails = ctk.CTkFrame(self)
+        self.__userDetails.columnconfigure(9, weight=1)
+        self.__changeUsernameButton = ctk.CTkButton(self.__userDetails, text='Edit',
                 command=self.changeUsername)
         self.__changeUsernameButton.grid(
             row=0,
@@ -29,7 +27,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=1,
             )
 
-        self.__usernameLabel = ctk.CTkLabel(self.__buttf, text='Username')
+        self.__usernameLabel = ctk.CTkLabel(self.__userDetails, text='Username')
         self.__usernameLabel.grid(
             row=0,
             column=0,
@@ -40,9 +38,9 @@ class MyProfilePage(ctk.CTkFrame):
             pady=1,
             )
 
-        self.__firstNameText = ctk.CTkLabel(self.__buttf,
+        self.__usernameText = ctk.CTkLabel(self.__userDetails,
                 text=globals.currentUser.getFirstName())
-        self.__firstNameText.grid(
+        self.__usernameText.grid(
             row=0,
             column=1,
             sticky=ctk.W,
@@ -52,7 +50,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=1,
             )
 
-        self.__changeEmailButton = ctk.CTkButton(self.__buttf, text='Edit',
+        self.__changeEmailButton = ctk.CTkButton(self.__userDetails, text='Edit',
                 command=self.changeEmail)
         self.__changeEmailButton.grid(
             row=1,
@@ -64,7 +62,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__emailLabel = ctk.CTkLabel(self.__buttf, text='Email')
+        self.__emailLabel = ctk.CTkLabel(self.__userDetails, text='Email')
         self.__emailLabel.grid(
             row=1,
             column=0,
@@ -75,7 +73,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__emailText = ctk.CTkLabel(self.__buttf,
+        self.__emailText = ctk.CTkLabel(self.__userDetails,
                                  text=globals.currentUser.getEmail())
         self.__emailText.grid(
             row=1,
@@ -87,7 +85,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=2,
             )
 
-        self.__changeCityButton = ctk.CTkButton(self.__buttf, text='Edit',
+        self.__changeCityButton = ctk.CTkButton(self.__userDetails, text='Edit',
                 command=self.changeCity)
         self.__changeCityButton.grid(
             row=2,
@@ -99,7 +97,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__cityLabel = ctk.CTkLabel(self.__buttf, text='City')
+        self.__cityLabel = ctk.CTkLabel(self.__userDetails, text='City')
         self.__cityLabel.grid(
             row=2,
             column=0,
@@ -110,7 +108,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__cityText = ctk.CTkLabel(self.__buttf,
+        self.__cityText = ctk.CTkLabel(self.__userDetails,
                                    text=globals.currentUser.getCity())
         self.__cityText.grid(
             row=2,
@@ -122,7 +120,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=2,
             )
 
-        self.__balanceLabel = ctk.CTkLabel(self.__buttf, text='Balance')
+        self.__balanceLabel = ctk.CTkLabel(self.__userDetails, text='Balance')
         self.__balanceLabel.grid(
             row=3,
             column=0,
@@ -133,7 +131,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__phoneNumberLabel = ctk.CTkLabel(self.__buttf, text='Phone Number')
+        self.__phoneNumberLabel = ctk.CTkLabel(self.__userDetails, text='Phone Number')
         self.__phoneNumberLabel.grid(
             row=4,
             column=0,
@@ -144,7 +142,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__phoneNumberText = ctk.CTkLabel(self.__buttf, text=globals.currentUser.getPhoneNumber())
+        self.__phoneNumberText = ctk.CTkLabel(self.__userDetails, text=globals.currentUser.getPhoneNumber())
         self.__phoneNumberText.grid(
             row=4,
             column=1,
@@ -155,7 +153,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=2,
             )
 
-        self.__descriptionLabel = ctk.CTkLabel(self.__buttf, text='Description')
+        self.__descriptionLabel = ctk.CTkLabel(self.__userDetails, text='Description')
         self.__descriptionLabel.grid(
             row=5,
             column=0,
@@ -166,7 +164,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__descriptionText = ctk.CTkLabel(self.__buttf, text=globals.currentUser.getDescription())
+        self.__descriptionText = ctk.CTkLabel(self.__userDetails, text=globals.currentUser.getDescription())
         self.__descriptionText.grid(
             row=5,
             column=1,
@@ -177,7 +175,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=2,
             )
 
-        self.__changePasswordButton = ctk.CTkButton(self.__buttf, text='Change Password',
+        self.__changePasswordButton = ctk.CTkButton(self.__userDetails, text='Change Password',
                 command=self.changePassword)
         self.__changePasswordButton.grid(
             row=8,
@@ -189,7 +187,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__newPassLabel = ctk.CTkLabel(self.__buttf, text='Enter new password')
+        self.__newPassLabel = ctk.CTkLabel(self.__userDetails, text='Enter new password')
         self.__newPassLabel.grid(
             row=6,
             column=0,
@@ -200,7 +198,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__oldPasswordLabel = ctk.CTkLabel(self.__buttf, text='Enter old passord')
+        self.__oldPasswordLabel = ctk.CTkLabel(self.__userDetails, text='Enter old passord')
         self.__oldPasswordLabel.grid(
             row=7,
             column=0,
@@ -211,7 +209,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__repeatPasswordLabel = ctk.CTkLabel(self.__buttf,
+        self.__repeatPasswordLabel = ctk.CTkLabel(self.__userDetails,
                 text='Repeat new password')
         self.__repeatPasswordLabel.grid(
             row=8,
@@ -223,7 +221,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__balanceText = ctk.CTkLabel(self.__buttf,
+        self.__balanceText = ctk.CTkLabel(self.__userDetails,
                                    text=globals.currentUser.getBalance())
         self.__balanceText.grid(
             row=3,
@@ -235,7 +233,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=2,
             )
 
-        self.__editPhoneNumberButton = ctk.CTkButton(self.__buttf, text='Edit Phone Number',
+        self.__editPhoneNumberButton = ctk.CTkButton(self.__userDetails, text='Edit Phone Number',
                                 command=self.changePhoneNumber)
         self.__editPhoneNumberButton.grid(
             row=4,
@@ -247,7 +245,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=1,
             )
 
-        self.__editPictureButton = ctk.CTkButton(self.__buttf, text='Edit Picture')
+        self.__editPictureButton = ctk.CTkButton(self.__userDetails, text='Edit Picture')
         self.__editPictureButton.grid(
             row=2,
             column=5,
@@ -258,7 +256,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__profilePicturePlaceholder = ctk.CTkLabel(self.__buttf, text='Profile Picture Placeholder')
+        self.__profilePicturePlaceholder = ctk.CTkLabel(self.__userDetails, text='Profile Picture Placeholder')
         self.__profilePicturePlaceholder.grid(
             row=0,
             column=5,
@@ -269,7 +267,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__editBalanceButton = ctk.CTkButton(self.__buttf, text='Edit Balance',
+        self.__editBalanceButton = ctk.CTkButton(self.__userDetails, text='Edit Balance',
                                 command=self.editBalancePopup)
         self.__editBalanceButton.grid(
             row=3,
@@ -281,7 +279,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=1,
             )
 
-        self.__editDescriptionButton = ctk.CTkButton(self.__buttf, text='Edit Description',
+        self.__editDescriptionButton = ctk.CTkButton(self.__userDetails, text='Edit Description',
                                 command=self.changeDescription)
         self.__editDescriptionButton.grid(
             row=5,
@@ -301,7 +299,7 @@ class MyProfilePage(ctk.CTkFrame):
 
         # self.repeatPassTextBox= ctk.CTkTextbox(buttf,width=150,height=4,corner_radius=10)
         # self.repeatPassTextBox.grid(row=8, column=1, sticky=ctk.W)
-        self.__buttf.pack(padx=20, pady=20)
+        self.__userDetails.pack(padx=20, pady=20)
 
     def changePassword(self):
 
@@ -345,18 +343,18 @@ class MyProfilePage(ctk.CTkFrame):
             self.__oldPassTextBox.destroy()
             self.__repeatPassTextBox.destroy()
 
-        self.__newPassTextBox = ctk.CTkTextbox(self.__buttf, width=150, height=4,
+        self.__newPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
                 corner_radius=10)
         self.__newPassTextBox.grid(row=6, column=1, sticky=ctk.W, padx=50, pady=1)
 
-        self.__oldPassTextBox = ctk.CTkTextbox(self.__buttf, width=150, height=4,
+        self.__oldPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
                 corner_radius=10)
         self.__oldPassTextBox.grid(row=7, column=1, sticky=ctk.W, padx=50, pady=1)
 
-        self.__repeatPassTextBox = ctk.CTkTextbox(self.__buttf, width=150,
+        self.__repeatPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150,
                 height=4, corner_radius=10)
         self.__repeatPassTextBox.grid(row=8, column=1, sticky=ctk.W, padx=50, pady=1)
-        storeButton = ctk.CTkButton(self.__buttf, text='Store Password',
+        storeButton = ctk.CTkButton(self.__userDetails, text='Store Password',
                 command=change)
         storeButton.grid(
             row=8,
@@ -384,9 +382,9 @@ class MyProfilePage(ctk.CTkFrame):
                 globals.currentUser.setFirstName(c)
                 f = globals.currentUser.getFirstName()
                 #print(f)
-                self.__firstNameText = ctk.CTkLabel(self.__buttf,
+                self.__usernameText = ctk.CTkLabel(self.__userDetails,
                         text=globals.currentUser.getFirstName())
-                self.__firstNameText.grid(
+                self.__usernameText.grid(
                     row=0,
                     column=1,
                     sticky=ctk.W,
@@ -398,8 +396,8 @@ class MyProfilePage(ctk.CTkFrame):
                 self.__storeUsernameButton.destroy()
                 self.__storeTextbox.destroy()
 
-        self.__firstNameText.destroy()
-        self.__storeUsernameButton = ctk.CTkButton(self.__buttf, text='Store Username',
+        self.__usernameText.destroy()
+        self.__storeUsernameButton = ctk.CTkButton(self.__userDetails, text='Store Username',
                 command=change)
         self.__storeUsernameButton.grid(
             row=0,
@@ -410,7 +408,7 @@ class MyProfilePage(ctk.CTkFrame):
             padx=14,
             pady=1,
             )
-        self.__storeTextbox = ctk.CTkTextbox(self.__buttf, width=150, height=4,
+        self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
                                 corner_radius=5)
         self.__storeTextbox.grid(
             row=0,
@@ -437,7 +435,7 @@ class MyProfilePage(ctk.CTkFrame):
                 f = globals.currentUser.getCity()
                 #print(f)
             self.__storeTextbox.destroy()
-            self.__cityText = ctk.CTkLabel(self.__buttf,
+            self.__cityText = ctk.CTkLabel(self.__userDetails,
                     text=globals.currentUser.getCity())
             self.__cityText.grid(
                 row=2,
@@ -450,7 +448,7 @@ class MyProfilePage(ctk.CTkFrame):
                 )
 
         self.__cityText.destroy()
-        self.__storeTextbox = ctk.CTkTextbox(self.__buttf, width=150, height=4,
+        self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
                                 corner_radius=5)
         self.__storeTextbox.grid(
             row=2,
@@ -461,7 +459,7 @@ class MyProfilePage(ctk.CTkFrame):
             padx=50,
             pady=1,
             )
-        storeButton = ctk.CTkButton(self.__buttf, text='Store Location',
+        storeButton = ctk.CTkButton(self.__userDetails, text='Store Location',
                 command=change)
         storeButton.grid(
             row=2,
@@ -487,7 +485,7 @@ class MyProfilePage(ctk.CTkFrame):
                 globals.currentUser.setEmail(c1)
                 f = globals.currentUser.getEmail()
                 #print(f)
-                self.__emailText = ctk.CTkLabel(self.__buttf,
+                self.__emailText = ctk.CTkLabel(self.__userDetails,
                         text=globals.currentUser.getEmail())
                 self.__emailText.grid(
                     row=1,
@@ -500,7 +498,7 @@ class MyProfilePage(ctk.CTkFrame):
                     )
 
         self.__emailText.destroy()
-        self.__changeEmailButton = ctk.CTkButton(self.__buttf, text='Store Email',
+        self.__changeEmailButton = ctk.CTkButton(self.__userDetails, text='Store Email',
                 command=change)
         self.__changeEmailButton.grid(
             row=1,
@@ -511,7 +509,7 @@ class MyProfilePage(ctk.CTkFrame):
             padx=15,
             pady=11,
             )
-        self.__storeTextbox = ctk.CTkTextbox(self.__buttf, width=185, height=4,
+        self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=185, height=4,
                                 corner_radius=5)
         self.__storeTextbox.grid(
             row=1,
@@ -546,7 +544,7 @@ class MyProfilePage(ctk.CTkFrame):
 
             f = globals.currentUser.getBalance()
             #print(f)
-            self.__balanceText = ctk.CTkLabel(self.__buttf, text=f)
+            self.__balanceText = ctk.CTkLabel(self.__userDetails, text=f)
             self.__popupwindow.destroy()
             self.__balanceText.grid(
                 row=3,
@@ -568,7 +566,7 @@ class MyProfilePage(ctk.CTkFrame):
 
             if f - c < 0:
 
-                self.invalidNumberPopup()
+                self.invalidPopup("Phone Number")
             else:
 
                 g = f - c
@@ -576,7 +574,7 @@ class MyProfilePage(ctk.CTkFrame):
 
             f = globals.currentUser.getBalance()
             #print(f)
-            self.__balanceText = ctk.CTkLabel(self.__buttf, text=f)
+            self.__balanceText = ctk.CTkLabel(self.__userDetails, text=f)
             self.__popupwindow.destroy()
             self.__balanceText.grid(
                 row=3,
@@ -661,14 +659,14 @@ class MyProfilePage(ctk.CTkFrame):
             f = globals.currentUser.getPhoneNumber()
 
             if c1 > 9999999999 or c1 <= 0:
-                self.invalidNumberPopup()
+                self.invalidPopup("Phone Number")
             else:
                 globals.currentUser.setPhoneNumber(c1)
                 f = globals.currentUser.getPhoneNumber()
             self.__storeTextbox.destroy()
             #print(f)
             storeButton.destroy()
-            self.__phoneNumberText = ctk.CTkLabel(self.__buttf,
+            self.__phoneNumberText = ctk.CTkLabel(self.__userDetails,
                     text=globals.currentUser.getPhoneNumber())
             self.__phoneNumberText.grid(
                 row=4,
@@ -681,7 +679,7 @@ class MyProfilePage(ctk.CTkFrame):
                 )
 
         self.__phoneNumberText.destroy()
-        self.__storeTextbox = ctk.CTkTextbox(self.__buttf, width=150, height=4,
+        self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
                                 corner_radius=5)
         self.__storeTextbox.grid(
             row=4,
@@ -692,7 +690,7 @@ class MyProfilePage(ctk.CTkFrame):
             padx=50,
             pady=1,
             )
-        storeButton = ctk.CTkButton(self.__buttf, text='Store Phone Number',
+        storeButton = ctk.CTkButton(self.__userDetails, text='Store Phone Number',
                 command=change)
         storeButton.grid(
             row=4,
@@ -717,7 +715,7 @@ class MyProfilePage(ctk.CTkFrame):
             self.__storeTextbox.destroy()
             #print(f)
             storeButton.destroy()
-            self.__descriptionText = ctk.CTkLabel(self.__buttf,
+            self.__descriptionText = ctk.CTkLabel(self.__userDetails,
                     text=globals.currentUser.getDescription())
             self.__descriptionText.grid(
                 row=5,
@@ -729,7 +727,7 @@ class MyProfilePage(ctk.CTkFrame):
                 pady=1,
                 )
         self.__descriptionText.destroy()
-        self.__storeTextbox = ctk.CTkTextbox(self.__buttf, width=300, height=20,
+        self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=300, height=20,
                                 corner_radius=20)
         self.__storeTextbox.grid(
             row=5,
@@ -740,7 +738,7 @@ class MyProfilePage(ctk.CTkFrame):
             padx=50,
             pady=1,
             )
-        storeButton = ctk.CTkButton(self.__buttf, text='Store Description',
+        storeButton = ctk.CTkButton(self.__userDetails, text='Store Description',
                 command=change)
         storeButton.grid(
             row=5,

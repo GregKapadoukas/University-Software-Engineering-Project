@@ -61,9 +61,9 @@ class GUI(ctk.CTk):
                                         command=lambda : self.show_frame(NotificationsPage))
         self.__navNotificationsButton.grid(row=0, column=5, sticky=ctk.W+ctk.E)
 
-        self.__navTransactionHistory = ctk.CTkButton(self.__buttonframe, text="Transaction History", 
+        self.__navTransactionHistoryButton = ctk.CTkButton(self.__buttonframe, text="Transaction History", 
                                         command=lambda : self.show_frame(TransactionHistoryPage))
-        self.__navTransactionHistory .grid(row=0, column=6, sticky=ctk.W+ctk.E)
+        self.__navTransactionHistoryButton .grid(row=0, column=6, sticky=ctk.W+ctk.E)
 
         self.__navMyProfileButton = ctk.CTkButton(self.__buttonframe, text="My Profile", 
                                         command=lambda : self.show_frame(MyProfilePage))
