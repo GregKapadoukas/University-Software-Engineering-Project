@@ -536,7 +536,7 @@ class MyProfilePage(ctk.CTkFrame):
 
             if c < 0:
 
-                self.invalidPopup("Phone Number")
+                self.invalidPopup("Deposit")
             else:
 
                 h = c + f
@@ -566,7 +566,7 @@ class MyProfilePage(ctk.CTkFrame):
 
             if f - c < 0:
 
-                self.invalidPopup("Phone Number")
+                self.invalidPopup("Withdrow")
             else:
 
                 g = f - c
