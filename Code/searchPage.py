@@ -122,8 +122,7 @@ class SearchPage(ctk.CTkFrame):
 
                 self.__userResultsFrame.columnconfigure(9, weight=1)
 
-                firstNameText = ctk.CTkLabel(self.__userResultsFrame, text="First Name", font=("Arial", 25))
-                lastNameText = ctk.CTkLabel(self.__userResultsFrame, text="Last Name", font=("Arial", 25))
+                usernameText = ctk.CTkLabel(self.__userResultsFrame, text="Username", font=("Arial", 25))
                 emailText = ctk.CTkLabel(self.__userResultsFrame, text="Email", font=("Arial", 25))
                 ageText = ctk.CTkLabel(self.__userResultsFrame, text="Age", font=("Arial", 25))
                 cityText = ctk.CTkLabel(self.__userResultsFrame, text="City", font=("Arial", 25))
@@ -132,45 +131,43 @@ class SearchPage(ctk.CTkFrame):
                 scoreText = ctk.CTkLabel(self.__userResultsFrame, text="Score", font=("Arial", 25))
                 listActionText = ctk.CTkLabel(self.__userResultsFrame, text="Action", font=("Arial", 25))
 
-                firstNameText.grid(row=0, column=0, padx=10, pady=10)
-                lastNameText.grid(row=0, column=1, padx=10, pady=10)
-                emailText.grid(row=0, column=2, padx=10, pady=10)
-                ageText.grid(row=0, column=3, padx=10, pady=10)
-                cityText.grid(row=0, column=4, padx=10, pady=10)
-                phoneNumberText.grid(row=0, column=5, padx=10, pady=10)
-                descriptionText.grid(row=0, column=6, padx=10, pady=10)
-                scoreText.grid(row=0, column=7, padx=10, pady=10)
-                listActionText.grid(row=0, column=8, padx=10, pady=10)
+                usernameText.grid(row=0, column=0, padx=10, pady=10)
+                emailText.grid(row=0, column=1, padx=10, pady=10)
+                ageText.grid(row=0, column=2, padx=10, pady=10)
+                cityText.grid(row=0, column=3, padx=10, pady=10)
+                phoneNumberText.grid(row=0, column=4, padx=10, pady=10)
+                descriptionText.grid(row=0, column=5, padx=10, pady=10)
+                scoreText.grid(row=0, column=6, padx=10, pady=10)
+                listActionText.grid(row=0, column=7, padx=10, pady=10)
 
-                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getFirstName(), font=("Arial", 15)).grid(row=1, column=0, padx=10, pady=10)
-                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getLastName(), font=("Arial", 15)).grid(row=1, column=1, padx=10, pady=10)
-                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getEmail(), font=("Arial", 15)).grid(row=1, column=2, padx=10, pady=10)
-                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getAge(), font=("Arial", 15)).grid(row=1, column=3, padx=10, pady=10)
-                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getCity(), font=("Arial", 15)).grid(row=1, column=4, padx=10, pady=10)
-                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getPhoneNumber(), font=("Arial", 15)).grid(row=1, column=5, padx=10, pady=10)
-                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getDescription(), font=("Arial", 15)).grid(row=1, column=6, padx=10, pady=10)
-                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getScore(), font=("Arial", 15)).grid(row=1, column=7, padx=10, pady=10)
+                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getUsername(), font=("Arial", 15)).grid(row=1, column=0, padx=10, pady=10)
+                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getEmail(), font=("Arial", 15)).grid(row=1, column=1, padx=10, pady=10)
+                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getAge(), font=("Arial", 15)).grid(row=1, column=2, padx=10, pady=10)
+                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getCity(), font=("Arial", 15)).grid(row=1, column=3, padx=10, pady=10)
+                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getPhoneNumber(), font=("Arial", 15)).grid(row=1, column=4, padx=10, pady=10)
+                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getDescription(), font=("Arial", 15)).grid(row=1, column=5, padx=10, pady=10)
+                ctk.CTkLabel(self.__userResultsFrame, text=self.__searchResults[0].getScore(), font=("Arial", 15)).grid(row=1, column=6, padx=10, pady=10)
                 self.__listSelectionButtons.append(ctk.CTkButton(self.__userResultsFrame, text="Add Favorite", font=("Arial", 15), command=lambda:self.selectUser(0)))
-                self.__listSelectionButtons[0].grid(row=1, column=8, padx=10, pady=10)
+                self.__listSelectionButtons[0].grid(row=1, column=7, padx=10, pady=10)
 
                 self.__userResultsFrame.pack(padx=10, pady=10)
 
                 userReviews = Review.getUserReviews(self.__searchResults[0])
                 #print(userReviews)
 
-                self.__reviewsFrame.columnconfigure(3, weight=1)
+                self.__reviewsFrame.columnconfigure(4, weight=1)
 
-                reviewerNameText = ctk.CTkLabel(self.__reviewsFrame, text="Reviewer First Name", font=("Arial", 25))
+                reviewerUsernameText = ctk.CTkLabel(self.__reviewsFrame, text="Reviewer Username", font=("Arial", 25))
                 scoreText = ctk.CTkLabel(self.__reviewsFrame, text="Score", font=("Arial", 25))
                 reviewCommentText = ctk.CTkLabel(self.__reviewsFrame, text="Review Comment", font=("Arial", 25))
 
-                reviewerNameText.grid(row=0, column=0, padx=10, pady=10)
+                reviewerUsernameText.grid(row=0, column=0, padx=10, pady=10)
                 scoreText.grid(row=0, column=1, padx=10, pady=10)
                 reviewCommentText.grid(row=0, column=2, padx=10, pady=10)
 
                 i = 1
                 for result in userReviews:
-                    ctk.CTkLabel(self.__reviewsFrame, text=result.getReviewer().getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+                    ctk.CTkLabel(self.__reviewsFrame, text=result.getReviewer().getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
                     ctk.CTkLabel(self.__reviewsFrame, text=result.getScore(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                     ctk.CTkLabel(self.__reviewsFrame, text=result.getReviewText(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                     i += 1
@@ -214,38 +211,35 @@ class SearchPage(ctk.CTkFrame):
         bookResultsSelection = self.__searchResults[selection].getBook().getBookIDFromInstance(self.__searchResults[selection].getBook())
         bookOfferers = User.findUsersOfferingBook(bookResultsSelection, globals.currentUser.getID())
 
-        self.__bookOfferersFrame.columnconfigure(7, weight=1)
+        self.__bookOfferersFrame.columnconfigure(6, weight=1)
 
-        firstNameText = ctk.CTkLabel(self.__bookOfferersFrame, text="First Name", font=("Arial", 25))
-        lastNameText = ctk.CTkLabel(self.__bookOfferersFrame, text="Last Name", font=("Arial", 25))
+        usernameText = ctk.CTkLabel(self.__bookOfferersFrame, text="Username", font=("Arial", 25))
         emailText = ctk.CTkLabel(self.__bookOfferersFrame, text="Email", font=("Arial", 25))
         cityText = ctk.CTkLabel(self.__bookOfferersFrame, text="City", font=("Arial", 25))
         deliveryTypeText = ctk.CTkLabel(self.__bookOfferersFrame, text="Delivery Type", font=("Arial", 25))
         pricePerDayText = ctk.CTkLabel(self.__bookOfferersFrame, text="Price Per Day", font=("Arial", 25))
         listActionText = ctk.CTkLabel(self.__bookOfferersFrame, text="Action", font=("Arial", 25))
 
-        firstNameText.grid(row=0, column=0, padx=10, pady=10)
-        lastNameText.grid(row=0, column=1, padx=10, pady=10)
-        emailText.grid(row=0, column=2, padx=10, pady=10)
-        cityText.grid(row=0, column=3, padx=10, pady=10)
-        deliveryTypeText.grid(row=0, column=4, padx=10, pady=10)
-        pricePerDayText.grid(row=0, column=5, padx=10, pady=10)
-        listActionText.grid(row=0, column=6, padx=10, pady=10)
+        usernameText.grid(row=0, column=0, padx=10, pady=10)
+        emailText.grid(row=0, column=1, padx=10, pady=10)
+        cityText.grid(row=0, column=2, padx=10, pady=10)
+        deliveryTypeText.grid(row=0, column=3, padx=10, pady=10)
+        pricePerDayText.grid(row=0, column=4, padx=10, pady=10)
+        listActionText.grid(row=0, column=5, padx=10, pady=10)
 
         rentButtons = []
 
         i = 1
         for result in bookOfferers:
-            ctk.CTkLabel(self.__bookOfferersFrame, text=result.getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookOfferersFrame, text=result.getLastName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookOfferersFrame, text=result.getEmail(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookOfferersFrame, text=result.getCity(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookOfferersFrame, text=result.searchBookOfferByBook(bookResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookOfferersFrame, text=result.searchBookOfferByBook(bookResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookOfferersFrame, text=result.getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookOfferersFrame, text=result.getEmail(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookOfferersFrame, text=result.getCity(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookOfferersFrame, text=result.searchBookOfferByBook(bookResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookOfferersFrame, text=result.searchBookOfferByBook(bookResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
             rentButtons.append(ctk.CTkButton(self.__bookOfferersFrame, text="Fill", font=("Arial", 15), command=
                                           lambda renter = globals.currentUser, owner=result,listing=result.searchBookOfferByBook(bookResultsSelection):
                                           self.createTransaction(renter, owner, listing)))
-            rentButtons[i-1].grid(row=i, column=6, padx=10, pady=10)
+            rentButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
             i+=1
 
         self.__bookOfferersFrame.pack(padx=10, pady=10)
@@ -260,36 +254,33 @@ class SearchPage(ctk.CTkFrame):
 
         self.__bookRequestersFrame.columnconfigure(7, weight=1)
 
-        firstNameText = ctk.CTkLabel(self.__bookRequestersFrame, text="First Name", font=("Arial", 25))
-        lastNameText = ctk.CTkLabel(self.__bookRequestersFrame, text="Last Name", font=("Arial", 25))
+        usernameText = ctk.CTkLabel(self.__bookRequestersFrame, text="Username", font=("Arial", 25))
         emailText = ctk.CTkLabel(self.__bookRequestersFrame, text="Email", font=("Arial", 25))
         cityText = ctk.CTkLabel(self.__bookRequestersFrame, text="City", font=("Arial", 25))
         deliveryTypeText = ctk.CTkLabel(self.__bookRequestersFrame, text="Delivery Type", font=("Arial", 25))
         pricePerDayText = ctk.CTkLabel(self.__bookRequestersFrame, text="Price Per Day", font=("Arial", 25))
         listActionText = ctk.CTkLabel(self.__bookRequestersFrame, text="Action", font=("Arial", 25))
 
-        firstNameText.grid(row=0, column=0, padx=10, pady=10)
-        lastNameText.grid(row=0, column=1, padx=10, pady=10)
-        emailText.grid(row=0, column=2, padx=10, pady=10)
-        cityText.grid(row=0, column=3, padx=10, pady=10)
-        deliveryTypeText.grid(row=0, column=4, padx=10, pady=10)
-        pricePerDayText.grid(row=0, column=5, padx=10, pady=10)
-        listActionText.grid(row=0, column=6, padx=10, pady=10)
+        usernameText.grid(row=0, column=0, padx=10, pady=10)
+        emailText.grid(row=0, column=1, padx=10, pady=10)
+        cityText.grid(row=0, column=2, padx=10, pady=10)
+        deliveryTypeText.grid(row=0, column=3, padx=10, pady=10)
+        pricePerDayText.grid(row=0, column=4, padx=10, pady=10)
+        listActionText.grid(row=0, column=5, padx=10, pady=10)
 
         rentButtons = []
 
         i = 1
         for result in bookOfferers:
-            ctk.CTkLabel(self.__bookRequestersFrame, text=result.getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookRequestersFrame, text=result.getLastName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookRequestersFrame, text=result.getEmail(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookRequestersFrame, text=result.getCity(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookRequestersFrame, text=result.searchBookRequestByBook(requestResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
-            ctk.CTkLabel(self.__bookRequestersFrame, text=result.searchBookRequestByBook(requestResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookRequestersFrame, text=result.getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookRequestersFrame, text=result.getEmail(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookRequestersFrame, text=result.getCity(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookRequestersFrame, text=result.searchBookRequestByBook(requestResultsSelection).getDeliveryType(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
+            ctk.CTkLabel(self.__bookRequestersFrame, text=result.searchBookRequestByBook(requestResultsSelection).getPricePerDay(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
             rentButtons.append(ctk.CTkButton(self.__bookRequestersFrame, text="Fill", font=("Arial", 15), command=
                                           lambda renter=result, owner = globals.currentUser, listing=result.searchBookRequestByBook(requestResultsSelection):
                                           self.createTransaction(renter, owner, listing)))
-            rentButtons[i-1].grid(row=i, column=6, padx=10, pady=10)
+            rentButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
             i+=1
 
         self.__bookRequestersFrame.pack(padx=10, pady=10)

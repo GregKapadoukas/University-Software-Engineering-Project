@@ -13,7 +13,7 @@ class NotificationsPage(ctk.CTkFrame):
         self.__notificationsGrid = ctk.CTkFrame(self)
         self.__notificationsGrid.columnconfigure(10, weight=1)
 
-        self.__favoriteUserText = ctk.CTkLabel(self.__notificationsGrid, text="Owner", font=("Arial", 25))
+        self.__favoriteUserText = ctk.CTkLabel(self.__notificationsGrid, text="Favorite", font=("Arial", 25))
         self.__titleText = ctk.CTkLabel(self.__notificationsGrid, text="Title", font=("Arial", 25))
         self.__authorText = ctk.CTkLabel(self.__notificationsGrid, text="Author", font=("Arial", 25))
         self.__genreText = ctk.CTkLabel(self.__notificationsGrid, text="Genre", font=("Arial", 25))
@@ -39,7 +39,7 @@ class NotificationsPage(ctk.CTkFrame):
 
         i=1
         for notification in self.__notifications:
-            ctk.CTkLabel(self.__notificationsGrid, text=User.searchUserProfileByID(notification.getFavoriteUserID())[0].getFirstName() + ' ' + User.searchUserProfileByID(notification.getFavoriteUserID())[0].getLastName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+            ctk.CTkLabel(self.__notificationsGrid, text=User.searchUserProfileByID(notification.getFavoriteUserID())[0].getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
             ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getBook().getName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
             ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getBook().getAuthor(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
             ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getBook().getGenre(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)

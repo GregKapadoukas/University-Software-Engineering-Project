@@ -39,7 +39,7 @@ class MyProfilePage(ctk.CTkFrame):
             )
 
         self.__usernameText = ctk.CTkLabel(self.__userDetails,
-                text=globals.currentUser.getFirstName())
+                text=globals.currentUser.getUsername())
         self.__usernameText.grid(
             row=0,
             column=1,
@@ -187,7 +187,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__newPassLabel = ctk.CTkLabel(self.__userDetails, text='Enter new password')
+        self.__newPassLabel = ctk.CTkLabel(self.__userDetails, text='Enter New Password')
         self.__newPassLabel.grid(
             row=6,
             column=0,
@@ -198,7 +198,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__oldPasswordLabel = ctk.CTkLabel(self.__userDetails, text='Enter old passord')
+        self.__oldPasswordLabel = ctk.CTkLabel(self.__userDetails, text='Enter Old Passord')
         self.__oldPasswordLabel.grid(
             row=7,
             column=0,
@@ -209,8 +209,7 @@ class MyProfilePage(ctk.CTkFrame):
             pady=11,
             )
 
-        self.__repeatPasswordLabel = ctk.CTkLabel(self.__userDetails,
-                text='Repeat new password')
+        self.__repeatPasswordLabel = ctk.CTkLabel(self.__userDetails, text='Repeat New Password')
         self.__repeatPasswordLabel.grid(
             row=8,
             column=0,
@@ -372,18 +371,18 @@ class MyProfilePage(ctk.CTkFrame):
 
             c = self.__storeTextbox.get('0.1', 'end')
 
-            f = globals.currentUser.getFirstName()
+            f = globals.currentUser.getUsername()
             y = len(c) + 1
             if y > 21 or y <= 1:
                 self.__storeUsernameButton.destroy()
                 self.__storeTextbox.destroy()
                 self.invalidPopup("Username")
             else:
-                globals.currentUser.setFirstName(c)
-                f = globals.currentUser.getFirstName()
+                globals.currentUser.setUsername(c)
+                f = globals.currentUser.getUsername()
                 #print(f)
                 self.__usernameText = ctk.CTkLabel(self.__userDetails,
-                        text=globals.currentUser.getFirstName())
+                        text=globals.currentUser.getUsername())
                 self.__usernameText.grid(
                     row=0,
                     column=1,
@@ -536,7 +535,7 @@ class MyProfilePage(ctk.CTkFrame):
 
             if c < 0:
 
-                self.invalidPopup("Phone Number")
+                self.invalidPopup("Deposit Attempt")
             else:
 
                 h = c + f
@@ -566,7 +565,7 @@ class MyProfilePage(ctk.CTkFrame):
 
             if f - c < 0:
 
-                self.invalidPopup("Phone Number")
+                self.invalidPopup("Withdrawal Attempt")
             else:
 
                 g = f - c

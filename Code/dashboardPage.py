@@ -44,7 +44,7 @@ class DashboardPage(ctk.CTkFrame):
             if transaction.getStatus == Status.Denied or transaction.getStatus == Status.Finished:
                 pass
             elif transaction.getStatus() == Status.Waiting_To_Be_Delivered or transaction.getStatus() == Status.Marked_Delivered_By_One:
-                ctk.CTkLabel(self.__rentFromGrid, text=transaction.getOwner().getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+                ctk.CTkLabel(self.__rentFromGrid, text=transaction.getOwner().getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentFromGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentFromGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentFromGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
@@ -54,7 +54,7 @@ class DashboardPage(ctk.CTkFrame):
                 self.__rentFromButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
                 i+=1
             elif transaction.getStatus() == Status.Marked_Delivered or transaction.getStatus == Status.Marked_Returned_By_One:
-                ctk.CTkLabel(self.__rentFromGrid, text=transaction.getOwner().getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+                ctk.CTkLabel(self.__rentFromGrid, text=transaction.getOwner().getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentFromGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentFromGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentFromGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
@@ -93,7 +93,7 @@ class DashboardPage(ctk.CTkFrame):
             if transaction.getStatus == Status.Denied or transaction.getStatus == Status.Finished:
                 pass
             elif transaction.getStatus() == Status.Waiting_To_Be_Delivered or transaction.getStatus() == Status.Marked_Delivered_By_One:
-                ctk.CTkLabel(self.__rentToGrid, text=transaction.getRenter().getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+                ctk.CTkLabel(self.__rentToGrid, text=transaction.getRenter().getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
@@ -103,7 +103,7 @@ class DashboardPage(ctk.CTkFrame):
                 self.__rentToButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
                 i+=1
             elif transaction.getStatus() == Status.Marked_Delivered or transaction.getStatus == Status.Marked_Returned_By_One:
-                ctk.CTkLabel(self.__rentToGrid, text=transaction.getRenter().getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+                ctk.CTkLabel(self.__rentToGrid, text=transaction.getRenter().getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)

@@ -42,9 +42,9 @@ class TransactionHistoryPage(ctk.CTkFrame):
         plt.close(self.__genreStatsFigure)
         plt.close(self.__ageStatsFigure)
 
-        self.__statusText = ctk.CTkLabel(self.__transactionListFrame, text="status", font=("Arial", 25))
-        self.__renterText = ctk.CTkLabel(self.__transactionListFrame, text="renter name", font=("Arial", 25))
-        self.__ownerText = ctk.CTkLabel(self.__transactionListFrame, text="owner name", font=("Arial", 25))
+        self.__statusText = ctk.CTkLabel(self.__transactionListFrame, text="Status", font=("Arial", 25))
+        self.__renterText = ctk.CTkLabel(self.__transactionListFrame, text="Renter Username", font=("Arial", 25))
+        self.__ownerText = ctk.CTkLabel(self.__transactionListFrame, text="Owner Usrename", font=("Arial", 25))
         self.__bookText = ctk.CTkLabel(self.__transactionListFrame, text="Book", font=("Arial", 25))
         self.__dateText = ctk.CTkLabel(self.__transactionListFrame, text="Date", font=("Arial", 25))
         self.__reviewText = ctk.CTkLabel(self.__transactionListFrame, text="Review", font=("Arial", 25))
@@ -63,8 +63,8 @@ class TransactionHistoryPage(ctk.CTkFrame):
         for transaction in self.__transactionsList:
 
             ctk.CTkLabel(self.__transactionListFrame, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
-            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getRenter().getFirstName() + ' ' + transaction.getRenter().getLastName(),font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
-            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getOwner().getFirstName() +  ' ' + transaction.getOwner().getLastName(), font=("Arial", 15)).grid(row=i,column=2,padx=10,pady=10)
+            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getRenter().getUsername(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
+            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getOwner().getUsername(), font=("Arial", 15)).grid(row=i,column=2,padx=10,pady=10)
             ctk.CTkLabel(self.__transactionListFrame, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
             ctk.CTkLabel(self.__transactionListFrame, text=transaction.getDate().date(), font=("Arial", 15)).grid(row=i,column=4,padx=10,pady=10)
             flag = False

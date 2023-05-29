@@ -9,14 +9,13 @@ from bookRequest import BookRequest
 class User:
     all = []
     id_incrementer = 0;
-    def __init__(self, first_name:str, last_name:str, email:str, age:int, city:str, balance:float, description:str, phone_number:int, password:str):
+    def __init__(self, username:str, email:str, age:int, city:str, balance:float, description:str, phone_number:int, password:str):
         assert age >= 0, f"Age {age} is not greater or equal to zero!"
         assert balance >= 0.0, f"Age {age} is not greater or equal to zero!"
 
         self.__id = User.id_incrementer
         User.id_incrementer+=1
-        self.__first_name = first_name
-        self.__last_name = last_name
+        self.__username = username
         self.__email = email
         self.__age = age
         self.__city = city
@@ -33,16 +32,13 @@ class User:
         User.all.append(self)
 
     def __repr__(self):
-        return f"ID: {self.__id}, First Name: {self.__first_name}, Last Name: {self.__last_name}, Email: {self.__email}, Age: {self.__age}, City: {self.__city}, Balance: {self.__balance}, Score: {self.__score}, Book Offers: {self.__bookOffers}, Book Requests: {self.__bookRequests}"
+        return f"ID: {self.__id}, Username: {self.__username}, Email: {self.__email}, Age: {self.__age}, City: {self.__city}, Balance: {self.__balance}, Score: {self.__score}, Book Offers: {self.__bookOffers}, Book Requests: {self.__bookRequests}"
 
     def getID(self):
         return self.__id
 
-    def getFirstName(self):
-        return self.__first_name
-
-    def getLastName(self):
-        return self.__last_name
+    def getUsername(self):
+        return self.__username
 
     def getEmail(self):
         return self.__email
@@ -86,8 +82,8 @@ class User:
     def setPhoneNumber(self,int):
         self.__phone_number=int
 
-    def setFirstName(self,str):
-        self.__first_name=str
+    def setUsername(self,str):
+        self.__username=str
         
     def setEmail(self,str):
         self.__email=str
@@ -173,7 +169,7 @@ class User:
     def searchUserProfile(searchTerm:str, searching_user):
         result = []
         for user in User.all:
-            if (searchTerm == user.getFirstName() or searchTerm == user.getLastName()) and user != searching_user:
+            if searchTerm == user.getUsername() and user != searching_user:
                 result.append(user)
                 break
         return result

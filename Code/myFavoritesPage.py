@@ -11,10 +11,9 @@ class MyFavoritesPage(ctk.CTkFrame):
         self.__favorites = globals.currentUser.getFavorites()
 
         self.__favoritesGrid = ctk.CTkFrame(self)
-        self.__favoritesGrid.columnconfigure(9, weight=1)
+        self.__favoritesGrid.columnconfigure(8, weight=1)
 
-        self.__firstNameText = ctk.CTkLabel(self.__favoritesGrid, text="First Name", font=("Arial", 25))
-        self.__lastNameText = ctk.CTkLabel(self.__favoritesGrid, text="Last Name", font=("Arial", 25))
+        self.__usernameText = ctk.CTkLabel(self.__favoritesGrid, text="Username", font=("Arial", 25))
         self.__emailText = ctk.CTkLabel(self.__favoritesGrid, text="Email", font=("Arial", 25))
         self.__ageText = ctk.CTkLabel(self.__favoritesGrid, text="Age", font=("Arial", 25))
         self.__cityText = ctk.CTkLabel(self.__favoritesGrid, text="City", font=("Arial", 25))
@@ -23,32 +22,30 @@ class MyFavoritesPage(ctk.CTkFrame):
         self.__scoreText = ctk.CTkLabel(self.__favoritesGrid, text="Score", font=("Arial", 25))
         self.__actionText = ctk.CTkLabel(self.__favoritesGrid, text="Action", font=("Arial", 25))
 
-        self.__firstNameText.grid(row=0, column=0, padx=10, pady=10)
-        self.__lastNameText.grid(row=0, column=1, padx=10, pady=10)
-        self.__emailText.grid(row=0, column=2, padx=10, pady=10)
-        self.__ageText.grid(row=0, column=3, padx=10, pady=10)
-        self.__cityText.grid(row=0, column=4, padx=10, pady=10)
-        self.__phoneNumberText.grid(row=0, column=5, padx=10, pady=10)
-        self.__descriptionText.grid(row=0, column=6, padx=10, pady=10)
-        self.__scoreText.grid(row=0, column=7, padx=10, pady=10)
-        self.__actionText.grid(row=0, column=8, padx=10, pady=10)
+        self.__usernameText.grid(row=0, column=0, padx=10, pady=10)
+        self.__emailText.grid(row=0, column=1, padx=10, pady=10)
+        self.__ageText.grid(row=0, column=2, padx=10, pady=10)
+        self.__cityText.grid(row=0, column=3, padx=10, pady=10)
+        self.__phoneNumberText.grid(row=0, column=4, padx=10, pady=10)
+        self.__descriptionText.grid(row=0, column=5, padx=10, pady=10)
+        self.__scoreText.grid(row=0, column=6, padx=10, pady=10)
+        self.__actionText.grid(row=0, column=7, padx=10, pady=10)
 
         self.__clearButtons = []
 
         i=1
         for favorite in self.__favorites:
             user = User.searchUserProfileByID(favorite.getFavoriteUserID())[0]
-            ctk.CTkLabel(self.__favoritesGrid, text=user.getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
-            ctk.CTkLabel(self.__favoritesGrid, text=user.getLastName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
-            ctk.CTkLabel(self.__favoritesGrid, text=user.getEmail(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
-            ctk.CTkLabel(self.__favoritesGrid, text=user.getAge(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-            ctk.CTkLabel(self.__favoritesGrid, text=user.getCity(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
-            ctk.CTkLabel(self.__favoritesGrid, text=user.getPhoneNumber(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
-            ctk.CTkLabel(self.__favoritesGrid, text=user.getDescription(), font=("Arial", 15)).grid(row=i, column=6, padx=10, pady=10)
-            ctk.CTkLabel(self.__favoritesGrid, text=user.getScore(), font=("Arial", 15)).grid(row=i, column=7, padx=10, pady=10)
+            ctk.CTkLabel(self.__favoritesGrid, text=user.getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+            ctk.CTkLabel(self.__favoritesGrid, text=user.getEmail(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
+            ctk.CTkLabel(self.__favoritesGrid, text=user.getAge(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
+            ctk.CTkLabel(self.__favoritesGrid, text=user.getCity(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
+            ctk.CTkLabel(self.__favoritesGrid, text=user.getPhoneNumber(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+            ctk.CTkLabel(self.__favoritesGrid, text=user.getDescription(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
+            ctk.CTkLabel(self.__favoritesGrid, text=user.getScore(), font=("Arial", 15)).grid(row=i, column=6, padx=10, pady=10)
             self.__clearButtons.append(ctk.CTkButton(self.__favoritesGrid, text="Remove Favorite", font=("Arial", 15), command=
                                           lambda favorite=favorite : globals.currentUser.removeFavorite(favorite)))
-            self.__clearButtons[i-1].grid(row=i, column=8, padx=10, pady=10)
+            self.__clearButtons[i-1].grid(row=i, column=7, padx=10, pady=10)
             i+=1
 
         self.__favoritesGrid.pack(padx=10, pady=10)

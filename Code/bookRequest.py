@@ -9,6 +9,9 @@ class BookRequest(Listing):
 
         BookRequest.all.append(self)
 
+    def __del__(self):
+        BookRequest.all.remove(self)
+
     @staticmethod
     def searchBookRequest(searchTerm:str, searching_user):
         result = []
