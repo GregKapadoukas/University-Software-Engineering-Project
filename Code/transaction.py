@@ -4,6 +4,7 @@ from enum import Enum
 from user import User
 from listing import Listing
 from user import User
+from review import Review
 
 
 class Status(Enum):
@@ -33,7 +34,7 @@ class Transaction:
 
         self.__listing = listing
         self.__starting_date = starting_date
-        self.__ratings = [{}]
+        self.__reviews = []
 
         Transaction.all.append(self)
 
@@ -135,6 +136,9 @@ class Transaction:
     def getBookName(self):
         return self.__listing.getBook().getName()
 
+    def getReviews(self):
+        return self.__reviews
+
     def getAmountAndCheckEnough(self):
         a = datetime.date.today() 
         b = self.__starting_date.date()
@@ -174,6 +178,14 @@ class Transaction:
             self.__status = Status.Finished
             self.__renter.addBalance(30.0) 
             self.__owner.addBalance(self.getAmountAndCheckEnough())
+
+    def addReview(self, reviewer:User, reviewee:User, score:float, text:str):
+        total = 0
+        self.__reviews.append(Review(reviewer, reviewee, score, text))
+        for review in Review.all:
+            if review.getReviewee() == reviewee:
+                total += 1
+        reviewee.updateScore(score, total)
 
     @staticmethod
     def getByRenter(renter:User):

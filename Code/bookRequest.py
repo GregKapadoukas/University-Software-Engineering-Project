@@ -10,9 +10,12 @@ class BookRequest(Listing):
         BookRequest.all.append(self)
 
     @staticmethod
-    def searchBookRequest(searchTerm:str):
+    def searchBookRequest(searchTerm:str, searching_user):
         result = []
         for bookRequest in BookRequest.all:
             if searchTerm in bookRequest.getBook().getName() or searchTerm in bookRequest.getBook().getAuthor():
                 result.append(bookRequest)
+        for bookRequest in searching_user.getBookOffers():
+            if bookRequest in result:
+                result.remove(bookRequest)
         return result

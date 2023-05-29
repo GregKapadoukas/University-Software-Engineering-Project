@@ -5,6 +5,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from user import User
 from transaction import Transaction
 import globals
+from reviewPage import ReviewPage
+
 class TransactionHistoryPage(ctk.CTkFrame):
     
     def __init__(self, parent, controller):
@@ -45,22 +47,38 @@ class TransactionHistoryPage(ctk.CTkFrame):
         self.__ownerText = ctk.CTkLabel(self.__transactionListFrame, text="owner name", font=("Arial", 25))
         self.__bookText = ctk.CTkLabel(self.__transactionListFrame, text="Book", font=("Arial", 25))
         self.__dateText = ctk.CTkLabel(self.__transactionListFrame, text="Date", font=("Arial", 25))
+        self.__reviewText = ctk.CTkLabel(self.__transactionListFrame, text="Review", font=("Arial", 25))
 
         self.__statusText.grid(row=0, column=0, padx=10, pady=10)
         self.__renterText.grid(row=0, column=1, padx=10, pady=10)
         self.__ownerText.grid(row=0, column=2, padx=10, pady=10)
         self.__bookText.grid(row=0, column=3, padx=10, pady=10)
         self.__dateText.grid(row=0, column=4, padx=10, pady=10)
+        self.__reviewText.grid(row=0, column=5, padx=10, pady=10)
+
+        self.__reviewButtons = []
 
         i=1
-
+        j=0
         for transaction in self.__transactionsList:
 
             ctk.CTkLabel(self.__transactionListFrame, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
-            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getRenter().getFirstName() + transaction.getRenter().getLastName(),font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
-            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getOwner().getFirstName() + transaction.getOwner().getLastName(), font=("Arial", 15)).grid(row=i,column=2,padx=10,pady=10)
+            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getRenter().getFirstName() + ' ' + transaction.getRenter().getLastName(),font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
+            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getOwner().getFirstName() +  ' ' + transaction.getOwner().getLastName(), font=("Arial", 15)).grid(row=i,column=2,padx=10,pady=10)
             ctk.CTkLabel(self.__transactionListFrame, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
-            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getDate(), font=("Arial", 15)).grid(row=i,column=4,padx=10,pady=10)
-            i += 1
+            ctk.CTkLabel(self.__transactionListFrame, text=transaction.getDate().date(), font=("Arial", 15)).grid(row=i,column=4,padx=10,pady=10)
+            flag = False
+            for review in transaction.getReviews():
+                if review.getReviewer() == globals.currentUser:
+                    flag = True
+            if flag == False:
+                self.__reviewButtons.append(ctk.CTkButton(self.__transactionListFrame, text="Add Review", font=("Arial", 15), command=lambda transaction=transaction, reviewer=globals.currentUser:
+                                                      self.showReviewPage(transaction, reviewer)))
+                self.__reviewButtons[j].grid(row=i, column=5, padx=10, pady=10)
+                j+=1
+            i+=1
 
         self.__transactionListFrame.pack()
+
+    def showReviewPage(self, transaction:Transaction, reviewer:User):
+        ReviewPage(transaction, reviewer)

@@ -14,6 +14,7 @@ from transactionHistoryPage import TransactionHistoryPage
 from searchPage import SearchPage
 from dashboardPage import DashboardPage
 from myBookOffersPage import MyBookOffersPage
+from myBookRequestsPage import MyBookRequestsPage
 from notificationsPage import NotificationsPage
 from myProfilePage import MyProfilePage
 from myFavoritesPage import MyFavoritesPage
@@ -99,9 +100,3 @@ class GUI(ctk.CTk):
         frame = self.__frames[cont]
         frame.grid(row = 0, column = 0, sticky="nsew")
         frame.tkraise()
-
-class MyBookRequestsPage(ctk.CTkFrame):
-    def __init__(self, parent, controller):
-        ctk.CTkFrame.__init__(self, parent)
-        self.__label = ctk.CTkLabel(self, text="My Book Requests")
-        self.__label.pack(padx=10, pady=10)

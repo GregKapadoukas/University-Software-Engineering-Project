@@ -9,10 +9,9 @@ from bookRequest import BookRequest
 class User:
     all = []
     id_incrementer = 0;
-    def __init__(self, first_name:str, last_name:str, email:str, age:int, city:str, balance:float, score:float, description:str, phone_number:int, password:str):
+    def __init__(self, first_name:str, last_name:str, email:str, age:int, city:str, balance:float, description:str, phone_number:int, password:str):
         assert age >= 0, f"Age {age} is not greater or equal to zero!"
         assert balance >= 0.0, f"Age {age} is not greater or equal to zero!"
-        assert score >= 0.0 and score <= 5, f"Score {score} is not greater or equal to zero and less than or equal to five!"
 
         self.__id = User.id_incrementer
         User.id_incrementer+=1
@@ -22,7 +21,7 @@ class User:
         self.__age = age
         self.__city = city
         self.__balance = balance
-        self.__score = score
+        self.__score = 0
         self.__bookOffers = []
         self.__bookRequests = []
         self.__favorites = []
@@ -165,11 +164,16 @@ class User:
     def removeFavorite(self, toclear):
         self.__favorites.remove(toclear)
 
+    def updateScore(self, score, total):
+        new_score = self.__score * (total-1)
+        new_score = (new_score + score) / total
+        self.__score = new_score
+
     @staticmethod
-    def searchUserProfile(searchTerm:str):
+    def searchUserProfile(searchTerm:str, searching_user):
         result = []
         for user in User.all:
-            if searchTerm == user.getFirstName() or searchTerm == user.getLastName():
+            if (searchTerm == user.getFirstName() or searchTerm == user.getLastName()) and user != searching_user:
                 result.append(user)
                 break
         return result
@@ -185,11 +189,11 @@ class User:
         return result
 
     @staticmethod
-    def findUsersOfferingBook(book_id:int):
+    def findUsersOfferingBook(book_id:int, searching_user_id:int):
         result = []
         for user in User.all:
             for bookOffer in user.__bookOffers:
-                if bookOffer.getBook().getBookIDFromInstance(bookOffer.getBook()) == book_id:
+                if bookOffer.getBook().getBookIDFromInstance(bookOffer.getBook()) == book_id and user.getID() != searching_user_id:
                     result.append(user)
         result = list(set(result))
         return result

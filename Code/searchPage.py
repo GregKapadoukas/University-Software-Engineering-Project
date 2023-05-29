@@ -86,7 +86,7 @@ class SearchPage(ctk.CTkFrame):
 
         match self.__radiobutton_variable.get():
             case 1:
-                self.__searchResults = BookOffer.searchBookOffer(self.__searchEntry.get())
+                self.__searchResults = BookOffer.searchBookOffer(self.__searchEntry.get(), globals.currentUser)
 
                 self.__bookResultsFrame.columnconfigure(6, weight=1)
 
@@ -118,7 +118,7 @@ class SearchPage(ctk.CTkFrame):
                 self.__bookResultsFrame.pack(padx=10, pady=10)
 
             case 2:
-                self.__searchResults = User.searchUserProfile(self.__searchEntry.get())
+                self.__searchResults = User.searchUserProfile(self.__searchEntry.get(), globals.currentUser)
 
                 self.__userResultsFrame.columnconfigure(9, weight=1)
 
@@ -155,7 +155,7 @@ class SearchPage(ctk.CTkFrame):
 
                 self.__userResultsFrame.pack(padx=10, pady=10)
 
-                userReviews = Review.getUserReviews(self.__searchResults[0].getID())
+                userReviews = Review.getUserReviews(self.__searchResults[0])
                 #print(userReviews)
 
                 self.__reviewsFrame.columnconfigure(3, weight=1)
@@ -170,14 +170,14 @@ class SearchPage(ctk.CTkFrame):
 
                 i = 1
                 for result in userReviews:
-                    ctk.CTkLabel(self.__reviewsFrame, text=User.searchUserProfileByID(result.getReviewerID())[0].getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+                    ctk.CTkLabel(self.__reviewsFrame, text=result.getReviewer().getFirstName(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
                     ctk.CTkLabel(self.__reviewsFrame, text=result.getScore(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
                     ctk.CTkLabel(self.__reviewsFrame, text=result.getReviewText(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
                     i += 1
 
                 self.__reviewsFrame.pack(padx=10, pady=10)
             case 3:
-                self.__searchResults = BookRequest.searchBookRequest(self.__searchEntry.get())
+                self.__searchResults = BookRequest.searchBookRequest(self.__searchEntry.get(), globals.currentUser)
 
                 self.__requestResultsFrame.columnconfigure(6, weight=1)
 
@@ -212,7 +212,7 @@ class SearchPage(ctk.CTkFrame):
 
     def selectOffer(self, selection):
         bookResultsSelection = self.__searchResults[selection].getBook().getBookIDFromInstance(self.__searchResults[selection].getBook())
-        bookOfferers = User.findUsersOfferingBook(bookResultsSelection)
+        bookOfferers = User.findUsersOfferingBook(bookResultsSelection, globals.currentUser.getID())
 
         self.__bookOfferersFrame.columnconfigure(7, weight=1)
 
