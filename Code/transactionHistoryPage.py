@@ -46,7 +46,7 @@ class TransactionHistoryPage(ctk.CTkFrame):
         self.__renterText = ctk.CTkLabel(self.__transactionListFrame, text="Renter Username", font=("Arial", 25))
         self.__ownerText = ctk.CTkLabel(self.__transactionListFrame, text="Owner Usrename", font=("Arial", 25))
         self.__bookText = ctk.CTkLabel(self.__transactionListFrame, text="Book", font=("Arial", 25))
-        self.__dateText = ctk.CTkLabel(self.__transactionListFrame, text="Date", font=("Arial", 25))
+        self.__dateText = ctk.CTkLabel(self.__transactionListFrame, text="Date Rented", font=("Arial", 25))
         self.__reviewText = ctk.CTkLabel(self.__transactionListFrame, text="Review", font=("Arial", 25))
 
         self.__statusText.grid(row=0, column=0, padx=10, pady=10)
