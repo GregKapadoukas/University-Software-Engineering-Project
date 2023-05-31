@@ -373,7 +373,13 @@ class MyProfilePage(ctk.CTkFrame):
 
             f = globals.currentUser.getUsername()
             y = len(c) + 1
-            if y > 21 or y <= 1:
+            f=0
+            i=1
+            for user in self.__user:
+                if c==self.getUsername():
+                    f=1
+                
+            if (y > 21 or y <= 1) and f=0 :
                 self.__storeUsernameButton.destroy()
                 self.__storeTextbox.destroy()
                 self.invalidPopup("Username")
