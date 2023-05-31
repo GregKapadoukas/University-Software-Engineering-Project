@@ -1,5 +1,10 @@
 import customtkinter as ctk
 import datetime
+
+from Code.bookOffer import BookOffer
+from Code.bookRequest import BookRequest
+from Code.review import Review
+from Code.user import User
 from address import Address
 from book import Book
 from bookOffer import BookOffer
@@ -13,62 +18,8 @@ from transaction import Transaction
 from user import User
 from CTkMessagebox import CTkMessagebox
 
-class SearchPage(ctk.CTkFrame):
-    def __init__(self, parent, controller):
-        ctk.CTkFrame.__init__(self, parent)
-        self.pageText = ctk.CTkLabel(self, text="Please Enter Your Search Term", font=("Arial", 25), text_color="#3A7ABF")
-        self.pageText.pack(padx=20, pady=20)
 
-        self.searchframe = ctk.CTkFrame(self)
-        self.searchframe .columnconfigure(0, weight=1)
-
-        self.searchEntry = ctk.CTkEntry(self.searchframe, placeholder_text="Enter Search Term")
-        self.searchEntry.grid(row=0, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
-
-        self.searchButton = ctk.CTkButton(self.searchframe, text="Search", command=self.search)
-        self.searchButton.grid(row=0, column=1, sticky=ctk.W+ctk.E, padx=10, pady=10)
-
-        self.radiobutton_variable = ctk.IntVar()
-
-        self.chooseBooks = ctk.CTkRadioButton(self.searchframe, text="Books", variable=self.radiobutton_variable, value=1)
-        self.chooseBooks.grid(row=1, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
-
-        self.chooseUser = ctk.CTkRadioButton(self.searchframe, text="Users", variable=self.radiobutton_variable, value=2)
-        self.chooseUser .grid(row=2, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
-
-        self.chooseRequest = ctk.CTkRadioButton(self.searchframe, text="Requests", variable=self.radiobutton_variable, value=3)
-        self.chooseRequest.grid(row=3, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
-
-        self.searchframe.pack()
-
-        self.results = []
-
-        self.bookResultsFrame = ctk.CTkFrame(self)
-        self.userResultsFrame = ctk.CTkFrame(self)
-        self.requestResultsFrame = ctk.CTkFrame(self)
-
-        self.bookOfferersFrame = ctk.CTkFrame(self)
-        self.userProfileFrame = ctk.CTkFrame(self)
-        self.bookRequestersFrame = ctk.CTkFrame(self)
-
-        self.reviewsFrame = ctk.CTkFrame(self)
-
-        self.buttons = []
-    
-    def clearFrames(self):
-        for widget in self.bookResultsFrame.winfo_children():
-            widget.destroy()
-        for widget in self.userResultsFrame.winfo_children():
-            widget.destroy()
-        for widget in self.requestResultsFrame.winfo_children():
-            widget.destroy()
-        for widget in self.bookOfferersFrame.winfo_children():
-            widget.destroy()
-        for widget in self.bookRequestersFrame.winfo_children():
-            widget.destroy()
-        for widget in self.reviewsFrame.winfo_children():
-            widget.destroy()
-
+class test:
     def search(self):
         self.bookResultsFrame.pack_forget()
         self.userResultsFrame.pack_forget()
@@ -81,7 +32,7 @@ class SearchPage(ctk.CTkFrame):
         self.reviewsFrame.pack_forget()
 
         self.clearFrames()
-        
+
         self.buttons = []
 
         match self.radiobutton_variable.get():
@@ -203,6 +154,63 @@ class SearchPage(ctk.CTkFrame):
                 self.requestResultsFrame.pack(padx=10, pady=10)
             case _:
                 self.results = []
+
+
+class SearchPage(ctk.CTkFrame, test):
+    def __init__(self, parent, controller):
+        ctk.CTkFrame.__init__(self, parent)
+        self.pageText = ctk.CTkLabel(self, text="Please Enter Your Search Term", font=("Arial", 25), text_color="#3A7ABF")
+        self.pageText.pack(padx=20, pady=20)
+
+        self.searchframe = ctk.CTkFrame(self)
+        self.searchframe .columnconfigure(0, weight=1)
+
+        self.searchEntry = ctk.CTkEntry(self.searchframe, placeholder_text="Enter Search Term")
+        self.searchEntry.grid(row=0, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.searchButton = ctk.CTkButton(self.searchframe, text="Search", command=self.search)
+        self.searchButton.grid(row=0, column=1, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.radiobutton_variable = ctk.IntVar()
+
+        self.chooseBooks = ctk.CTkRadioButton(self.searchframe, text="Books", variable=self.radiobutton_variable, value=1)
+        self.chooseBooks.grid(row=1, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.chooseUser = ctk.CTkRadioButton(self.searchframe, text="Users", variable=self.radiobutton_variable, value=2)
+        self.chooseUser .grid(row=2, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.chooseRequest = ctk.CTkRadioButton(self.searchframe, text="Requests", variable=self.radiobutton_variable, value=3)
+        self.chooseRequest.grid(row=3, column=0, sticky=ctk.W+ctk.E, padx=10, pady=10)
+
+        self.searchframe.pack()
+
+        self.results = []
+
+        self.bookResultsFrame = ctk.CTkFrame(self)
+        self.userResultsFrame = ctk.CTkFrame(self)
+        self.requestResultsFrame = ctk.CTkFrame(self)
+
+        self.bookOfferersFrame = ctk.CTkFrame(self)
+        self.userProfileFrame = ctk.CTkFrame(self)
+        self.bookRequestersFrame = ctk.CTkFrame(self)
+
+        self.reviewsFrame = ctk.CTkFrame(self)
+
+        self.buttons = []
+    
+    def clearFrames(self):
+        for widget in self.bookResultsFrame.winfo_children():
+            widget.destroy()
+        for widget in self.userResultsFrame.winfo_children():
+            widget.destroy()
+        for widget in self.requestResultsFrame.winfo_children():
+            widget.destroy()
+        for widget in self.bookOfferersFrame.winfo_children():
+            widget.destroy()
+        for widget in self.bookRequestersFrame.winfo_children():
+            widget.destroy()
+        for widget in self.reviewsFrame.winfo_children():
+            widget.destroy()
 
     def selectOffer(self, selection):
         bookResultsSelection = self.results[selection].getBook().getID()
