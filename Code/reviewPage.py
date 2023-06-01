@@ -20,13 +20,13 @@ class ReviewPage():
         self.__pageText = ctk.CTkLabel(self.__root, text="Please Select Your Review Type:", font=("Arial", 25), text_color="#3A7ABF")
         self.__pageText.pack(padx=20, pady=20)
         
-        self.__buttonframe=ctk.CTkFrame(self.__root)
-        self.__buttonframe.columnconfigure(0,weight=1)
-        self.__button1=ctk.CTkButton(self.__buttonframe,compound='left',height=250,width=250,text="Only Star Review",fg_color="black",command=self.starReview)
+        self.__choiceFrame=ctk.CTkFrame(self.__root)
+        self.__choiceFrame.columnconfigure(0,weight=1)
+        self.__button1=ctk.CTkButton(self.__choiceFrame,compound='left',height=250,width=250,text="Only Star Review",fg_color="black",command=self.starReview)
         self.__button1.grid(row=0,column=0,sticky=ctk.W+ctk.E, padx=10, pady=10)
-        self.__button2=ctk.CTkButton(self.__buttonframe,compound="right",height=250,width=250,text="Star and Comment Review",command=self.bothReview)
+        self.__button2=ctk.CTkButton(self.__choiceFrame,compound="right",height=250,width=250,text="Star and Comment Review",command=self.bothReview)
         self.__button2.grid(row=0,column=1,sticky=ctk.W+ctk.E, padx=10, pady=10)
-        self.__buttonframe.pack(padx = 20, pady = 20)
+        self.__choiceFrame.pack(padx = 20, pady = 20)
 
         self.__starFrame=ctk.CTkFrame(self.__root)
         self.__commentFrame=ctk.CTkFrame(self.__root)
@@ -38,8 +38,6 @@ class ReviewPage():
 
     def starReview(self):
         self.clearFrames()
-
-        self.__checkButtonvariable=ctk.IntVar()
 
         self.__zerostar=ctk.CTkButton(self.__starFrame,text="0",command=lambda score=0: self.updateStarScore(score,0))
         self.__zerostar.grid(row=0,column=0,sticky=ctk.W+ctk.E, padx=10, pady=10)

@@ -6,12 +6,6 @@ import datetime
 
 class MyBookOffersPage(ctk.CTkFrame):
 
-    def getBookOfferData(self):
-        bookData = []
-        bookData.append(ctk.CTkEntry(self,placeholder_text="Book Name"))
-        bookData[0].pack()
-        return bookData
-
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         self.__pageText = ctk.CTkLabel(self, text="My Book Offers", font=("Arial", 25), text_color="#3A7ABF")
