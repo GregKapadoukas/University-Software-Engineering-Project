@@ -22,9 +22,9 @@ class ReviewPage():
         
         self.__buttonframe=ctk.CTkFrame(self.__root)
         self.__buttonframe.columnconfigure(0,weight=1)
-        self.__button1=ctk.CTkButton(self.__buttonframe,compound='left',height=250,width=250,text="Star based review",fg_color="black",command=self.starReview)
+        self.__button1=ctk.CTkButton(self.__buttonframe,compound='left',height=250,width=250,text="Only Star Review",fg_color="black",command=self.starReview)
         self.__button1.grid(row=0,column=0,sticky=ctk.W+ctk.E, padx=10, pady=10)
-        self.__button2=ctk.CTkButton(self.__buttonframe,compound="right",height=250,width=250,text="Comment",command=self.bothReview)
+        self.__button2=ctk.CTkButton(self.__buttonframe,compound="right",height=250,width=250,text="Star and Comment Review",command=self.bothReview)
         self.__button2.grid(row=0,column=1,sticky=ctk.W+ctk.E, padx=10, pady=10)
         self.__buttonframe.pack(padx = 20, pady = 20)
 

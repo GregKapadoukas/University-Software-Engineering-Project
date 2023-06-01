@@ -28,12 +28,14 @@ class DashboardPage(ctk.CTkFrame):
         self.__rentFromStatusText = ctk.CTkLabel(self.__rentFromGrid, text="Status", font=("Arial", 25))
         self.__rentFromDateText = ctk.CTkLabel(self.__rentFromGrid, text="Date", font=("Arial", 25))
         self.__rentFromAmountText = ctk.CTkLabel(self.__rentFromGrid, text="Total Amount", font=("Arial", 25))
+        self.__rentFromActionText = ctk.CTkLabel(self.__rentFromGrid, text="Action", font=("Arial", 25))
 
         self.__rentFromOwnerText.grid(row=0, column=0, padx=10, pady=10)
         self.__rentFromBookText.grid(row=0, column=1, padx=10, pady=10)
         self.__rentFromStatusText.grid(row=0, column=2, padx=10, pady=10)
         self.__rentFromDateText.grid(row=0, column=3, padx=10, pady=10)
         self.__rentFromAmountText.grid(row=0, column=4, padx=10, pady=10)
+        self.__rentFromActionText.grid(row=0, column=5, padx=10, pady=10)
 
         self.__rentingFromTransactions = Transaction.getByRenter(globals.currentUser)
 
@@ -77,21 +79,38 @@ class DashboardPage(ctk.CTkFrame):
         self.__rentToStatusText = ctk.CTkLabel(self.__rentToGrid, text="Status", font=("Arial", 25))
         self.__rentToDateText = ctk.CTkLabel(self.__rentToGrid, text="Date", font=("Arial", 25))
         self.__rentToAmountText = ctk.CTkLabel(self.__rentToGrid, text="Total Amount", font=("Arial", 25))
+        self.__rentToActionText = ctk.CTkLabel(self.__rentToGrid, text="Action", font=("Arial", 25))
 
         self.__rentToRenterText.grid(row=0, column=0, padx=10, pady=10)
         self.__rentToBookText.grid(row=0, column=1, padx=10, pady=10)
         self.__rentToStatusText.grid(row=0, column=2, padx=10, pady=10)
         self.__rentToDateText.grid(row=0, column=3, padx=10, pady=10)
         self.__rentToAmountText.grid(row=0, column=4, padx=10, pady=10)
+        self.__rentToActionText.grid(row=0, column=5, padx=10, pady=10)
 
         self.__rentingToTransactions = Transaction.getByOwner(globals.currentUser)
 
         self.__rentToButtons = []
 
+        j = 0
         i = 1
         for transaction in self.__rentingToTransactions:
             if transaction.getStatus == Status.Denied or transaction.getStatus == Status.Finished:
                 pass
+            elif transaction.getStatus() == Status.To_Be_Confirmed:
+                ctk.CTkLabel(self.__rentToGrid, text=transaction.getRenter().getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
+                ctk.CTkLabel(self.__rentToGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
+                ctk.CTkLabel(self.__rentToGrid, text=transaction.getStatus(), font=("Arial", 15)).grid(row=i, column=2, padx=10, pady=10)
+                ctk.CTkLabel(self.__rentToGrid, text=transaction.getStartingDate(), font=("Arial", 15)).grid(row=i, column=3, padx=10, pady=10)
+                ctk.CTkLabel(self.__rentToGrid, text="0", font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
+                self.__rentToButtons.append(ctk.CTkButton(self.__rentToGrid, text="Accept Transaction", font=("Arial", 15), command=
+                                        lambda transaction = transaction:transaction.acceptTransaction()))
+                self.__rentToButtons[i+j-1].grid(row=i, column=5, padx=10, pady=10)
+                j += 1
+                self.__rentToButtons.append(ctk.CTkButton(self.__rentToGrid, text="Deny Transaction", font=("Arial", 15), command=
+                                        lambda transaction = transaction:transaction.denyTransaction()))
+                self.__rentToButtons[i+j-1].grid(row=i, column=6, padx=10, pady=10)
+                i+=1
             elif transaction.getStatus() == Status.Waiting_To_Be_Delivered or transaction.getStatus() == Status.Marked_Delivered_By_One:
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getRenter().getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getBookName(), font=("Arial", 15)).grid(row=i, column=1, padx=10, pady=10)
@@ -100,7 +119,7 @@ class DashboardPage(ctk.CTkFrame):
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getAmountAndCheckEnough(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
                 self.__rentToButtons.append(ctk.CTkButton(self.__rentToGrid, text="Mark Delivered", font=("Arial", 15), command=
                                         lambda transaction = transaction:transaction.updateStatus()))
-                self.__rentToButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
+                self.__rentToButtons[i+j-1].grid(row=i, column=5, padx=10, pady=10)
                 i+=1
             elif transaction.getStatus() == Status.Marked_Delivered or transaction.getStatus == Status.Marked_Returned_By_One:
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getRenter().getUsername(), font=("Arial", 15)).grid(row=i, column=0, padx=10, pady=10)
@@ -110,7 +129,7 @@ class DashboardPage(ctk.CTkFrame):
                 ctk.CTkLabel(self.__rentToGrid, text=transaction.getAmountAndCheckEnough(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
                 self.__rentToButtons.append(ctk.CTkButton(self.__rentToGrid, text="Mark Returned", font=("Arial", 15), command=
                                          lambda transaction = transaction:transaction.updateStatus()))
-                self.__rentToButtons[i-1].grid(row=i, column=5, padx=10, pady=10)
+                self.__rentToButtons[i+j-1].grid(row=i, column=5, padx=10, pady=10)
                 i+=1
 
         self.__rentToGrid.pack()

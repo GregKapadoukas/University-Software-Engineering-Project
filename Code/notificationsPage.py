@@ -20,6 +20,7 @@ class NotificationsPage(ctk.CTkFrame):
         self.__editionText = ctk.CTkLabel(self.__notificationsGrid, text="Edition", font=("Arial", 25))
         self.__publisherText = ctk.CTkLabel(self.__notificationsGrid, text="Publisher", font=("Arial", 25))
         self.__cityText = ctk.CTkLabel(self.__notificationsGrid, text="City", font=("Arial", 25))
+        self.__typeText = ctk.CTkLabel(self.__notificationsGrid, text="Listing Type", font=("Arial", 25))
         self.__deliveryTypeText = ctk.CTkLabel(self.__notificationsGrid, text="Delivery Type", font=("Arial", 25))
         self.__pricePerDayText = ctk.CTkLabel(self.__notificationsGrid, text="Price Per Day", font=("Arial", 25))
         self.__actionText = ctk.CTkLabel(self.__notificationsGrid, text="Action", font=("Arial", 25))
@@ -31,9 +32,10 @@ class NotificationsPage(ctk.CTkFrame):
         self.__editionText.grid(row=0, column=4, padx=10, pady=10)
         self.__publisherText.grid(row=0, column=5, padx=10, pady=10)
         self.__cityText.grid(row=0, column=6, padx=10, pady=10)
-        self.__deliveryTypeText.grid(row=0, column=7, padx=10, pady=10)
-        self.__pricePerDayText.grid(row=0, column=8, padx=10, pady=10)
-        self.__actionText.grid(row=0, column=9, padx=10, pady=10)
+        self.__typeText.grid(row=0, column=7, padx=10, pady=10)
+        self.__deliveryTypeText.grid(row=0, column=8, padx=10, pady=10)
+        self.__pricePerDayText.grid(row=0, column=9, padx=10, pady=10)
+        self.__actionText.grid(row=0, column=10, padx=10, pady=10)
 
         self.__clearButtons = []
 
@@ -46,11 +48,12 @@ class NotificationsPage(ctk.CTkFrame):
             ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getBook().getEdition(), font=("Arial", 15)).grid(row=i, column=4, padx=10, pady=10)
             ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getBook().getPublisher(), font=("Arial", 15)).grid(row=i, column=5, padx=10, pady=10)
             ctk.CTkLabel(self.__notificationsGrid, text=User.searchUserProfileByID(notification.getFavoriteUserID())[0].getCity(), font=("Arial", 15)).grid(row=i, column=6, padx=10, pady=10)
-            ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getDeliveryType(), font=("Arial", 15)).grid(row=i, column=7, padx=10, pady=10)
-            ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getPricePerDay(), font=("Arial", 15)).grid(row=i, column=8, padx=10, pady=10)
+            ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getType(), font=("Arial", 15)).grid(row=i, column=7, padx=10, pady=10)
+            ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getDeliveryType(), font=("Arial", 15)).grid(row=i, column=8, padx=10, pady=10)
+            ctk.CTkLabel(self.__notificationsGrid, text=notification.getListing().getPricePerDay(), font=("Arial", 15)).grid(row=i, column=9, padx=10, pady=10)
             self.__clearButtons.append(ctk.CTkButton(self.__notificationsGrid, text="Clear", font=("Arial", 15), command=
                                           lambda notification=notification : globals.currentUser.clearNotification(notification)))
-            self.__clearButtons[i-1].grid(row=i, column=9, padx=10, pady=10)
+            self.__clearButtons[i-1].grid(row=i, column=10, padx=10, pady=10)
             i+=1
 
         self.__notificationsGrid.pack(padx=10, pady=10)

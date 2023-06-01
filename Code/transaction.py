@@ -161,7 +161,6 @@ class Transaction:
     def denyTransaction(self):
         if self.__status == Status.To_Be_Confirmed:
             self.__status = Status.Denied
-            self.__renter.addBalance(30.0)
 
     def updateStatus(self):
         if self.__status == Status.Waiting_To_Be_Delivered:

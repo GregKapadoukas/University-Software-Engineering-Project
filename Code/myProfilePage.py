@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import globals
+from user import User
 
 
 class MyProfilePage(ctk.CTkFrame):
@@ -370,18 +371,17 @@ class MyProfilePage(ctk.CTkFrame):
         def change():
 
             c = self.__storeTextbox.get('0.1', 'end')
+            c = c.replace('\n', '')
 
             f = globals.currentUser.getUsername()
-            y = len(c) + 1
-            f=0
+            y = len(c)
+            f=False
             i=1
-            for user in self.__user:
-                if c==self.getUsername():
-                    f=1
+            for user in User.all:
+                if c == user.getUsername():
+                    f=True
                 
-            if (y > 21 or y <= 1) and f=0 :
-                self.__storeUsernameButton.destroy()
-                self.__storeTextbox.destroy()
+            if y > 21 or y <= 1 or f==True:
                 self.invalidPopup("Username")
             else:
                 globals.currentUser.setUsername(c)
@@ -663,7 +663,7 @@ class MyProfilePage(ctk.CTkFrame):
 
             f = globals.currentUser.getPhoneNumber()
 
-            if c1 > 9999999999 or c1 <= 0:
+            if c1 > 9999999999 or c1 < 1000000000:
                 self.invalidPopup("Phone Number")
             else:
                 globals.currentUser.setPhoneNumber(c1)

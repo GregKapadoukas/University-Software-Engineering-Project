@@ -11,6 +11,9 @@ class BookOffer(Listing):
     def __del__(self):
         BookOffer.all.remove(self)
 
+    def getType(self):
+        return "Book Offer"
+
     @staticmethod
     def searchBookOffer(searchTerm:str, searching_user):
         result = []
