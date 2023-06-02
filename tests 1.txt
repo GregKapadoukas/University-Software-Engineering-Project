@@ -1,0 +1,701 @@
+import customtkinter as ctk
+import datetime
+from book import Book
+from bookOffer import BookOffer
+from bookRequest import BookRequest
+from favorite import Favorite
+from listing import Listing, DeliveryType
+from notification import Notification
+from transaction import Transaction, Status
+from review import Review
+from gui import GUI
+from user import User
+import globals
+
+globals.currentUser = User("Greg", "up1072484@upnet.gr", 22, "Patra", 150.0, "Mostly like non fiction", 698435686, "12345678")
+xristos = User("Xristos", "xmpestis@gmail.com", 21, "Patra", 150.0, "Big Lord of the Rings fan", 698435686,"23456789")
+george = User("George", "george@gmail.com", 57, "Patra", 150.0, "Enjoy reading fiction", 6928556745,"34567891")
+
+xristos.addBookOffer("Harry Potter and the Philosopher's Stone", "J. K. Rowling", "Fantasy", 1,  "Bloomsbury", 1.0, DeliveryType.By_Post, datetime.datetime(2023,5,5))
+xristos.addBookRequest("Harry Potter and the Chamber of Secrets", "J. K. Rowling", "Fantasy", 1,  "Bloomsbury", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
+
+george.addBookOffer("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
+george.addBookRequest("The Lord of the Rings", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)", 1.0, DeliveryType.By_Post, datetime.datetime(2023,5,5))
+
+globals.currentUser.addFavorite(xristos.getID())
+globals.currentUser.addNotification(Notification(xristos.getID(), xristos.getBookOffers()[0]))
+globals.currentUser.addNotification(Notification(xristos.getID(), xristos.getBookRequests()[0]))
+globals.currentUser.addBookOffer("Software Engineering", "Ian Sommerville", "Non Fiction", 6,  "Addison-Wesley", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
+globals.currentUser.addBookOffer("The Mythical Man-Month", "Fred Brooks", "Non Fiction", 1,  "Addison-Wesley", 1.0, DeliveryType.Local_Meeting, datetime.datetime(2023,5,5))
+globals.currentUser.addBookRequest("The Pragmatic Programmer", "Andy Hunt and Dave Thomas", "Non Fiction", 1,  "Addison-Wesley", 5.0, DeliveryType.By_Post, datetime.datetime(2023,5,5))
+
+transaction1 = Transaction(george,globals.currentUser,globals.currentUser.getBookOffers()[0],datetime.datetime(2023,5,5))
+transaction2 = Transaction(globals.currentUser,xristos,xristos.getBookOffers()[0],datetime.datetime(2023,1,17))
+transaction3 = Transaction(xristos,globals.currentUser,xristos.getBookRequests()[0],datetime.datetime(2022,12,20))
+
+transaction2.addReview(globals.currentUser, xristos, 5.0, "Amazing service and book")
+
+for transaction in Transaction.all:
+	transaction.setStatus(Status.Finished)
+
+transaction4 = Transaction(xristos,globals.currentUser,globals.currentUser.getBookOffers()[1],datetime.datetime(2023,2,27))
+
+
+#result = User.findUsersOfferingBook(Book("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)"))
+#print(result)
+#result = User.findUsersRequestingBook(Book("The Lord of the Rings", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)"))
+#print(result)
+#print(Book("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)").isSame(Book("The Hobbit", "J. R. R. Tolkien", "Fantasy", 1,  "George Allen and Unwin (UK) Houghton Mifflin (US)")))
+#print(User.all)
+#print(Book.unique)
+#print(BookOffer.all)
+#print(BookRequest.all)
+
+
+# Generally we tried some testing by giving values by hand in the app. Althought we wanted to make some code testing for some functions to prove them right.
+
+#tests about password change
+
+def changePassword_test_1_password(self): #if new pass dont match
+
+def change():
+    #storeButton.destroy()
+            c1 = "stolen"
+            c2 = globals.currentUser.getPassword()
+    #c2 = c2.replace('\n', '')
+            c3 = "stolen_1"
+
+            f = globals.currentUser.getPassword()
+            f = f.replace('\n', '')
+
+            if (c1 == c3) and (str(c2)==f):
+                y = len(c1)
+                if y < 35 and y > 0:
+                    globals.currentUser.setPassword(c1)
+	            print("test_1_password failed")
+                else:
+            #print("First")
+                    print("test_1_password failed")
+          # self.newPassTextBox.destroy()
+          # self.oldPassTextBox.destroy()
+          # self.repeatPassTextBox.destroy()
+
+                    #self.invalidPasswordPopup()
+            else:
+
+           # self.newPassTextBox.destroy()
+            # self.oldPassTextBox.destroy()
+            # self.repeatPassTextBox.destroy()
+                 print("test_1_password passed") 
+         # globals.currentUser.setPass(c1)
+         # f=globals.currentUser.getPassword()
+         # print("1")
+
+        #self.invalidPasswordPopup()
+
+            f = globals.currentUser.getPassword()
+            #print(f)
+            #self.__newPassTextBox.destroy()
+            #self.__oldPassTextBox.destroy()
+            #self.__repeatPassTextBox.destroy()
+
+        #self.__newPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__newPassTextBox.grid(row=6, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__oldPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__oldPassTextBox.grid(row=7, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__repeatPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150,
+               # height=4, corner_radius=10)
+       #self.__repeatPassTextBox.grid(row=8, column=1, sticky=ctk.W, padx=50, pady=1)
+       # storeButton = ctk.CTkButton(self.__userDetails, text='Store Password',
+            #    command=change)
+       # storeButton.grid(
+            #row=8,
+           # column=2,
+           # sticky=ctk.W,
+           # columnspan=1,
+           # rowspan=1,
+           # padx=14,
+           # pady=11,
+           # )
+
+
+def changePassword_test_2_password(self): #if old pass dont match
+
+def change():
+    #storeButton.destroy()
+            c1 = "stolen"
+            c2 = "stolen"
+    #c2 = c2.replace('\n', '')
+            c3 = "stolen"
+
+            f = globals.currentUser.getPassword()
+            f = f.replace('\n', '')
+
+            if (c1 == c3) and (str(c2)==f):
+                y = len(c1)
+                if y < 35 and y > 0:
+                    globals.currentUser.setPassword(c1)
+	            print("test_2_password failed")
+                else:
+            #print("First")
+                    print("test_2_password failed")
+          # self.newPassTextBox.destroy()
+          # self.oldPassTextBox.destroy()
+          # self.repeatPassTextBox.destroy()
+
+                    #self.invalidPasswordPopup()
+            else:
+
+           # self.newPassTextBox.destroy()
+            # self.oldPassTextBox.destroy()
+            # self.repeatPassTextBox.destroy()
+                 print("test_2_password passed") 
+         # globals.currentUser.setPass(c1)
+         # f=globals.currentUser.getPassword()
+         # print("1")
+
+        #self.invalidPasswordPopup()
+
+            f = globals.currentUser.getPassword()
+            #print(f)
+            #self.__newPassTextBox.destroy()
+            #self.__oldPassTextBox.destroy()
+            #self.__repeatPassTextBox.destroy()
+
+        #self.__newPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__newPassTextBox.grid(row=6, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__oldPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__oldPassTextBox.grid(row=7, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__repeatPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150,
+               # height=4, corner_radius=10)
+       #self.__repeatPassTextBox.grid(row=8, column=1, sticky=ctk.W, padx=50, pady=1)
+       # storeButton = ctk.CTkButton(self.__userDetails, text='Store Password',
+            #    command=change)
+       # storeButton.grid(
+            #row=8,
+           # column=2,
+           # sticky=ctk.W,
+           # columnspan=1,
+           # rowspan=1,
+           # padx=14,
+           # pady=11,
+           # )
+
+def changePassword_test_3_password(self): #if new pass == 35 
+
+def change():
+    #storeButton.destroy()
+            c1 = "12345678912345678912345678912345678"
+            c2 = globals.currentUser.getPassword()
+    #c2 = c2.replace('\n', '')
+            c3 = "12345678912345678912345678912345678"
+
+            f = globals.currentUser.getPassword()
+            f = f.replace('\n', '')
+
+            if (c1 == c3) and (str(c2)==f):
+                y = len(c1)
+                if y < 35 and y > 0:
+            #globals.currentUser.setPassword(c1)
+	            print("test_3_password failed")
+                else:
+            #print("First")
+                    print("test_3_password passed")
+          # self.newPassTextBox.destroy()
+          # self.oldPassTextBox.destroy()
+          # self.repeatPassTextBox.destroy()
+
+                    #self.invalidPasswordPopup()
+            else:
+
+           # self.newPassTextBox.destroy()
+            # self.oldPassTextBox.destroy()
+            # self.repeatPassTextBox.destroy()
+                 print("test_3_password failed") 
+         # globals.currentUser.setPass(c1)
+         # f=globals.currentUser.getPassword()
+         # print("1")
+
+        #self.invalidPasswordPopup()
+
+            f = globals.currentUser.getPassword()
+            #print(f)
+            #self.__newPassTextBox.destroy()
+            #self.__oldPassTextBox.destroy()
+            #self.__repeatPassTextBox.destroy()
+
+        #self.__newPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__newPassTextBox.grid(row=6, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__oldPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__oldPassTextBox.grid(row=7, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__repeatPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150,
+               # height=4, corner_radius=10)
+       #self.__repeatPassTextBox.grid(row=8, column=1, sticky=ctk.W, padx=50, pady=1)
+       # storeButton = ctk.CTkButton(self.__userDetails, text='Store Password',
+            #    command=change)
+       # storeButton.grid(
+            #row=8,
+           # column=2,
+           # sticky=ctk.W,
+           # columnspan=1,
+           # rowspan=1,
+           # padx=14,
+           # pady=11,
+           # )
+
+def changePassword_test_4_password(self): #if new pass == 0 
+
+def change():
+    #storeButton.destroy()
+            c1 = ""
+            c2 = globals.currentUser.getPassword()
+    #c2 = c2.replace('\n', '')
+            c3 = ""
+
+            f = globals.currentUser.getPassword()
+            f = f.replace('\n', '')
+
+            if (c1 == c3) and (str(c2)==f):
+                y = len(c1)
+                if y < 35 and y > 0:
+            #globals.currentUser.setPassword(c1)
+	    print("test_4_password failed")
+                else:
+            #print("First")
+                    print("test_4_password passed")
+          # self.newPassTextBox.destroy()
+          # self.oldPassTextBox.destroy()
+          # self.repeatPassTextBox.destroy()
+
+                    #self.invalidPasswordPopup()
+            else:
+
+           # self.newPassTextBox.destroy()
+            # self.oldPassTextBox.destroy()
+            # self.repeatPassTextBox.destroy()
+                print("test_4_password failed") 
+         # globals.currentUser.setPass(c1)
+         # f=globals.currentUser.getPassword()
+         # print("1")
+
+        #self.invalidPasswordPopup()
+
+    f = globals.currentUser.getPassword()
+            #print(f)
+            #self.__newPassTextBox.destroy()
+            #self.__oldPassTextBox.destroy()
+            #self.__repeatPassTextBox.destroy()
+
+        #self.__newPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__newPassTextBox.grid(row=6, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__oldPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__oldPassTextBox.grid(row=7, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__repeatPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150,
+               # height=4, corner_radius=10)
+       #self.__repeatPassTextBox.grid(row=8, column=1, sticky=ctk.W, padx=50, pady=1)
+       # storeButton = ctk.CTkButton(self.__userDetails, text='Store Password',
+            #    command=change)
+       # storeButton.grid(
+            #row=8,
+           # column=2,
+           # sticky=ctk.W,
+           # columnspan=1,
+           # rowspan=1,
+           # padx=14,
+           # pady=11,
+           # )
+
+
+
+
+def changePassword_test_5_password(self): #if new pass correct 
+
+        def change():
+            #storeButton.destroy()
+            c1 = "1"
+            c2 = globals.currentUser.getPassword()
+           #c2 = c2.replace('\n', '')
+            c3 = "1"
+
+            f = globals.currentUser.getPassword()
+            f = f.replace('\n', '')
+
+            if (c1 == c3) and (str(c2)==f):
+                y = len(c1)
+                if y < 35 and y > 0:
+                #globals.currentUser.setPassword(c1)
+	        print("test_5_password passed")
+                else:
+                    #print("First")
+                    print("test_5_password failed")
+                    # self.newPassTextBox.destroy()
+                    # self.oldPassTextBox.destroy()
+                    # self.repeatPassTextBox.destroy()
+
+                    #self.invalidPasswordPopup()
+            else:
+
+           # self.newPassTextBox.destroy()
+            # self.oldPassTextBox.destroy()
+            # self.repeatPassTextBox.destroy()
+                 print("test_5_password failed") 
+         # globals.currentUser.setPass(c1)
+         # f=globals.currentUser.getPassword()
+         # print("1")
+
+        #self.invalidPasswordPopup()
+
+            f = globals.currentUser.getPassword()
+            #print(f)
+            #self.__newPassTextBox.destroy()
+            #self.__oldPassTextBox.destroy()
+            #self.__repeatPassTextBox.destroy()
+
+        #self.__newPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__newPassTextBox.grid(row=6, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__oldPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+                #corner_radius=10)
+        #self.__oldPassTextBox.grid(row=7, column=1, sticky=ctk.W, padx=50, pady=1)
+
+        #self.__repeatPassTextBox = ctk.CTkTextbox(self.__userDetails, width=150,
+               # height=4, corner_radius=10)
+       #self.__repeatPassTextBox.grid(row=8, column=1, sticky=ctk.W, padx=50, pady=1)
+       # storeButton = ctk.CTkButton(self.__userDetails, text='Store Password',
+            #    command=change)
+       # storeButton.grid(
+            #row=8,
+           # column=2,
+           # sticky=ctk.W,
+           # columnspan=1,
+           # rowspan=1,
+           # padx=14,
+           # pady=11,
+           # )
+
+#tests about username change
+
+def changeUsername_test_1_username(self): #the username is in use already
+
+        def change():
+
+            c = "xristos"
+            #c = c.replace('\n', '')
+
+            f = globals.currentUser.getUsername()
+            y = len(c)
+            f=False
+            i=1
+            for user in User.all:
+                if c == user.getUsername():
+                    f=True
+                
+            if y > 21 or y <= 1 or f==True:
+                print("test_1_username failed")#self.invalidPopup("Username")
+            else:
+                globals.currentUser.setUsername(c)
+                f = globals.currentUser.getUsername()
+                print("test_1_username passed")#print(f)
+                #self.__usernameText = ctk.CTkLabel(self.__userDetails,
+                      #  text=globals.currentUser.getUsername())
+                #self.__usernameText.grid(
+                   # row=0,
+                   # column=1,
+                    #sticky=ctk.W,
+                   #columnspan=1,
+                    #rowspan=1,
+                   # padx=100,
+                    #pady=1,
+                  #  )
+               # self.__storeUsernameButton.destroy()
+                #self.__storeTextbox.destroy()
+
+       # self.__usernameText.destroy()
+       # self.__storeUsernameButton = ctk.CTkButton(self.__userDetails, text='Store Username',
+        #        command=change)
+       # self.__storeUsernameButton.grid(
+         #   row=0,
+         #   column=2,
+         #   sticky=ctk.W,
+         #   columnspan=1,
+          #  rowspan=1,
+          #  padx=14,
+          #  pady=1,
+          #  )
+       # self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+       #                         corner_radius=5)
+        #self.__storeTextbox.grid(
+        #    row=0,
+         #   column=1,
+          #  sticky=ctk.W,
+          #  columnspan=1,
+          #  rowspan=1,
+          #  padx=50,
+          #  pady=1,
+          #  )
+
+def changeUsername_test_2_username(self): #the username == 21 ch
+
+        def change():
+
+            c = "1.1.1.1.1.1.1.1.1.1.1"
+            #c = c.replace('\n', '')
+
+            f = globals.currentUser.getUsername()
+            y = len(c)
+            f=False
+            i=1
+            for user in User.all:
+                if c == user.getUsername():
+                    f=True
+                
+            if y > 21 or y <= 1 or f==True:
+                print("test_2_username failed")#self.invalidPopup("Username")
+            else:
+                globals.currentUser.setUsername(c)
+                f = globals.currentUser.getUsername()
+                print("test_2_username passed")#print(f)
+                #self.__usernameText = ctk.CTkLabel(self.__userDetails,
+                      #  text=globals.currentUser.getUsername())
+                #self.__usernameText.grid(
+                   # row=0,
+                   # column=1,
+                    #sticky=ctk.W,
+                   #columnspan=1,
+                    #rowspan=1,
+                   # padx=100,
+                    #pady=1,
+                  #  )
+               # self.__storeUsernameButton.destroy()
+                #self.__storeTextbox.destroy()
+
+       # self.__usernameText.destroy()
+       # self.__storeUsernameButton = ctk.CTkButton(self.__userDetails, text='Store Username',
+        #        command=change)
+       # self.__storeUsernameButton.grid(
+         #   row=0,
+         #   column=2,
+         #   sticky=ctk.W,
+         #   columnspan=1,
+          #  rowspan=1,
+          #  padx=14,
+          #  pady=1,
+          #  )
+       # self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+       #                         corner_radius=5)
+        #self.__storeTextbox.grid(
+        #    row=0,
+         #   column=1,
+          #  sticky=ctk.W,
+          #  columnspan=1,
+          #  rowspan=1,
+          #  padx=50,
+          #  pady=1,
+          #  )
+
+def changeUsername_test_3_username(self): #the username == 0 ch
+
+        def change():
+
+            c = ""
+            #c = c.replace('\n', '')
+
+            f = globals.currentUser.getUsername()
+            y = len(c)
+            f=False
+            i=1
+            for user in User.all:
+                if c == user.getUsername():
+                    f=True
+                
+            if y > 21 or y <= 1 or f==True:
+                print("test_3_username failed")#self.invalidPopup("Username")
+            else:
+                globals.currentUser.setUsername(c)
+                f = globals.currentUser.getUsername()
+                print("test_3_username passed")#print(f)
+                #self.__usernameText = ctk.CTkLabel(self.__userDetails,
+                      #  text=globals.currentUser.getUsername())
+                #self.__usernameText.grid(
+                   # row=0,
+                   # column=1,
+                    #sticky=ctk.W,
+                   #columnspan=1,
+                    #rowspan=1,
+                   # padx=100,
+                    #pady=1,
+                  #  )
+               # self.__storeUsernameButton.destroy()
+                #self.__storeTextbox.destroy()
+
+       # self.__usernameText.destroy()
+       # self.__storeUsernameButton = ctk.CTkButton(self.__userDetails, text='Store Username',
+        #        command=change)
+       # self.__storeUsernameButton.grid(
+         #   row=0,
+         #   column=2,
+         #   sticky=ctk.W,
+         #   columnspan=1,
+          #  rowspan=1,
+          #  padx=14,
+          #  pady=1,
+          #  )
+       # self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+       #                         corner_radius=5)
+        #self.__storeTextbox.grid(
+        #    row=0,
+         #   column=1,
+          #  sticky=ctk.W,
+          #  columnspan=1,
+          #  rowspan=1,
+          #  padx=50,
+          #  pady=1,
+          #  )
+
+
+def changeUsername_test_4_username(self): #the username == 20 ch
+
+        def change():
+
+            c = "1.1.1.1.1.1.1.1.1.1."
+            #c = c.replace('\n', '')
+
+            f = globals.currentUser.getUsername()
+            y = len(c)
+            f=False
+            i=1
+            for user in User.all:
+                if c == user.getUsername():
+                    f=True
+                
+            if y > 21 or y <= 1 or f==True:
+                print("test_4_username passed")#self.invalidPopup("Username")
+            else:
+                globals.currentUser.setUsername(c)
+                f = globals.currentUser.getUsername()
+                print("test_4_username failed")#print(f)
+                #self.__usernameText = ctk.CTkLabel(self.__userDetails,
+                      #  text=globals.currentUser.getUsername())
+                #self.__usernameText.grid(
+                   # row=0,
+                   # column=1,
+                    #sticky=ctk.W,
+                   #columnspan=1,
+                    #rowspan=1,
+                   # padx=100,
+                    #pady=1,
+                  #  )
+               # self.__storeUsernameButton.destroy()
+                #self.__storeTextbox.destroy()
+
+       # self.__usernameText.destroy()
+       # self.__storeUsernameButton = ctk.CTkButton(self.__userDetails, text='Store Username',
+        #        command=change)
+       # self.__storeUsernameButton.grid(
+         #   row=0,
+         #   column=2,
+         #   sticky=ctk.W,
+         #   columnspan=1,
+          #  rowspan=1,
+          #  padx=14,
+          #  pady=1,
+          #  )
+       # self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+       #                         corner_radius=5)
+        #self.__storeTextbox.grid(
+        #    row=0,
+         #   column=1,
+          #  sticky=ctk.W,
+          #  columnspan=1,
+          #  rowspan=1,
+          #  padx=50,
+          #  pady=1,
+          #  )
+
+def changeUsername_test_5_username(self): #the username == 1 ch
+
+        def change():
+
+            c = "1"
+            #c = c.replace('\n', '')
+
+            f = globals.currentUser.getUsername()
+            y = len(c)
+            f=False
+            i=1
+            for user in User.all:
+                if c == user.getUsername():
+                    f=True
+                
+            if y > 21 or y <= 1 or f==True:
+                print("test_5_username passed")#self.invalidPopup("Username")
+            else:
+                globals.currentUser.setUsername(c)
+                f = globals.currentUser.getUsername()
+                print("test_5_username failed")#print(f)
+                #self.__usernameText = ctk.CTkLabel(self.__userDetails,
+                      #  text=globals.currentUser.getUsername())
+                #self.__usernameText.grid(
+                   # row=0,
+                   # column=1,
+                    #sticky=ctk.W,
+                   #columnspan=1,
+                    #rowspan=1,
+                   # padx=100,
+                    #pady=1,
+                  #  )
+               # self.__storeUsernameButton.destroy()
+                #self.__storeTextbox.destroy()
+
+       # self.__usernameText.destroy()
+       # self.__storeUsernameButton = ctk.CTkButton(self.__userDetails, text='Store Username',
+        #        command=change)
+       # self.__storeUsernameButton.grid(
+         #   row=0,
+         #   column=2,
+         #   sticky=ctk.W,
+         #   columnspan=1,
+          #  rowspan=1,
+          #  padx=14,
+          #  pady=1,
+          #  )
+       # self.__storeTextbox = ctk.CTkTextbox(self.__userDetails, width=150, height=4,
+       #                         corner_radius=5)
+        #self.__storeTextbox.grid(
+        #    row=0,
+         #   column=1,
+          #  sticky=ctk.W,
+          #  columnspan=1,
+          #  rowspan=1,
+          #  padx=50,
+          #  pady=1,
+          #  )
+
+
+
+
+
+
+
+
+app = GUI()
+app.mainloop()
+
+#Αυγέρης Νικόλαος
