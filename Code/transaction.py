@@ -77,7 +77,8 @@ class Transaction:
         
 
     @staticmethod
-    def getClosedTransactionsDataGenre(closedTransactionsList):
+    def getClosedTransactionsDataGenre(bookOwner: User):
+        closedTransactionsList = Transaction.getOwnerClosedTransactions(bookOwner)
         genreCount = {}
         for transaction in closedTransactionsList:
             genre = transaction.getListing().getBook().getGenre()
@@ -90,8 +91,9 @@ class Transaction:
         return genreCount
 
     @staticmethod
-    def getClosedTransactionsDataRenterAge(closedTransactionsList):
+    def getClosedTransactionsDataRenterAge(bookOwner: User):
         ages = {}
+        closedTransactionsList = Transaction.getOwnerClosedTransactions(bookOwner)
         
         for transaction in closedTransactionsList:
             renterAge=transaction.getRenter().getAge()
