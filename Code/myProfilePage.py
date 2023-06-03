@@ -245,28 +245,6 @@ class MyProfilePage(ctk.CTkFrame):
             pady=1,
             )
 
-        self.__editPictureButton = ctk.CTkButton(self.__userDetails, text='Edit Picture')
-        self.__editPictureButton.grid(
-            row=2,
-            column=5,
-            sticky=ctk.W,
-            columnspan=1,
-            rowspan=1,
-            padx=1,
-            pady=11,
-            )
-
-        self.__profilePicturePlaceholder = ctk.CTkLabel(self.__userDetails, text='Profile Picture Placeholder')
-        self.__profilePicturePlaceholder.grid(
-            row=0,
-            column=5,
-            sticky=ctk.W,
-            columnspan=1,
-            rowspan=1,
-            padx=1,
-            pady=11,
-            )
-
         self.__editBalanceButton = ctk.CTkButton(self.__userDetails, text='Edit Balance',
                                 command=self.editBalancePopup)
         self.__editBalanceButton.grid(
@@ -757,7 +735,7 @@ class MyProfilePage(ctk.CTkFrame):
 
     def invalidPopup(self, type):
 
-        def popup():
+        def closePopup():
             self.__popupwindow.destroy()
 
         self.__popupwindow = ctk.CTkToplevel()
@@ -774,7 +752,7 @@ class MyProfilePage(ctk.CTkFrame):
             padx=14,
             pady=1,
             )
-        self.__popupButton = ctk.CTkButton(self.__popupwindow, text='OK', command=popup)
+        self.__popupButton = ctk.CTkButton(self.__popupwindow, text='OK', command=closePopup)
         self.__popupButton.grid(
             row=1,
             column=0,
@@ -788,7 +766,7 @@ class MyProfilePage(ctk.CTkFrame):
 
     def invalidPasswordPopup(self):
 
-        def popup():
+        def closePopup():
             self.__popupwindow.destroy()
 
         self.__popupwindow = ctk.CTkToplevel()
@@ -806,7 +784,7 @@ class MyProfilePage(ctk.CTkFrame):
             padx=14,
             pady=1,
             )
-        self.__popupButton = ctk.CTkButton(self.__popupwindow, text='OK', command=popup)
+        self.__popupButton = ctk.CTkButton(self.__popupwindow, text='OK', command=closePopup)
         self.__popupButton.grid(
             row=1,
             column=1,
